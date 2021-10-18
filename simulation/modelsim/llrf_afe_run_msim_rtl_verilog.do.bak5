@@ -1,0 +1,17 @@
+transcript on
+if {[file exists rtl_work]} {
+	vdel -lib rtl_work -all
+}
+vlib rtl_work
+vmap work rtl_work
+
+vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_sin_mem.v}
+vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe_package.sv}
+vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds.sv}
+vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv}
+
+vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds.sv}
+
+vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclone10lp_ver -L rtl_work -L work -voptargs="+acc"  dds_tb
+
+do D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/wave.do
