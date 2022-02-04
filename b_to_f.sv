@@ -43,11 +43,10 @@ module b_to_f(
 
 //! внутренние переменные
 reg[63:0] numerator = 64'h00;             //! числитель
-reg[31:0] denominator = 32'h00;           //! знаменатель
+reg[63:0] denominator = 64'h00;           //! знаменатель
 reg[63:0] quotient = 64'h00;              //! результат деления
-reg[63:0] radical = 64'h00;               //! исходные данные для взятия квадратного корня
-reg[31:0] sqrt_result = 32'h00;           //! результат взятия квадратного корня
-reg[31:0] freq_result = 32'h00;           //! результат взятия квадратного корня
+reg[127:0] radical = 128'h00;               //! исходные данные для взятия квадратного корня
+reg[63:0] sqrt_result = 64'h00;           //! результат взятия квадратного корня
 
 reg[31:0] b_f = 32'h0;
 reg[31:0] a_c = 32'h0;
@@ -55,11 +54,16 @@ reg[31:0] b_c = 32'h0;
 reg[31:0] c_c = 32'h0;
 reg[31:0] k_c = 32'h0;
 
-reg[63:0] numerator_coeff = 64'h0;
-reg[31:0] b_f_pow_2 = 32'h0;
-
 reg[7:0] process_state = 8'h0;                      //! отслеживание конвеера подсчета
 reg active = 0;                                     //! состояние работы: 1 - процесс подсчета, 0 - ожидание запуска
+
+//! переменные для общего использования умножителя
+reg[1:0][63:0] mult_a;
+reg[1:0][63:0] mult_b;
+reg[1:0][127:0] mult_q;
+
+//! переменная для рузультата сложения
+reg[63:0] summ_q;
 
 //! 64-bit sqrt with 1-clk pipeline
 sqrt_int_64 sqrt_int_64_0 (
@@ -82,55 +86,114 @@ divide_32 divide_32_0 (
 	.remain()
 );
 
+//! 64-bits multipler with 1-clk pipeline
+genvar j;
+generate
+    for (j=0; j<2; j=j+1) begin: mult_gen
+        mult_64 mult_64_0 (
+            .clock(clk),
+            .dataa(mult_a[j]),
+            .datab(mult_b[j]),
+            .result(mult_q[j])
+        );
+    end
+endgenerate
+
 always @(posedge clk, posedge reset)
 begin
     if(reset) begin
         numerator <= 64'h00;
-        numerator_coeff <= 64'h00;
-        denominator <= 32'h00;
-        freq_result <= 32'h00;
+        denominator <= 64'h00;
         freq <= 32'h00;
         active <= 1'h0;
         process_state <= 8'h00;
         ready <= 1'h0;
+        summ_q <= 0;
+        b_f <= 0;
+        a_c <= 0;
+        b_c <= 0;
+        c_c <= 0;
+        k_c <= 0;
+        mult_a[0] = 64'h00; mult_b[0] = 64'h00;
+        mult_a[1] = 64'h00; mult_b[1] = 64'h00;
     end
     else begin
         if ((start == 1'h1) && (active == 0)) begin
             process_state <= 8'h00;
             active <= 1'h1;
             numerator <= 64'h00;
-            numerator_coeff <= 64'h00;
-            freq_result <= 32'h00;
-            denominator <= 32'h00;
+            denominator <= 64'h00;
             ready <= 1'h0;
+            summ_q <= 0;
             //
             b_f <= b_field;
             a_c <= a_coeff;
             b_c <= b_coeff;
             c_c <= c_coeff;
             k_c <= k_coeff;
+            //        
+            mult_a[0] = 64'h00; mult_b[0] = 64'h00;
+            mult_a[1] = 64'h00; mult_b[1] = 64'h00;
         end
         else if (active == 1) begin
-            process_state = process_state + 8'h1;
+            process_state <= process_state + 8'h1;
             if (process_state == 0) begin
-                numerator_coeff <= 64'hFF; //k_c*a_c;
-                b_f_pow_2 <= b_f*b_f;
+                //"*" c*(128^2)
+                mult_a[0] <= c_c; 
+                mult_b[0] <= 32'h1 << (7+7); 
+                //"*" (B^2)
+                mult_a[1] <= b_f; 
+                mult_b[1] <= b_f;
+                //"/" (128*a)/(100*(10^6))
+                numerator = (a_c << 7);  //128*a
+                denominator = 200_000_000;
             end
             else if (process_state == 1) begin
-                numerator <= numerator_coeff*b_f;
-                radical <= c_c*b_f_pow_2;
+                // pipeline
             end
             else if (process_state == 2) begin
-                radical <= b_c + radical;
+                // pipeline
+            end
+            else if (process_state == 3) begin
+                //"*" (c*128^2)*(B^2)
+                mult_a[0] <= mult_q[0][63:0];
+                mult_b[0] <= mult_q[1][63:0];
+                //"*" B*((128*a)/(100*(10^6)))
+                mult_a[1] <= quotient;
+                mult_b[1] <= b_f;
+            end
+            else if (process_state == 4) begin
+                // pipeline
             end
             else if (process_state == 5) begin
-                denominator <= sqrt_result;
+                // pipeline
+            end
+            else if (process_state == 6) begin
+                //"*" k*B*((128*a)/(100*(10^6)))
+                mult_a[1] <= mult_q[1][63:0];
+                mult_b[1] <= k_c;
+                //"*" sqrt(b+c*B^2)
+                radical <= b_c + mult_q[1][63:0];
+            end
+            else if (process_state == 7) begin
+                // pipeline
             end
             else if (process_state == 8) begin
-                freq_result <= quotient[62:32];
+                // pipeline
             end
-            else if (process_state >= 9) begin
-                freq <= freq_result;
+            else if (process_state == 9) begin
+                //"/" k*B*((128*a)/(100*(10^6))) / sqrt(b+c*B^2)
+                numerator <= mult_q[1];
+                denominator <= sqrt_result;
+            end
+            else if (process_state == 10) begin
+                //
+            end
+            else if (process_state == 11) begin
+                //
+            end
+            else if (process_state >= 12) begin
+                freq <= quotient[31:0];
                 ready <= 1'h1;
                 active <= 0;
                 process_state <= 8'h00;

@@ -19,12 +19,17 @@ add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/a_c
 add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/b_c
 add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/c_c
 add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/k_c
-add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/numerator_coeff
 add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/numerator
 add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/denominator
 add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/quotient
 add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/radical
 add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/sqrt_result
+add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/mult_gen[0]/mult_64_0/dataa
+add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/mult_gen[0]/mult_64_0/datab
+add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/mult_gen[0]/mult_64_0/result
+add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/mult_gen[1]/mult_64_0/dataa
+add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/mult_gen[1]/mult_64_0/datab
+add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/mult_gen[1]/mult_64_0/result
 
 
 TreeUpdate [SetDefaultTree]

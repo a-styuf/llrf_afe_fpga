@@ -43,9 +43,9 @@ module sqrt_int_64 (
 	input	  aclr;
 	input	  clk;
 	input	  ena;
-	input	[63:0]  radical;
-	output	[31:0]  q;
-	output	[32:0]  remainder;
+	input	[127:0]  radical;
+	output	[63:0]  q;
+	output	[64:0]  remainder;
 
 endmodule
 
@@ -55,22 +55,22 @@ endmodule
 // Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "Cyclone 10 LP"
 // Retrieval info: PRIVATE: SYNTH_WRAPPER_GEN_POSTFIX STRING "0"
 // Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
-// Retrieval info: CONSTANT: PIPELINE NUMERIC "1"
-// Retrieval info: CONSTANT: Q_PORT_WIDTH NUMERIC "32"
-// Retrieval info: CONSTANT: R_PORT_WIDTH NUMERIC "33"
-// Retrieval info: CONSTANT: WIDTH NUMERIC "64"
+// Retrieval info: CONSTANT: PIPELINE NUMERIC "2"
+// Retrieval info: CONSTANT: Q_PORT_WIDTH NUMERIC "64"
+// Retrieval info: CONSTANT: R_PORT_WIDTH NUMERIC "65"
+// Retrieval info: CONSTANT: WIDTH NUMERIC "128"
 // Retrieval info: USED_PORT: aclr 0 0 0 0 INPUT NODEFVAL "aclr"
 // Retrieval info: USED_PORT: clk 0 0 0 0 INPUT NODEFVAL "clk"
 // Retrieval info: USED_PORT: ena 0 0 0 0 INPUT NODEFVAL "ena"
-// Retrieval info: USED_PORT: q 0 0 32 0 OUTPUT NODEFVAL "q[31..0]"
-// Retrieval info: USED_PORT: radical 0 0 64 0 INPUT NODEFVAL "radical[63..0]"
-// Retrieval info: USED_PORT: remainder 0 0 33 0 OUTPUT NODEFVAL "remainder[32..0]"
+// Retrieval info: USED_PORT: q 0 0 64 0 OUTPUT NODEFVAL "q[63..0]"
+// Retrieval info: USED_PORT: radical 0 0 128 0 INPUT NODEFVAL "radical[127..0]"
+// Retrieval info: USED_PORT: remainder 0 0 65 0 OUTPUT NODEFVAL "remainder[64..0]"
 // Retrieval info: CONNECT: @aclr 0 0 0 0 aclr 0 0 0 0
 // Retrieval info: CONNECT: @clk 0 0 0 0 clk 0 0 0 0
 // Retrieval info: CONNECT: @ena 0 0 0 0 ena 0 0 0 0
-// Retrieval info: CONNECT: @radical 0 0 64 0 radical 0 0 64 0
-// Retrieval info: CONNECT: q 0 0 32 0 @q 0 0 32 0
-// Retrieval info: CONNECT: remainder 0 0 33 0 @remainder 0 0 33 0
+// Retrieval info: CONNECT: @radical 0 0 128 0 radical 0 0 128 0
+// Retrieval info: CONNECT: q 0 0 64 0 @q 0 0 64 0
+// Retrieval info: CONNECT: remainder 0 0 65 0 @remainder 0 0 65 0
 // Retrieval info: GEN_FILE: TYPE_NORMAL sqrt_int_64.v TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL sqrt_int_64.inc FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL sqrt_int_64.cmp FALSE

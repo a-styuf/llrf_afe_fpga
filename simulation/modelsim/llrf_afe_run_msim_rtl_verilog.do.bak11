@@ -8,6 +8,7 @@ vmap work rtl_work
 vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_sin_mem.v}
 vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/sqrt_int_64.v}
 vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/divide_32.v}
+vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v}
 vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/b_to_f.sv}
 vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave_core.sv}
 vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave.sv}

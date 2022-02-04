@@ -51,16 +51,16 @@ set_clock_groups -exclusive     -group  {sys_clk \
                                 -group {spi_sclk \
                                         }
 # setup delay
-set_output_delay -clock [get_clocks ext_dds_clk_in_v] -max [expr  $FPGA_DDS_CLK_delay_max + \
-                                                                $DDS_CLOCK_tSU + \
-                                                                $FPGA_DDS_DATA_delay_max - \
-                                                                $EXT_DDS_CLK_delay_min]\
-                                                                [get_ports int_dds[*].data[*]]
-set_output_delay -clock [get_clocks ext_dds_clk_in_v] -min [expr  $FPGA_DDS_CLK_delay_min + \
-                                                                $DDS_CLOCK_tH + \
-                                                                $FPGA_DDS_DATA_delay_min - \
-                                                                $EXT_DDS_CLK_delay_max]\
-                                                                [get_ports int_dds[*].data[*]]
+# set_output_delay -clock [get_clocks ext_dds_clk_in_v] -max [expr  $FPGA_DDS_CLK_delay_max + \
+#                                                                 $DDS_CLOCK_tSU + \
+#                                                                 $FPGA_DDS_DATA_delay_max - \
+#                                                                 $EXT_DDS_CLK_delay_min]\
+#                                                                 [get_ports int_dds[*].data[*]]
+# set_output_delay -clock [get_clocks ext_dds_clk_in_v] -min [expr  $FPGA_DDS_CLK_delay_min + \
+#                                                                 $DDS_CLOCK_tH + \
+#                                                                 $FPGA_DDS_DATA_delay_min - \
+#                                                                 $EXT_DDS_CLK_delay_max]\
+#                                                                 [get_ports int_dds[*].data[*]]
 
 set_input_delay  -clock in_clk_100MHz -max 1.2 [get_ports ext_rio_out[*]]
 set_input_delay  -clock in_clk_100MHz -min -0.6 [get_ports ext_rio_out[*]]

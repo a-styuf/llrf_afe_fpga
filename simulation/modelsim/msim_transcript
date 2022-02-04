@@ -12,80 +12,90 @@
 # 
 # vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_sin_mem.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 13:14:16 on Oct 15,2021
+# Start time: 15:16:27 on Oct 25,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_sin_mem.v 
 # -- Compiling module dds_sin_mem
 # 
 # Top level modules:
 # 	dds_sin_mem
-# End time: 13:14:16 on Oct 15,2021, Elapsed time: 0:00:00
+# End time: 15:16:27 on Oct 25,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/sqrt_int_64.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 13:14:16 on Oct 15,2021
+# Start time: 15:16:27 on Oct 25,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/sqrt_int_64.v 
 # -- Compiling module sqrt_int_64
 # 
 # Top level modules:
 # 	sqrt_int_64
-# End time: 13:14:17 on Oct 15,2021, Elapsed time: 0:00:01
+# End time: 15:16:27 on Oct 25,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/divide_32.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 13:14:17 on Oct 15,2021
+# Start time: 15:16:27 on Oct 25,2021
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/divide_32.v 
 # -- Compiling module divide_32
 # 
 # Top level modules:
 # 	divide_32
-# End time: 13:14:17 on Oct 15,2021, Elapsed time: 0:00:00
+# End time: 15:16:27 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:16:27 on Oct 25,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v 
+# -- Compiling module mult_64
+# 
+# Top level modules:
+# 	mult_64
+# End time: 15:16:27 on Oct 25,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/b_to_f.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 13:14:17 on Oct 15,2021
+# Start time: 15:16:27 on Oct 25,2021
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/b_to_f.sv 
 # -- Compiling module b_to_f
 # -- Compiling module b_to_f_tb
 # 
 # Top level modules:
 # 	b_to_f_tb
-# End time: 13:14:17 on Oct 15,2021, Elapsed time: 0:00:00
+# End time: 15:16:28 on Oct 25,2021, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave_core.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 13:14:17 on Oct 15,2021
+# Start time: 15:16:28 on Oct 25,2021
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave_core.sv 
 # -- Compiling module dds_slave_core
 # -- Compiling module dds_slave_core_tb
 # 
 # Top level modules:
 # 	dds_slave_core_tb
-# End time: 13:14:17 on Oct 15,2021, Elapsed time: 0:00:00
+# End time: 15:16:28 on Oct 25,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 13:14:17 on Oct 15,2021
+# Start time: 15:16:28 on Oct 25,2021
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave.sv 
 # -- Compiling module dds_slave
 # -- Compiling module dds_slave_tb
 # 
 # Top level modules:
 # 	dds_slave_tb
-# End time: 13:14:17 on Oct 15,2021, Elapsed time: 0:00:00
+# End time: 15:16:28 on Oct 25,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe_package.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 13:14:17 on Oct 15,2021
+# Start time: 15:16:28 on Oct 25,2021
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe_package.sv 
 # -- Compiling package llrf_afe_package
 # 
 # Top level modules:
 # 	--none--
-# End time: 13:14:17 on Oct 15,2021, Elapsed time: 0:00:00
+# End time: 15:16:28 on Oct 25,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 13:14:17 on Oct 15,2021
+# Start time: 15:16:28 on Oct 25,2021
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv 
 # ** Warning: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv(42): (vlog-13314) Defaulting port 'reserve_lvds' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
 # ** Warning: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv(43): (vlog-13314) Defaulting port 'reserve_3v3' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
@@ -99,24 +109,24 @@
 # 
 # Top level modules:
 # 	llrf_afe
-# End time: 13:14:17 on Oct 15,2021, Elapsed time: 0:00:00
+# End time: 15:16:28 on Oct 25,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 6
 # 
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/b_to_f.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 13:14:17 on Oct 15,2021
+# Start time: 15:16:28 on Oct 25,2021
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/b_to_f.sv 
 # -- Compiling module b_to_f
 # -- Compiling module b_to_f_tb
 # 
 # Top level modules:
 # 	b_to_f_tb
-# End time: 13:14:17 on Oct 15,2021, Elapsed time: 0:00:00
+# End time: 15:16:28 on Oct 25,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclone10lp_ver -L rtl_work -L work -voptargs="+acc"  b_to_f_tb
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclone10lp_ver -L rtl_work -L work -voptargs=""+acc"" b_to_f_tb 
-# Start time: 13:14:17 on Oct 15,2021
+# Start time: 15:16:28 on Oct 25,2021
 # Loading sv_std.std
 # Loading work.b_to_f_tb
 # Loading work.b_to_f
@@ -125,8 +135,14 @@
 # Loading work.divide_32
 # Loading lpm_ver.lpm_divide
 # Loading lpm_ver.LPM_HINT_EVALUATION
+# Loading work.mult_64
+# Loading lpm_ver.lpm_mult
 # ** Warning: (vsim-3016) Port type is incompatible with connection (port 'clock').
 #    Time: 0 ps  Iteration: 0  Instance: /b_to_f_tb/b_to_f_0/divide_32_0/LPM_DIVIDE_component File: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/divide_32.v Line: 62
+# ** Warning: (vsim-3016) Port type is incompatible with connection (port 'clock').
+#    Time: 0 ps  Iteration: 0  Instance: /b_to_f_tb/b_to_f_0/mult_gen[0]/mult_64_0/lpm_mult_component File: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v Line: 54
+# ** Warning: (vsim-3016) Port type is incompatible with connection (port 'clock').
+#    Time: 0 ps  Iteration: 0  Instance: /b_to_f_tb/b_to_f_0/mult_gen[1]/mult_64_0/lpm_mult_component File: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v Line: 54
 # 
 # do D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/wave.do
 # onerror {resume}
@@ -135,9 +151,9 @@
 # add wave -position end  -radix decimal sim:/b_to_f_tb/b_field
 # ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
 #           File in use by: Алексей Стюф  Hostname: DESKTOP-8QEVRQE  ProcessID: 16976
-#           Attempting to use alternate WLF file "./wlftk24yef".
+#           Attempting to use alternate WLF file "./wlftqbavmi".
 # ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftk24yef
+#           Using alternate file: ./wlftqbavmi
 # add wave -position end  -radix decimal sim:/b_to_f_tb/a_coeff
 # add wave -position end  -radix decimal sim:/b_to_f_tb/b_coeff
 # add wave -position end  -radix decimal sim:/b_to_f_tb/c_coeff
@@ -155,7 +171,6 @@
 # add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/b_c
 # add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/c_c
 # add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/k_c
-# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/numerator_coeff
 # add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/numerator
 # add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/denominator
 # add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/quotient
@@ -188,9 +203,459 @@
 # ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
 # ** Warning: (vsim-3016) Port type is incompatible with connection (port 'clock').
 #    Time: 0 ps  Iteration: 0  Instance: /b_to_f_tb/b_to_f_0/divide_32_0/LPM_DIVIDE_component File: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/divide_32.v Line: 62
-# run 0.2 us
+# ** Warning: (vsim-3016) Port type is incompatible with connection (port 'clock').
+#    Time: 0 ps  Iteration: 0  Instance: /b_to_f_tb/b_to_f_0/mult_gen[0]/mult_64_0/lpm_mult_component File: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v Line: 54
+# ** Warning: (vsim-3016) Port type is incompatible with connection (port 'clock').
+#    Time: 0 ps  Iteration: 0  Instance: /b_to_f_tb/b_to_f_0/mult_gen[1]/mult_64_0/lpm_mult_component File: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v Line: 54
+# run 0.4 us
 # wave zoom full
 # 0 ps
-# 210 ns
-# End time: 13:30:27 on Oct 15,2021, Elapsed time: 0:16:10
-# Errors: 0, Warnings: 1
+# 420 ns
+add wave -position end {sim:/b_to_f_tb/b_to_f_0/mult_gen[1]/*}
+# ** UI-Msg: (vish-4014) No objects found matching '/b_to_f_tb/b_to_f_0/mult_gen[1]/*'.
+add wave -position end  sim:/b_to_f_tb/b_to_f_0/mult_gen[1]/mult_64_0/dataa
+add wave -position end  sim:/b_to_f_tb/b_to_f_0/mult_gen[1]/mult_64_0/datab
+add wave -position end  sim:/b_to_f_tb/b_to_f_0/mult_gen[1]/mult_64_0/result
+add wave -position 23  sim:/b_to_f_tb/b_to_f_0/mult_gen[0]/mult_64_0/dataa
+add wave -position 24  sim:/b_to_f_tb/b_to_f_0/mult_gen[0]/mult_64_0/datab
+add wave -position 25  sim:/b_to_f_tb/b_to_f_0/mult_gen[0]/mult_64_0/result
+do llrf_afe_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_sin_mem.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:09 on Oct 25,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_sin_mem.v 
+# -- Compiling module dds_sin_mem
+# 
+# Top level modules:
+# 	dds_sin_mem
+# End time: 15:31:09 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/sqrt_int_64.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:09 on Oct 25,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/sqrt_int_64.v 
+# -- Compiling module sqrt_int_64
+# 
+# Top level modules:
+# 	sqrt_int_64
+# End time: 15:31:09 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/divide_32.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:09 on Oct 25,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/divide_32.v 
+# -- Compiling module divide_32
+# 
+# Top level modules:
+# 	divide_32
+# End time: 15:31:09 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:09 on Oct 25,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v 
+# -- Compiling module mult_64
+# 
+# Top level modules:
+# 	mult_64
+# End time: 15:31:09 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/b_to_f.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:09 on Oct 25,2021
+# vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/b_to_f.sv 
+# -- Compiling module b_to_f
+# -- Compiling module b_to_f_tb
+# 
+# Top level modules:
+# 	b_to_f_tb
+# End time: 15:31:09 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave_core.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:09 on Oct 25,2021
+# vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave_core.sv 
+# -- Compiling module dds_slave_core
+# -- Compiling module dds_slave_core_tb
+# 
+# Top level modules:
+# 	dds_slave_core_tb
+# End time: 15:31:09 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:10 on Oct 25,2021
+# vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave.sv 
+# -- Compiling module dds_slave
+# -- Compiling module dds_slave_tb
+# 
+# Top level modules:
+# 	dds_slave_tb
+# End time: 15:31:10 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe_package.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:10 on Oct 25,2021
+# vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe_package.sv 
+# -- Compiling package llrf_afe_package
+# 
+# Top level modules:
+# 	--none--
+# End time: 15:31:10 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:10 on Oct 25,2021
+# vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv 
+# ** Warning: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv(42): (vlog-13314) Defaulting port 'reserve_lvds' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv(43): (vlog-13314) Defaulting port 'reserve_3v3' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv(44): (vlog-13314) Defaulting port 'reserve_2v5' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling package llrf_afe_sv_unit
+# -- Importing package llrf_afe_package
+# -- Compiling module llrf_afe
+# ** Warning: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv(42): (vlog-13314) Defaulting port 'reserve_lvds' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv(43): (vlog-13314) Defaulting port 'reserve_3v3' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv(44): (vlog-13314) Defaulting port 'reserve_2v5' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# 
+# Top level modules:
+# 	llrf_afe
+# End time: 15:31:10 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 6
+# 
+# vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/b_to_f.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:10 on Oct 25,2021
+# vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/b_to_f.sv 
+# -- Compiling module b_to_f
+# -- Compiling module b_to_f_tb
+# 
+# Top level modules:
+# 	b_to_f_tb
+# End time: 15:31:10 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclone10lp_ver -L rtl_work -L work -voptargs="+acc"  b_to_f_tb
+# End time: 15:31:11 on Oct 25,2021, Elapsed time: 0:14:43
+# Errors: 0, Warnings: 3
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclone10lp_ver -L rtl_work -L work -voptargs=""+acc"" b_to_f_tb 
+# Start time: 15:31:11 on Oct 25,2021
+# Loading sv_std.std
+# Loading work.b_to_f_tb
+# Loading work.b_to_f
+# Loading work.sqrt_int_64
+# Loading altera_mf_ver.altsqrt
+# Loading work.divide_32
+# Loading lpm_ver.lpm_divide
+# Loading lpm_ver.LPM_HINT_EVALUATION
+# Loading work.mult_64
+# Loading lpm_ver.lpm_mult
+# ** Warning: (vsim-3016) Port type is incompatible with connection (port 'clock').
+#    Time: 0 ps  Iteration: 0  Instance: /b_to_f_tb/b_to_f_0/divide_32_0/LPM_DIVIDE_component File: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/divide_32.v Line: 62
+# ** Warning: (vsim-3016) Port type is incompatible with connection (port 'clock').
+#    Time: 0 ps  Iteration: 0  Instance: /b_to_f_tb/b_to_f_0/mult_gen[0]/mult_64_0/lpm_mult_component File: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v Line: 54
+# ** Warning: (vsim-3016) Port type is incompatible with connection (port 'clock').
+#    Time: 0 ps  Iteration: 0  Instance: /b_to_f_tb/b_to_f_0/mult_gen[1]/mult_64_0/lpm_mult_component File: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v Line: 54
+# 
+# do D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/wave.do
+# onerror {resume}
+# quietly WaveActivateNextPane {} 0
+# 
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_field
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: Алексей Стюф  Hostname: DESKTOP-8QEVRQE  ProcessID: 16976
+#           Attempting to use alternate WLF file "./wlftik9vrd".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftik9vrd
+# add wave -position end  -radix decimal sim:/b_to_f_tb/a_coeff
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_coeff
+# add wave -position end  -radix decimal sim:/b_to_f_tb/c_coeff
+# add wave -position end  -radix decimal sim:/b_to_f_tb/k_coeff
+# add wave -position end  sim:/b_to_f_tb/reset
+# add wave -position end  sim:/b_to_f_tb/clk
+# add wave -position end  sim:/b_to_f_tb/start
+# add wave -position end  -radix decimal sim:/b_to_f_tb/freq
+# add wave -position end  sim:/b_to_f_tb/ready
+# add wave -position end  sim:/b_to_f_tb/i
+# add wave -position end  sim:/b_to_f_tb/b_to_f_0/active
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/process_state
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/b_f
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/a_c
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/b_c
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/c_c
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/k_c
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/numerator
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/denominator
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/quotient
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/radical
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/sqrt_result
+# add wave -position end  sim:/b_to_f_tb/b_to_f_0/mult_gen[0]/mult_64_0/dataa
+# add wave -position end  sim:/b_to_f_tb/b_to_f_0/mult_gen[0]/mult_64_0/datab
+# add wave -position end  sim:/b_to_f_tb/b_to_f_0/mult_gen[0]/mult_64_0/result
+# add wave -position end  sim:/b_to_f_tb/b_to_f_0/mult_gen[1]/mult_64_0/dataa
+# add wave -position end  sim:/b_to_f_tb/b_to_f_0/mult_gen[1]/mult_64_0/datab
+# add wave -position end  sim:/b_to_f_tb/b_to_f_0/mult_gen[1]/mult_64_0/result
+# 
+# 
+# TreeUpdate [SetDefaultTree]
+# WaveRestoreCursors {{Cursor 1} {0 ps} 0} {{Cursor 2} {1000000 ps} 0}
+# quietly wave cursor active 2
+# configure wave -namecolwidth 429
+# configure wave -valuecolwidth 64
+# configure wave -justifyvalue left
+# configure wave -signalnamewidth 0
+# configure wave -snapdistance 10
+# configure wave -datasetprefix 0
+# configure wave -rowmargin 4
+# configure wave -childrowmargin 2
+# configure wave -gridoffset 0
+# configure wave -gridperiod 1
+# configure wave -griddelta 40
+# configure wave -timeline 0
+# configure wave -timelineunits ns
+# update
+# WaveRestoreZoom {0 ps} {1155 ns}
+# 
+# do restart.do
+# update
+# restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Warning: (vsim-3016) Port type is incompatible with connection (port 'clock').
+#    Time: 0 ps  Iteration: 0  Instance: /b_to_f_tb/b_to_f_0/divide_32_0/LPM_DIVIDE_component File: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/divide_32.v Line: 62
+# ** Warning: (vsim-3016) Port type is incompatible with connection (port 'clock').
+#    Time: 0 ps  Iteration: 0  Instance: /b_to_f_tb/b_to_f_0/mult_gen[0]/mult_64_0/lpm_mult_component File: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v Line: 54
+# ** Warning: (vsim-3016) Port type is incompatible with connection (port 'clock').
+#    Time: 0 ps  Iteration: 0  Instance: /b_to_f_tb/b_to_f_0/mult_gen[1]/mult_64_0/lpm_mult_component File: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v Line: 54
+# run 0.4 us
+# wave zoom full
+# 0 ps
+# 420 ns
+do llrf_afe_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_sin_mem.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:34 on Oct 25,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_sin_mem.v 
+# -- Compiling module dds_sin_mem
+# 
+# Top level modules:
+# 	dds_sin_mem
+# End time: 15:31:34 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/sqrt_int_64.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:34 on Oct 25,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/sqrt_int_64.v 
+# -- Compiling module sqrt_int_64
+# 
+# Top level modules:
+# 	sqrt_int_64
+# End time: 15:31:34 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/divide_32.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:34 on Oct 25,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/divide_32.v 
+# -- Compiling module divide_32
+# 
+# Top level modules:
+# 	divide_32
+# End time: 15:31:34 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:34 on Oct 25,2021
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v 
+# -- Compiling module mult_64
+# 
+# Top level modules:
+# 	mult_64
+# End time: 15:31:34 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/b_to_f.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:34 on Oct 25,2021
+# vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/b_to_f.sv 
+# -- Compiling module b_to_f
+# -- Compiling module b_to_f_tb
+# 
+# Top level modules:
+# 	b_to_f_tb
+# End time: 15:31:34 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave_core.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:34 on Oct 25,2021
+# vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave_core.sv 
+# -- Compiling module dds_slave_core
+# -- Compiling module dds_slave_core_tb
+# 
+# Top level modules:
+# 	dds_slave_core_tb
+# End time: 15:31:34 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:34 on Oct 25,2021
+# vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave.sv 
+# -- Compiling module dds_slave
+# -- Compiling module dds_slave_tb
+# 
+# Top level modules:
+# 	dds_slave_tb
+# End time: 15:31:34 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe_package.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:34 on Oct 25,2021
+# vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe_package.sv 
+# -- Compiling package llrf_afe_package
+# 
+# Top level modules:
+# 	--none--
+# End time: 15:31:34 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:34 on Oct 25,2021
+# vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv 
+# ** Warning: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv(42): (vlog-13314) Defaulting port 'reserve_lvds' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv(43): (vlog-13314) Defaulting port 'reserve_3v3' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv(44): (vlog-13314) Defaulting port 'reserve_2v5' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling package llrf_afe_sv_unit
+# -- Importing package llrf_afe_package
+# -- Compiling module llrf_afe
+# ** Warning: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv(42): (vlog-13314) Defaulting port 'reserve_lvds' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv(43): (vlog-13314) Defaulting port 'reserve_3v3' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv(44): (vlog-13314) Defaulting port 'reserve_2v5' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# 
+# Top level modules:
+# 	llrf_afe
+# End time: 15:31:34 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 6
+# 
+# vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe {D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/b_to_f.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 15:31:34 on Oct 25,2021
+# vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe" D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/b_to_f.sv 
+# -- Compiling module b_to_f
+# -- Compiling module b_to_f_tb
+# 
+# Top level modules:
+# 	b_to_f_tb
+# End time: 15:31:34 on Oct 25,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclone10lp_ver -L rtl_work -L work -voptargs="+acc"  b_to_f_tb
+# End time: 15:31:35 on Oct 25,2021, Elapsed time: 0:00:24
+# Errors: 0, Warnings: 3
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclone10lp_ver -L rtl_work -L work -voptargs=""+acc"" b_to_f_tb 
+# Start time: 15:31:35 on Oct 25,2021
+# Loading sv_std.std
+# Loading work.b_to_f_tb
+# Loading work.b_to_f
+# Loading work.sqrt_int_64
+# Loading altera_mf_ver.altsqrt
+# Loading work.divide_32
+# Loading lpm_ver.lpm_divide
+# Loading lpm_ver.LPM_HINT_EVALUATION
+# Loading work.mult_64
+# Loading lpm_ver.lpm_mult
+# ** Warning: (vsim-3016) Port type is incompatible with connection (port 'clock').
+#    Time: 0 ps  Iteration: 0  Instance: /b_to_f_tb/b_to_f_0/divide_32_0/LPM_DIVIDE_component File: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/divide_32.v Line: 62
+# ** Warning: (vsim-3016) Port type is incompatible with connection (port 'clock').
+#    Time: 0 ps  Iteration: 0  Instance: /b_to_f_tb/b_to_f_0/mult_gen[0]/mult_64_0/lpm_mult_component File: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v Line: 54
+# ** Warning: (vsim-3016) Port type is incompatible with connection (port 'clock').
+#    Time: 0 ps  Iteration: 0  Instance: /b_to_f_tb/b_to_f_0/mult_gen[1]/mult_64_0/lpm_mult_component File: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v Line: 54
+# 
+# do D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/wave.do
+# onerror {resume}
+# quietly WaveActivateNextPane {} 0
+# 
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_field
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: Алексей Стюф  Hostname: DESKTOP-8QEVRQE  ProcessID: 16976
+#           Attempting to use alternate WLF file "./wlftghxhhe".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftghxhhe
+# add wave -position end  -radix decimal sim:/b_to_f_tb/a_coeff
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_coeff
+# add wave -position end  -radix decimal sim:/b_to_f_tb/c_coeff
+# add wave -position end  -radix decimal sim:/b_to_f_tb/k_coeff
+# add wave -position end  sim:/b_to_f_tb/reset
+# add wave -position end  sim:/b_to_f_tb/clk
+# add wave -position end  sim:/b_to_f_tb/start
+# add wave -position end  -radix decimal sim:/b_to_f_tb/freq
+# add wave -position end  sim:/b_to_f_tb/ready
+# add wave -position end  sim:/b_to_f_tb/i
+# add wave -position end  sim:/b_to_f_tb/b_to_f_0/active
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/process_state
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/b_f
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/a_c
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/b_c
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/c_c
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/k_c
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/numerator
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/denominator
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/quotient
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/radical
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/sqrt_result
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/mult_gen[0]/mult_64_0/dataa
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/mult_gen[0]/mult_64_0/datab
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/mult_gen[0]/mult_64_0/result
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/mult_gen[1]/mult_64_0/dataa
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/mult_gen[1]/mult_64_0/datab
+# add wave -position end  -radix decimal sim:/b_to_f_tb/b_to_f_0/mult_gen[1]/mult_64_0/result
+# 
+# 
+# TreeUpdate [SetDefaultTree]
+# WaveRestoreCursors {{Cursor 1} {0 ps} 0} {{Cursor 2} {1000000 ps} 0}
+# quietly wave cursor active 2
+# configure wave -namecolwidth 429
+# configure wave -valuecolwidth 64
+# configure wave -justifyvalue left
+# configure wave -signalnamewidth 0
+# configure wave -snapdistance 10
+# configure wave -datasetprefix 0
+# configure wave -rowmargin 4
+# configure wave -childrowmargin 2
+# configure wave -gridoffset 0
+# configure wave -gridperiod 1
+# configure wave -griddelta 40
+# configure wave -timeline 0
+# configure wave -timelineunits ns
+# update
+# WaveRestoreZoom {0 ps} {1155 ns}
+# 
+# do restart.do
+# update
+# restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Warning: (vsim-3016) Port type is incompatible with connection (port 'clock').
+#    Time: 0 ps  Iteration: 0  Instance: /b_to_f_tb/b_to_f_0/divide_32_0/LPM_DIVIDE_component File: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/divide_32.v Line: 62
+# ** Warning: (vsim-3016) Port type is incompatible with connection (port 'clock').
+#    Time: 0 ps  Iteration: 0  Instance: /b_to_f_tb/b_to_f_0/mult_gen[0]/mult_64_0/lpm_mult_component File: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v Line: 54
+# ** Warning: (vsim-3016) Port type is incompatible with connection (port 'clock').
+#    Time: 0 ps  Iteration: 0  Instance: /b_to_f_tb/b_to_f_0/mult_gen[1]/mult_64_0/lpm_mult_component File: D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v Line: 54
+# run 0.4 us
+# wave zoom full
+# 0 ps
+# 420 ns
+# End time: 15:52:53 on Oct 25,2021, Elapsed time: 0:21:18
+# Errors: 0, Warnings: 3

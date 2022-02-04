@@ -5,7 +5,7 @@ import llrf_afe_package::*;
 module llrf_afe(
     // ** internal ** //
     // DDS
-    output dds_bus int_dds[3:0],
+    output dds_bus int_dds[1:0],
     input logic[3:0] int_dds_fb,
     input logic dds_sync,
     input logic int_dds_clk_in,
@@ -60,10 +60,10 @@ logic reset;
 
 //tmp
 reg[31:0] b_field = 32'hFF;              //! значение магнитного поля: максимальное значение 128 T, квант ~29.8 нТ
-reg[31:0] a_coeff = 32'hFF;              //! a - коэффициент формулы
-reg[31:0] b_coeff = 32'hFF;              //! b - коэффициент формулы
-reg[31:0] c_coeff = 32'hFF;              //! c - коэффициент формулы
-reg[7:0] k_coeff = 8'hFF;               //! Номер рабочей гармоники ВЧ
+reg[31:0] a_coeff = 32'h01;              //! a - коэффициент формулы
+reg[31:0] b_coeff = 32'h02;              //! b - коэффициент формулы
+reg[31:0] c_coeff = 32'h03;              //! c - коэффициент формулы
+reg[7:0] k_coeff = 8'h01;               //! Номер рабочей гармоники ВЧ
 reg start = 1'h1;                      //! запуск подсчета
 //
 reg[31:0] freq;                 //! реузьлтат подсчета частоты: Freq[Hz]*(2^32)/(F_clk)
@@ -102,10 +102,11 @@ b_to_f b_to_f_0(
 //*** ____________Description____________________________________ ***//
 
 initial begin
-    for (i = 0; i < 4; i=i+1) begin
+    for (i = 0; i < 2; i=i+1) begin
             int_dds[i].slp <= 1'h0;
-            int_dds[i].dis <= 1'h0;
-				int_dds[i].data <= 14'h0000;
+            int_dds[i].rst <= 1'h0;
+			int_dds[i].data_0 <= 14'h0000;
+			int_dds[i].data_1 <= 14'h0000;
         end
 end
 
@@ -113,20 +114,39 @@ end
 always @(posedge int_dds_clk_in, posedge reset)
 begin
     if (reset == 1) begin
-        for (i = 0; i < 4; i=i+1) begin
-            int_dds[i].data <= 14'h0000;
+        for (i = 0; i < 2; i=i+1) begin
+            int_dds[i].data_0 <= 14'h0000;
+            int_dds[i].data_1 <= 14'h0000;
             int_dds[i].slp <= 1'h0;
-            int_dds[i].dis <= 1'h0;
+            int_dds[i].rst <= 1'h0;
             // dds_freq[i] <= 16'HAAAA;
-            dds_freq[i] <= freq;
+            dds_freq[2*i+0] <= freq;
+            dds_freq[2*i+1] <= freq;
         end
     end
     else begin
-        for (i = 0; i < 4; i=i+1) begin
-            int_dds[i].data <= dds_data[i][15:2];
+        for (i = 0; i < 2; i=i+1) begin
+            int_dds[i].data_0 <= dds_data[2*i+0][15:2];
+            int_dds[i].data_1 <= dds_data[2*i+1][15:2];
         end
 
     end
 end
+
+// pll - c0 is a based clk, c1 is a 200 MHz clock for DDS-logiс
+sys_pll	sys_pll_inst (
+	.areset (1'b0),
+	.inclk0 (sys_clk ),
+    //
+	.phasecounterselect (1'b0),
+	.phasestep (1'b0),
+	.phaseupdown (1'b0),
+	.phasedone ( ),
+    //
+	.scanclk ( scanclk_sig ),
+	.c0 ( out_clk_100MHz ),
+	.c1 ( clk_200MHz ),
+	.locked ( locked_sig )
+	);
 
 endmodule
