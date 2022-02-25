@@ -17,7 +17,7 @@
 // PROGRAM "Quartus Prime"
 // VERSION "Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition"
 
-// DATE "02/04/2022 13:59:04"
+// DATE "02/25/2022 13:05:27"
 
 // 
 // Device: Altera EP4CE55F23C8 Package FBGA484
@@ -293,7 +293,7 @@ output 	[0:3] led;
 // spi_miso[3]	=>  Location: PIN_G17,	 I/O Standard: LVDS,	 Current Strength: Maximum Current
 // spi_sclk	=>  Location: PIN_G21,	 I/O Standard: LVDS,	 Current Strength: Default
 // spi_cs	=>  Location: PIN_F21,	 I/O Standard: LVDS,	 Current Strength: Default
-// out_clk_100MHz	=>  Location: PIN_E5,	 I/O Standard: Differential 2.5-V SSTL Class II,	 Current Strength: Default
+// out_clk_100MHz	=>  Location: PIN_E5,	 I/O Standard: mini-LVDS_E_3R,	 Current Strength: Maximum Current
 // in_clk_100MHz	=>  Location: PIN_B12,	 I/O Standard: LVDS,	 Current Strength: Default
 // reserve_lvds[3]	=>  Location: PIN_Y21,	 I/O Standard: LVDS,	 Current Strength: Default
 // reserve_lvds[2]	=>  Location: PIN_W21,	 I/O Standard: LVDS,	 Current Strength: Default
@@ -332,7 +332,7 @@ output 	[0:3] led;
 // spi_miso[3](n)	=>  Location: PIN_F17,	 I/O Standard: LVDS,	 Current Strength: Maximum Current
 // spi_sclk(n)	=>  Location: PIN_G22,	 I/O Standard: LVDS,	 Current Strength: Default
 // spi_cs(n)	=>  Location: PIN_F22,	 I/O Standard: LVDS,	 Current Strength: Default
-// out_clk_100MHz(n)	=>  Location: PIN_E6,	 I/O Standard: Differential 2.5-V SSTL Class II,	 Current Strength: Default
+// out_clk_100MHz(n)	=>  Location: PIN_E6,	 I/O Standard: mini-LVDS_E_3R,	 Current Strength: Maximum Current
 // in_clk_100MHz(n)	=>  Location: PIN_A12,	 I/O Standard: LVDS,	 Current Strength: Default
 // reserve_lvds[3](n)	=>  Location: PIN_Y22,	 I/O Standard: LVDS,	 Current Strength: Default
 // reserve_lvds[2](n)	=>  Location: PIN_W22,	 I/O Standard: LVDS,	 Current Strength: Default

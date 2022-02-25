@@ -4,24 +4,33 @@
 //! 
 //! @brief Calculation of F by using formula: F(b)=k*(a*B)/(sqrt(b+c*B^2))
 //!
-//! Pipeline: XXX. 
+//! Pipeline: 11 - clock cycles. 
 //!
-//! This is a **Wavedrom** example:
-//! { signal: [
-//!   { name: "clk",        wave: 'p..........' },
-//!   { name: "reset",      wave: '010........' },
-//!   { name: "start",      wave: '0..10......' },
-//!   { name: "b_field",    wave: 'x..=x......', data: "0x00" },
-//!   { name: "a_coeff",    wave: 'x..=x......', data: "0x00" },
-//!   { name: "b_coeff",    wave: 'x..=x......', data: "0x00" },
-//!   { name: "c_coeff",    wave: 'x..=x......', data: "0x00" },
-//!   { name: "k_coeff",    wave: 'x..=x......', data: "0x00" },
-//!   {},
-//!   { name: 'ready',      wave: '0....1.....' },
-//!   { name: 'freq',       wave: 'x....=x....', data: "0x00" },
+//! Work cyclogramma (B[T]=0.2 NICA-Buster example):
+//! { signal: 
+//!    [
+//!         ['Input',
+//!             { name: "clk",                    wave: 'p.......|...' },
+//!             { name: "reset",                  wave: '010.....|...' },
+//!             { name: "start",                  wave: '0..10...|...' },
+//!             { name: "b_field[31:0]",          wave: 'x..=....|x..', data: "67108866" },
+//!             { name: "a_coeff[31:0]",          wave: 'x..=....|x..', data: "937546000" },
+//!             { name: "b_coeff[31:0]",          wave: 'x..=....|x..', data: "867339" },
+//!             { name: "c_coeff[31:0]",          wave: 'x..=....|x..', data: "436224" },
+//!             { name: "k_coeff[7:0]",           wave: 'x..=....|x..', data: "1" },
+//!         ],
+//!         ['Output',
+//!             {                                 node: '...A.....B..' },
+//!             { name: 'ready',                  wave: 'z0......|1..' },
+//!             { name: 'freq[31:0]',             wave: 'x=......|=..', data: ["0", "864614"] },
+//!         ]
 //!   ],
-//!   config: { hscale: 1}
+//!   foot: {tock:-3},
+//!   edge: ['A<->B Delay: 110 ns'],
+//!   config: { hscale: 1},
 //! }
+//!
+//!
 
 `timescale 1ns/10ps
 
@@ -45,7 +54,7 @@ module b_to_f(
 reg[63:0] numerator = 64'h00;             //! числитель
 reg[63:0] denominator = 64'h00;           //! знаменатель
 reg[63:0] quotient = 64'h00;              //! результат деления
-reg[127:0] radical = 128'h00;               //! исходные данные для взятия квадратного корня
+reg[127:0] radical = 128'h00;             //! исходные данные для взятия квадратного корня
 reg[63:0] sqrt_result = 64'h00;           //! результат взятия квадратного корня
 
 reg[31:0] b_f = 32'h0;
@@ -61,9 +70,6 @@ reg active = 0;                                     //! состояние ра�
 reg[1:0][63:0] mult_a;
 reg[1:0][63:0] mult_b;
 reg[1:0][127:0] mult_q;
-
-//! переменная для рузультата сложения
-reg[63:0] summ_q;
 
 //! 64-bit sqrt with 1-clk pipeline
 sqrt_int_64 sqrt_int_64_0 (
@@ -99,6 +105,7 @@ generate
     end
 endgenerate
 
+//! calculate process
 always @(posedge clk, posedge reset)
 begin
     if(reset) begin
@@ -108,7 +115,6 @@ begin
         active <= 1'h0;
         process_state <= 8'h00;
         ready <= 1'h0;
-        summ_q <= 0;
         b_f <= 0;
         a_c <= 0;
         b_c <= 0;
@@ -124,7 +130,6 @@ begin
             numerator <= 64'h00;
             denominator <= 64'h00;
             ready <= 1'h0;
-            summ_q <= 0;
             //
             b_f <= b_field;
             a_c <= a_coeff;
@@ -137,16 +142,17 @@ begin
         end
         else if (active == 1) begin
             process_state <= process_state + 8'h1;
+            // step 1
             if (process_state == 0) begin
-                //"*" c*(128^2)
+                //"*"
                 mult_a[0] <= c_c; 
                 mult_b[0] <= 32'h1 << (7+7); 
-                //"*" (B^2)
+                //"*"
                 mult_a[1] <= b_f; 
                 mult_b[1] <= b_f;
-                //"/" (128*a)/(100*(10^6))
+                //"/"
                 numerator = (a_c << 7);  //128*a
-                denominator = 200_000_000;
+                denominator = 100_000_000;  //100*(10^6)
             end
             else if (process_state == 1) begin
                 // pipeline
@@ -154,11 +160,12 @@ begin
             else if (process_state == 2) begin
                 // pipeline
             end
+            // step 2
             else if (process_state == 3) begin
-                //"*" (c*128^2)*(B^2)
+                //"*"
                 mult_a[0] <= mult_q[0][63:0];
                 mult_b[0] <= mult_q[1][63:0];
-                //"*" B*((128*a)/(100*(10^6)))
+                //"*"
                 mult_a[1] <= quotient;
                 mult_b[1] <= b_f;
             end
@@ -168,12 +175,13 @@ begin
             else if (process_state == 5) begin
                 // pipeline
             end
+            // step 3
             else if (process_state == 6) begin
-                //"*" k*B*((128*a)/(100*(10^6)))
-                mult_a[1] <= mult_q[1][63:0];
+                //"*"
+                mult_a[1] <= mult_q[1];
                 mult_b[1] <= k_c;
-                //"*" sqrt(b+c*B^2)
-                radical <= b_c + mult_q[1][63:0];
+                //"sqrt"
+                radical <= {b_c[31:0], 32'h0000} + mult_q[0][95:32];
             end
             else if (process_state == 7) begin
                 // pipeline
@@ -181,9 +189,10 @@ begin
             else if (process_state == 8) begin
                 // pipeline
             end
+            // step 4
             else if (process_state == 9) begin
-                //"/" k*B*((128*a)/(100*(10^6))) / sqrt(b+c*B^2)
-                numerator <= mult_q[1];
+                //"/"
+                numerator <= {mult_q[1], 16'h0000};
                 denominator <= sqrt_result;
             end
             else if (process_state == 10) begin
@@ -212,10 +221,12 @@ endmodule
 
 //! параметры для задания магнитного поля
 `define B_QUANT (128/(4294967295))
-`define B_START_T 0.01
+`define B_START_T 0.02
 `define B_STEP_T  0.01
-`define B_START_Q 335544    //~10mT (`B_START_T/`B_QUANT)
+`define B_STOP_T  10.0
+`define B_START_Q 671088    //~20mT (`B_START_T/`B_QUANT)
 `define B_STEP_Q 335544     //~10mT (`B_STEP_T/`B_QUANT)
+`define B_STOP_Q 335544320  //~10T (`B_START_T/`B_QUANT)
 //! коэффициенты пересчета для Бустера NICA
 `define A (937546000)  
 `define B (867339)
@@ -283,11 +294,14 @@ end
 always begin
     #50;
     for(i=0; i<1000; i=i+1) begin
-        b_field = b_field + `B_STEP_Q;
         start =1'h1;
         #5;
         start =1'h0;
         #95;
+        b_field = b_field + `B_STEP_Q;
+        if (b_field > `B_STOP_Q) begin
+            b_field = `B_START_Q;
+        end
     end
 end
 

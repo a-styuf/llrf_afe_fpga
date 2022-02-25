@@ -8,150 +8,150 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dD:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/simulation/modelsim
+Z0 dD:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/simulation/modelsim
 vb_to_f
 Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
-Z2 !s110 1635150694
+Z2 !s110 1645774321
 !i10b 1
-!s100 B?K]1KFzNXWm=gd66RUgW1
+!s100 2za6iK<n_aHc^L_iMNJmi2
 Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
-IWFaR=@YhOij7?IZVWi2BG1
+IkezFnXJ7GRLoJbg`868bG0
 Z4 VDg1SIo80bB@j0V0VzS_@n1
 S1
 R0
-Z5 w1635149712
-Z6 8D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/b_to_f.sv
-Z7 FD:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/b_to_f.sv
-!i122 9
-L0 29 180
+Z5 w1645444312
+Z6 8D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/b_to_f.sv
+Z7 FD:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/b_to_f.sv
+!i122 6
+L0 38 180
 Z8 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z9 !s108 1635150694.000000
-!s107 D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/b_to_f.sv|
-Z10 !s90 -reportprogress|300|-sv|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe|D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/b_to_f.sv|
+Z9 !s108 1645774321.000000
+Z10 !s107 D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/b_to_f.sv|
+Z11 !s90 -reportprogress|300|-sv|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe|D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/b_to_f.sv|
 !i113 1
-Z11 o-sv -work work
-Z12 !s92 -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe
-Z13 tCvgOpt 0
+Z12 o-sv -work work
+Z13 !s92 -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe
+Z14 tCvgOpt 0
 vb_to_f_tb
 R1
 R2
 !i10b 1
-!s100 c1N8e1Tm2dhVTK:QUT2bl2
+!s100 ]k8]OFm@1?k48GfA]LX?A1
 R3
-I`iAzM4K=ISNBX=9LfJ_ZH1
+IgBzdZ]dgikOcgIHSN]E^J0
 R4
 S1
 R0
 R5
 R6
 R7
-!i122 9
-L0 225 70
+!i122 6
+L0 236 73
 R8
 r1
 !s85 0
 31
 R9
-Z14 !s107 D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/b_to_f.sv|
 R10
-!i113 1
 R11
+!i113 1
 R12
 R13
+R14
 vdds_sin_mem
-R2
+!s110 1645774320
 !i10b 1
 !s100 MXf^ofIJb5on[39URWVH03
 R3
-IFj>HKTnEJA7]FX>i1[^f52
+IL7;]F^mOR?QA3ADSj1AT90
 R4
 R0
 w1634651018
-8D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_sin_mem.v
-FD:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_sin_mem.v
+8D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_sin_mem.v
+FD:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_sin_mem.v
 !i122 0
 L0 40 61
 R8
 r1
 !s85 0
 31
-R9
-!s107 D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_sin_mem.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe|D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_sin_mem.v|
+!s108 1645774320.000000
+!s107 D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_sin_mem.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe|D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_sin_mem.v|
 !i113 1
 Z15 o-vlog01compat -work work
-Z16 !s92 -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe
-R13
+Z16 !s92 -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe
+R14
 vdds_slave
 R1
-R2
+Z17 !s110 1645774322
 !i10b 1
-!s100 hW2bScRJNEM0o[Y8]ZJ;>1
+!s100 g_g:ndkej<f9m[MWQ2e]T3
 R3
-I?JD<zo>V^VIVfLJIEQO_<2
+IJl9?@fhDjVInE981=EI^_0
 R4
 S1
 R0
-Z17 w1634205672
-Z18 8D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave.sv
-Z19 FD:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave.sv
-!i122 6
-Z20 L0 10 35
+Z18 w1645774316
+Z19 8D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_slave.sv
+Z20 FD:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_slave.sv
+!i122 11
+L0 29 36
 R8
 r1
 !s85 0
 31
-R9
-Z21 !s107 D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave.sv|
-Z22 !s90 -reportprogress|300|-sv|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe|D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave.sv|
+Z21 !s108 1645774322.000000
+!s107 D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_slave.sv|
+Z22 !s90 -reportprogress|300|-sv|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe|D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_slave.sv|
 !i113 1
-R11
 R12
 R13
+R14
 vdds_slave_core
 R1
 R2
 !i10b 1
-!s100 9W<DYP5:E04ZHQ8>G>E492
+!s100 ?>kj`4;Xb]@<LIeI?hGbB3
 R3
-In7KN>kcogZlcRH[fEGHKI2
+IoUMJn7M1ANa@GMBbXD7`Z2
 R4
 S1
 R0
-Z23 w1634115596
-Z24 8D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave_core.sv
-Z25 FD:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave_core.sv
-!i122 5
-R20
+Z23 w1645764666
+Z24 8D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_slave_core.sv
+Z25 FD:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_slave_core.sv
+!i122 7
+L0 28 35
 R8
 r1
 !s85 0
 31
 R9
-Z26 !s107 D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave_core.sv|
-Z27 !s90 -reportprogress|300|-sv|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe|D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/dds_slave_core.sv|
+Z26 !s107 D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_slave_core.sv|
+Z27 !s90 -reportprogress|300|-sv|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe|D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_slave_core.sv|
 !i113 1
-R11
 R12
 R13
+R14
 vdds_slave_core_tb
 R1
 R2
 !i10b 1
-!s100 ;Dk=_jH92k;Q_@QCkFR;h2
+!s100 [?8gBBHN0@l:T8LLAH`[E0
 R3
-IJM0NGhoMdCZ^HiQPdn@g_1
+IQzRLfi`FT>ZiFFXKIKF;T1
 R4
 S1
 R0
 R23
 R24
 R25
-!i122 5
-L0 49 40
+!i122 7
+L0 67 40
 R8
 r1
 !s85 0
@@ -160,46 +160,46 @@ R9
 R26
 R27
 !i113 1
-R11
 R12
 R13
+R14
 vdds_slave_tb
 R1
-R2
+R17
 !i10b 1
-!s100 PYN3`zHJ?[hNJ]4eUnRX<3
+!s100 0>Qk;C7nifN8ikTSDDWLS2
 R3
-IA3h`LSb^5M5L5e3ifC;9^3
+IjY0miUQOQLHn9XYo5bd_41
 R4
 S1
 R0
-R17
 R18
 R19
-!i122 6
-L0 49 49
+R20
+!i122 11
+L0 69 51
 R8
 r1
 !s85 0
 31
-R9
 R21
+Z28 !s107 D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_slave.sv|
 R22
 !i113 1
-R11
 R12
 R13
+R14
 vdivide_32
 R2
 !i10b 1
 !s100 5<mV^oi01Y7=VT5n0?7e>1
 R3
-IkAIZk99L=[RD<JTY5SaYJ2
+I:Vo:_@]78PVW_WY>5A<VG0
 R4
 R0
 w1634650969
-8D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/divide_32.v
-FD:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/divide_32.v
+8D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/divide_32.v
+FD:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/divide_32.v
 !i122 2
 L0 40 41
 R8
@@ -207,104 +207,104 @@ r1
 !s85 0
 31
 R9
-!s107 D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/divide_32.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe|D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/divide_32.v|
+!s107 D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/divide_32.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe|D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/divide_32.v|
 !i113 1
 R15
 R16
-R13
+R14
 vllrf_afe
 R1
-Z28 DXx4 work 16 llrf_afe_package 0 22 OkNS]KMj1[Uzmf=:@6jF22
-DXx4 work 16 llrf_afe_sv_unit 0 22 RX<I_l8ELla0@ADXf6@>Z2
-R2
+Z29 DXx4 work 16 llrf_afe_package 0 22 Z`H:NJDjLDJP?LJW>MV6T2
+DXx4 work 16 llrf_afe_sv_unit 0 22 GF[6Xl<00DCZjIbI?6FlC0
+R17
 R4
 r1
 !s85 0
 !i10b 1
-!s100 D3h7zg2XT>]<RZN5nA[Zd3
-I:OMRh5N6TQJiGa8jYLh0H2
+!s100 jbFzd[4YjKS6CNnfc^8<^2
+IciDT[iz;elTYYZTgCY6RQ3
 !s105 llrf_afe_sv_unit
 S1
 R0
-Z29 w1634546067
-Z30 8D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv
-Z31 FD:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv
-!i122 8
-L0 5 128
+Z30 w1645167367
+Z31 8D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe.sv
+Z32 FD:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe.sv
+!i122 10
+L0 5 148
 R8
 31
 R9
-Z32 !s107 D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv|
-Z33 !s90 -reportprogress|300|-sv|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe|D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe.sv|
+Z33 !s107 D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe.sv|
+Z34 !s90 -reportprogress|300|-sv|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe|D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe.sv|
 !i113 1
-R11
 R12
 R13
+R14
 Xllrf_afe_package
 R1
 R2
 !i10b 1
-!s100 R0nZDYH2oIoKn:j9J5JGF0
+!s100 0]=FDK_kVNUhL2IG=DBeG0
 R3
-IOkNS]KMj1[Uzmf=:@6jF22
-VOkNS]KMj1[Uzmf=:@6jF22
+IZ`H:NJDjLDJP?LJW>MV6T2
+VZ`H:NJDjLDJP?LJW>MV6T2
 S1
 R0
-w1623240026
-8D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe_package.sv
-FD:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe_package.sv
-!i122 7
-Z34 L0 3 0
+w1642575121
+8D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe_package.sv
+FD:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe_package.sv
+!i122 9
+Z35 L0 3 0
 R8
 r1
 !s85 0
 31
 R9
-!s107 D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe_package.sv|
-!s90 -reportprogress|300|-sv|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe|D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/llrf_afe_package.sv|
+!s107 D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe_package.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe|D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe_package.sv|
 !i113 1
-R11
 R12
 R13
+R14
 Xllrf_afe_sv_unit
 R1
-R28
-R2
-VRX<I_l8ELla0@ADXf6@>Z2
+R29
+R17
+VGF[6Xl<00DCZjIbI?6FlC0
 r1
 !s85 0
 !i10b 1
-!s100 b<PaX__FF^<J^z]iXP2jK2
-IRX<I_l8ELla0@ADXf6@>Z2
+!s100 <l8TFjNPzHojG0[K<cL0Y1
+IGF[6Xl<00DCZjIbI?6FlC0
 !i103 1
 S1
 R0
-R29
 R30
 R31
-!i122 8
-R34
+R32
+!i122 10
+R35
 R8
 31
 R9
-R32
 R33
+R34
 !i113 1
-R11
 R12
 R13
+R14
 vmult_64
 R2
 !i10b 1
 !s100 568YWi15@zlZdWh`Mk^@;3
 R3
-I86QULR`DFU9eE[ik72lE`2
+IC]=3g40boCB<<7g509SJ<2
 R4
 R0
 w1634650983
-8D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v
-FD:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v
+8D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/mult_64.v
+FD:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/mult_64.v
 !i122 3
 L0 40 34
 R8
@@ -312,23 +312,23 @@ r1
 !s85 0
 31
 R9
-!s107 D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe|D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/mult_64.v|
+!s107 D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/mult_64.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe|D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/mult_64.v|
 !i113 1
 R15
 R16
-R13
+R14
 vsqrt_int_64
 R2
 !i10b 1
 !s100 ]75L[=_6AmRl?e7@5FzoF2
 R3
-IV@E8D7<J0]645XB5mZ5U43
+IUX;Qi4AggFO2Vdn27jHHD0
 R4
 R0
 w1634650923
-8D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/sqrt_int_64.v
-FD:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/sqrt_int_64.v
+8D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/sqrt_int_64.v
+FD:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/sqrt_int_64.v
 !i122 1
 L0 40 35
 R8
@@ -336,9 +336,225 @@ r1
 !s85 0
 31
 R9
-!s107 D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/sqrt_int_64.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe|D:/YandexDisk/Work/Quartus/Cyclone_10/llrf_afe/sqrt_int_64.v|
+!s107 D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/sqrt_int_64.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe|D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/sqrt_int_64.v|
 !i113 1
 R15
 R16
-R13
+R14
+vsys_pll
+R2
+!i10b 1
+!s100 ae5NJG6>0S3F6ml1@Shk31
+R3
+Ij4l9YAb@XK97YWk;?m=z`2
+R4
+R0
+w1642421601
+8D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/sys_pll.v
+FD:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/sys_pll.v
+!i122 4
+L0 40 148
+R8
+r1
+!s85 0
+31
+R9
+!s107 D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/sys_pll.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe|D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/sys_pll.v|
+!i113 1
+R15
+R16
+R14
+vsys_pll_altpll
+R2
+!i10b 1
+!s100 n8a[_Y8b=7Wk@f`PI]E0>2
+R3
+IM>NHFMV><d8_NT7XH3<j>3
+R4
+R0
+Z36 w1642421615
+Z37 8D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/db/sys_pll_altpll.v
+Z38 FD:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/db/sys_pll_altpll.v
+!i122 5
+L0 446 188
+R8
+r1
+!s85 0
+31
+R9
+Z39 !s107 D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/db/sys_pll_altpll.v|
+Z40 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/db|D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/db/sys_pll_altpll.v|
+!i113 1
+R15
+Z41 !s92 -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/db
+R14
+vsys_pll_altpll_dyn_phase_le
+R2
+!i10b 1
+!s100 zA95SCX:1Wg`6PPa=^5>g1
+R3
+IBlMcUjUNgmO3<Go[A?kEn1
+R4
+R0
+R36
+R37
+R38
+!i122 5
+L0 35 33
+R8
+r1
+!s85 0
+31
+R9
+R39
+R40
+!i113 1
+R15
+R41
+R14
+vsys_pll_altpll_dyn_phase_le1
+R2
+!i10b 1
+!s100 ]GB9Bea_@IdOVhLK2meQM2
+R3
+IBe1PPUIgU00Yk^0AL6je81
+R4
+R0
+R36
+R37
+R38
+!i122 5
+L0 78 33
+R8
+r1
+!s85 0
+31
+R9
+R39
+R40
+!i113 1
+R15
+R41
+R14
+vsys_pll_altpll_dyn_phase_le12
+R2
+!i10b 1
+!s100 3jMTm>gUAg[mklN<2V4<71
+R3
+IZDK[7IBNDhj6]:XCg<Ye61
+R4
+R0
+R36
+R37
+R38
+!i122 5
+L0 121 33
+R8
+r1
+!s85 0
+31
+R9
+R39
+R40
+!i113 1
+R15
+R41
+R14
+vsys_pll_cmpr
+R2
+!i10b 1
+!s100 8X``XIk2dg?:kjG_O9:6X2
+R3
+ImOfF`l1Ge=CZc_2H1[Q_f3
+R4
+R0
+R36
+R37
+R38
+!i122 5
+L0 171 29
+R8
+r1
+!s85 0
+31
+R9
+R39
+R40
+!i113 1
+R15
+R41
+R14
+vsys_pll_cmpr1
+R2
+!i10b 1
+!s100 9X[7z7N?OhoQWiMCEFI_92
+R3
+ISMZ9[=CQJXgW`5F;[_P4G2
+R4
+R0
+R36
+R37
+R38
+!i122 5
+L0 309 29
+R8
+r1
+!s85 0
+31
+R9
+R39
+R40
+!i113 1
+R15
+R41
+R14
+vsys_pll_cntr
+R2
+!i10b 1
+!s100 UmCWKdPUTVzHKK=Vank^_3
+R3
+ISCPUOYIQ1mXh;0AlRlZDR1
+R4
+R0
+R36
+R37
+R38
+!i122 5
+L0 205 87
+R8
+r1
+!s85 0
+31
+R9
+R39
+R40
+!i113 1
+R15
+R41
+R14
+vsys_pll_cntr1
+R2
+!i10b 1
+!s100 7m]NYMY636T8kY;Xh4g=O1
+R3
+IGSb5@>S=7Hg2CcDSaTBE<3
+R4
+R0
+R36
+R37
+R38
+!i122 5
+L0 343 97
+R8
+r1
+!s85 0
+31
+R9
+R39
+R40
+!i113 1
+R15
+R41
+R14
