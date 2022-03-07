@@ -81,7 +81,7 @@ sqrt_int_64 sqrt_int_64_0 (
 	.remainder()
 );
 
-//! 32-bits divider with 1-clk pipeline
+//! 64-bits divider with 1-clk pipeline
 divide_32 divide_32_0 (
 	.aclr(1'h0),
 	.clken(1'h1),

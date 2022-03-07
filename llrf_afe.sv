@@ -51,8 +51,10 @@ module llrf_afe(
 //variables
 int i;
 //logic
-logic[15:0] dds_freq[3:0];
+logic[31:0] dds_freq[3:0];
 logic[15:0] dds_data[3:0];
+logic[31:0] dds_current_phase[3:0];
+logic[31:0] dds_freq_add[3:0];
 //clock
 logic clk_200MHz;
 //reset
@@ -65,6 +67,7 @@ reg[31:0] b_coeff = 32'h02;              //! b - коэффициент форм
 reg[31:0] c_coeff = 32'h03;              //! c - коэффициент формулы
 reg[7:0] k_coeff = 8'h01;                //! Номер рабочей гармоники ВЧ
 reg start = 1'h1;                        //! запуск подсчета
+
 //
 reg[31:0] freq;                 				//! реузьлтат подсчета частоты: Freq[Hz]*(2^32)/(F_clk)
 reg ready;                      				//! 
@@ -74,13 +77,31 @@ reg ready;                      				//!
 genvar j;
 generate
     for (j=0; j<4; j=j+1) begin: dds_gen
+			//создание модулей DDS
         dds_slave dds_inst(
-            .freq (dds_freq[j]),
-            .reset (reset),
             .clk (int_dds_clk_in),
+            .reset (reset),
             .synch (1'h1),
+            .freq (dds_freq[j]),
             //
-            .dac_signal(dds_data[j])
+            .dac_signal(dds_data[j]),
+            .phase(dds_current_phase[j])
+        );
+		  //создание модулей пдстройки фазы
+        phase_adj phase_adj_inst(
+            //
+            .clk(int_dds_clk_in),               //! тактовый сигнал
+            .reset(reset),                      //! сброс всех переменных в значение по умолчанию
+            .start(start),                      //! запуск работы модуля
+            .freq(freq),                        //! рабочая частота сигнала для подстройки фазы
+            .current_phase(dds_current_phase[j]),      //! необходимая фаза к окончанию работы модуля
+            .desired_phase(32'h00),					 //! необходимая фаза к окончанию работы модуля
+            .delay_time(32'h0A),            //! время ожидания до начала подстройки фазы
+            .work_time(32'd1000_0000),              //! время работы модуля
+            //
+            .freq_add(dds_freq_add[j]),                //! добавок к частоте
+            .active(),                    //! состояние работы модуля: 0 - модуль не запущен, 1 - модуль в активном состоянии
+            .ready()                       //! 1 - сигнал окончания работы
         );
     end
 endgenerate
