@@ -1,4 +1,5 @@
 vendor_name = ModelSim
+source_file = 1, D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_shift_calculation.sv
 source_file = 1, D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_adj.sv
 source_file = 1, D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/b_to_f.sv
 source_file = 1, D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_slave_core.sv

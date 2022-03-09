@@ -60,6 +60,15 @@ reg[31:0] phase_step = 32'h00;  //!  базовый шаг поф азе
 reg[63:0] remain_accumulator = 64'h00;  //! накопитель остатков при делении
 logic conveer_flag = 0;
 
+//variables for phase_shift_calculation-module
+logic phsh_start = 1'h1;
+logic [31:0] phsh_freq = 32'hFEFE_FEFE;
+logic [31:0] phsh_current_phase = 32'hFEFE_FEFE;
+logic [31:0] phsh_desired_phase = 32'hFEFE_FEFE;
+logic [31:0] phsh_time_from_start = 32'hFEFE_FEFE;
+//
+logic [31:0] phase_shift;
+logic phsh_ready;
 
 //variables for IP-blocks
 //64-bits devider
@@ -73,6 +82,21 @@ reg[7:0] devider_pipeline = 8'h02;       //! pipeline модуля делени�
 reg[1:0][63:0] mult_a;
 reg[1:0][63:0] mult_b;
 reg[1:0][127:0] mult_q;
+
+// Others modules
+phase_shift_calculation  phase_shift_calculation_0(
+    //
+    .clk(clk),                          //! тактовый сигнал
+    .reset(reset),                      //! сброс всех переменных в значение по умолчанию
+    .start(phsh_start),                      //! запуск работы модуля
+    .freq(phsh_freq),                        //! рабочая частота сигнала для подстройки фазы
+    .current_phase(phsh_current_phase),      //! текущая фаза сигнала
+    .desired_phase(phsh_desired_phase),      //! желаемая фаза к окончанию фремени time_from_start
+    .time_from_start(phsh_time_from_start),  //! время в тактах clk через которое устанавливается desired_phase
+    //
+    .phase_shift(phase_shift),          //! результирующая свдижка фазы
+    .ready(phsh_ready)                       //! 1 - сигнал окончания работы (сбрасываеься в 0 сигралами reset и start)
+);
 
 //Quartus IP-blocks
 //! 64-bits divider with 1-clk pipeline

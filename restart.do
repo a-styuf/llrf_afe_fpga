@@ -1,4 +1,4 @@
 update
 restart -f
-run 10 us
+run 1 us
 wave zoom full
