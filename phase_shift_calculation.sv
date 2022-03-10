@@ -6,21 +6,21 @@
 //! { signal: 
 //!    [
 //!         ['Input',
-//!             { name: "clk",                  wave: 'p......', period: 2},
-//!             { name: "reset",                wave: '0.1.0.........' },
-//!             { name: "start",                wave: '0.....1.0.....' },
-//!             { name: "freq[31:0]",           wave: '=.............', data: "0х0147AEB8" },
-//!             { name: "current_phase[31:0]",  wave: '=.............', data: "0х0147AEB8" },
-//!             { name: "desired_phase[31:0]",  wave: '=.............', data: "0х0147AEB8" },
-//!             { name: "time_from_start[31:0]",wave: '=.............', data: "0х0147AEB8" },
+//!             { name: "clk",                  wave: 'p........', period: 2},
+//!             { name: "reset",                wave: '0.1.0.............' },
+//!             { name: "start",                wave: '0.....1.0.......1.', node: '......A...........'},
+//!             { name: "freq[31:0]",           wave: 'x.....=...........', data: "1MHz(0х0147_AEB8)" },
+//!             { name: "current_phase[31:0]",  wave: 'x.....=...........', data: "270°(0xC000_0000)" },
+//!             { name: "desired_phase[31:0]",  wave: 'x.....=...........', data: " 90°(0x4000_0000)" },
+//!             { name: "time_from_start[31:0]",wave: 'x.....=...........', data: "1us(0x00C8)" },
 //!         ],
 //!         ['Output',
-//!             { name: "ready",                wave: '0.1.0.........' },
-//!             { name: 'phase_shift[31:0]',    wave: 'x.=.=.=.=.=.=.', data: ["0x0000..", "0x0147..", "0x028F..", "0x03D7..", "0x051E..", "0x0666.."]}
+//!             { name: "ready",                wave: 'z.0.........1...0.', node: '............B.....'},
+//!             { name: 'phase_shift[31:0]',    wave: 'x.=.........=...=.', data: ["0x0000..", "180° (0x80000000)", "0x0000"], }
 //!         ]
 //!   ],
 //!   foot: {tock:-2},
-//!   edge: ['A<->B Delay: 2 clk cycles'],
+//!   edge: ['A<~>B Delay: 3 clk cycles'],
 //!   config: { hscale: 1},
 //! }
 //!
@@ -38,7 +38,7 @@ module phase_shift_calculation (
     input logic[31:0] desired_phase,        //! желаемая фаза к окончанию фремени time_from_start
     input logic[31:0] time_from_start,      //! время в тактах clk через которое устанавливается desired_phase
     //
-    output logic[31:0] phase_shift,         //! результирующая свдижка фазы
+    output logic signed [31:0] phase_shift,  //! результирующая свдижка фазы (знаковый)
     output logic ready                      //! 1 - сигнал окончания работы (сбрасываеься в 0 сигралами reset и start)
 );
 
@@ -49,6 +49,7 @@ integer conveer_state = 0;
 
 logic[63:0] future_phase = 0;
 logic[63:0] phase_increase = 0;
+logic[31:0] des_ph_shadow, curr_ph_shadow, freq_shadow, time_fr_st_shadow;
 
 
 //variables for IP-blocks
@@ -71,17 +72,22 @@ begin
             //
             state <= 1;
             step_number <= 0;
+            //
+            des_ph_shadow <= desired_phase;
+            curr_ph_shadow <= current_phase;
+            freq_shadow <= freq;
+            time_fr_st_shadow <= time_from_start;
         end
         else if(state == 1) begin
             step_number = step_number + 1;
             if (step_number == 1) begin
-                phase_increase <= freq * time_from_start;
+                phase_increase <= freq_shadow * time_fr_st_shadow;
             end
             else if (step_number == 2) begin // цикл подсчета доабвка к частоте
-                future_phase <= current_phase + phase_increase[31:0];
+                future_phase <= curr_ph_shadow + phase_increase[31:0];
             end
             else if (step_number == 3) begin // финиширование
-                phase_shift <= desired_phase - future_phase[31:0];
+                phase_shift <= des_ph_shadow - future_phase[31:0];
 				//
                 state <= 0;
                 ready <= 1'h1;

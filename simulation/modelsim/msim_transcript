@@ -12,57 +12,57 @@
 # 
 # vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_sin_mem.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 16:20:11 on Mar 09,2022
+# Start time: 11:31:45 on Mar 10,2022
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_sin_mem.v 
 # -- Compiling module dds_sin_mem
 # 
 # Top level modules:
 # 	dds_sin_mem
-# End time: 16:20:11 on Mar 09,2022, Elapsed time: 0:00:00
+# End time: 11:31:45 on Mar 10,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/sqrt_int_64.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 16:20:12 on Mar 09,2022
+# Start time: 11:31:45 on Mar 10,2022
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/sqrt_int_64.v 
 # -- Compiling module sqrt_int_64
 # 
 # Top level modules:
 # 	sqrt_int_64
-# End time: 16:20:12 on Mar 09,2022, Elapsed time: 0:00:00
+# End time: 11:31:45 on Mar 10,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/divide_32.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 16:20:12 on Mar 09,2022
+# Start time: 11:31:45 on Mar 10,2022
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/divide_32.v 
 # -- Compiling module divide_32
 # 
 # Top level modules:
 # 	divide_32
-# End time: 16:20:12 on Mar 09,2022, Elapsed time: 0:00:00
+# End time: 11:31:45 on Mar 10,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/mult_64.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 16:20:12 on Mar 09,2022
+# Start time: 11:31:45 on Mar 10,2022
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/mult_64.v 
 # -- Compiling module mult_64
 # 
 # Top level modules:
 # 	mult_64
-# End time: 16:20:12 on Mar 09,2022, Elapsed time: 0:00:00
+# End time: 11:31:45 on Mar 10,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/sys_pll.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 16:20:12 on Mar 09,2022
+# Start time: 11:31:46 on Mar 10,2022
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/sys_pll.v 
 # -- Compiling module sys_pll
 # 
 # Top level modules:
 # 	sys_pll
-# End time: 16:20:12 on Mar 09,2022, Elapsed time: 0:00:00
+# End time: 11:31:46 on Mar 10,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/db {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/db/sys_pll_altpll.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 16:20:12 on Mar 09,2022
+# Start time: 11:31:46 on Mar 10,2022
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/db" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/db/sys_pll_altpll.v 
 # -- Compiling module sys_pll_altpll_dyn_phase_le
 # -- Compiling module sys_pll_altpll_dyn_phase_le1
@@ -75,76 +75,76 @@
 # 
 # Top level modules:
 # 	sys_pll_altpll
-# End time: 16:20:12 on Mar 09,2022, Elapsed time: 0:00:00
+# End time: 11:31:46 on Mar 10,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_shift_calculation.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 16:20:12 on Mar 09,2022
+# Start time: 11:31:46 on Mar 10,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_shift_calculation.sv 
 # -- Compiling module phase_shift_calculation
 # -- Compiling module phase_shift_calculation_tb
 # 
 # Top level modules:
 # 	phase_shift_calculation_tb
-# End time: 16:20:12 on Mar 09,2022, Elapsed time: 0:00:00
+# End time: 11:31:46 on Mar 10,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/b_to_f.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 16:20:12 on Mar 09,2022
+# Start time: 11:31:46 on Mar 10,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/b_to_f.sv 
 # -- Compiling module b_to_f
 # -- Compiling module b_to_f_tb
 # 
 # Top level modules:
 # 	b_to_f_tb
-# End time: 16:20:12 on Mar 09,2022, Elapsed time: 0:00:00
+# End time: 11:31:46 on Mar 10,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_slave_core.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 16:20:12 on Mar 09,2022
+# Start time: 11:31:46 on Mar 10,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_slave_core.sv 
 # -- Compiling module dds_slave_core
 # -- Compiling module dds_slave_core_tb
 # 
 # Top level modules:
 # 	dds_slave_core_tb
-# End time: 16:20:12 on Mar 09,2022, Elapsed time: 0:00:00
+# End time: 11:31:46 on Mar 10,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_slave.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 16:20:12 on Mar 09,2022
+# Start time: 11:31:46 on Mar 10,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_slave.sv 
 # -- Compiling module dds_slave
 # -- Compiling module dds_slave_tb
 # 
 # Top level modules:
 # 	dds_slave_tb
-# End time: 16:20:13 on Mar 09,2022, Elapsed time: 0:00:01
+# End time: 11:31:46 on Mar 10,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe_package.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 16:20:13 on Mar 09,2022
+# Start time: 11:31:46 on Mar 10,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe_package.sv 
 # -- Compiling package llrf_afe_package
 # 
 # Top level modules:
 # 	--none--
-# End time: 16:20:13 on Mar 09,2022, Elapsed time: 0:00:00
+# End time: 11:31:46 on Mar 10,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_adj.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 16:20:13 on Mar 09,2022
+# Start time: 11:31:46 on Mar 10,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_adj.sv 
 # -- Compiling module phase_adj
 # -- Compiling module phase_adj_tb
 # 
 # Top level modules:
 # 	phase_adj_tb
-# End time: 16:20:13 on Mar 09,2022, Elapsed time: 0:00:00
+# End time: 11:31:46 on Mar 10,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 16:20:13 on Mar 09,2022
+# Start time: 11:31:46 on Mar 10,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe.sv 
 # ** Warning: D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe.sv(42): (vlog-13314) Defaulting port 'reserve_lvds' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
 # ** Warning: D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe.sv(43): (vlog-13314) Defaulting port 'reserve_3v3' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
@@ -158,24 +158,24 @@
 # 
 # Top level modules:
 # 	llrf_afe
-# End time: 16:20:13 on Mar 09,2022, Elapsed time: 0:00:00
+# End time: 11:31:46 on Mar 10,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 6
 # 
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_shift_calculation.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 16:20:13 on Mar 09,2022
+# Start time: 11:31:46 on Mar 10,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_shift_calculation.sv 
 # -- Compiling module phase_shift_calculation
 # -- Compiling module phase_shift_calculation_tb
 # 
 # Top level modules:
 # 	phase_shift_calculation_tb
-# End time: 16:20:13 on Mar 09,2022, Elapsed time: 0:00:00
+# End time: 11:31:46 on Mar 10,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  phase_shift_calculation_tb
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs=""+acc"" phase_shift_calculation_tb 
-# Start time: 16:20:13 on Mar 09,2022
+# Start time: 11:31:46 on Mar 10,2022
 # Loading sv_std.std
 # Loading work.phase_shift_calculation_tb
 # Loading work.phase_shift_calculation
@@ -187,9 +187,9 @@
 # add wave -position end -radix hexadecimal  sim:/phase_shift_calculation_tb/phase_sh_calc_0/clk
 # ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
 #           File in use by: Алексей Стюф  Hostname: DESKTOP-8QEVRQE  ProcessID: 16976
-#           Attempting to use alternate WLF file "./wlftmiwz2h".
+#           Attempting to use alternate WLF file "./wlftfix2sa".
 # ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftmiwz2h
+#           Using alternate file: ./wlftfix2sa
 # add wave -position end -radix hexadecimal  sim:/phase_shift_calculation_tb/phase_sh_calc_0/reset
 # add wave -position end -radix hexadecimal  sim:/phase_shift_calculation_tb/phase_sh_calc_0/start
 # add wave -position end -radix hexadecimal  sim:/phase_shift_calculation_tb/phase_sh_calc_0/freq
@@ -243,11 +243,11 @@
 #          10: des_ph: 0xd5555552 ph_shift: 0x155555b2
 #          11: des_ph: 0xeaaaaaa7 ph_shift: 0x2aaaab07
 # Finish
-# ** Note: $stop    : D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_shift_calculation.sv(173)
+# ** Note: $stop    : D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_shift_calculation.sv(179)
 #    Time: 500 ns  Iteration: 0  Instance: /phase_shift_calculation_tb
-# Break in Module phase_shift_calculation_tb at D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_shift_calculation.sv line 173
+# Break in Module phase_shift_calculation_tb at D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_shift_calculation.sv line 179
 # wave zoom full
 # 0 ps
 # 525 ns
-# End time: 16:25:55 on Mar 09,2022, Elapsed time: 0:05:42
+# End time: 11:56:23 on Mar 10,2022, Elapsed time: 0:24:37
 # Errors: 0, Warnings: 0
