@@ -9,10 +9,10 @@ add wave -position end -radix hexadecimal  sim:/phase_shift_calculation_tb/phase
 add wave -position end -radix hexadecimal  sim:/phase_shift_calculation_tb/phase_sh_calc_0/desired_phase
 add wave -position end -radix hexadecimal  sim:/phase_shift_calculation_tb/phase_sh_calc_0/time_from_start
 
-add wave -position end  -color yellow sim:/phase_shift_calculation_tb/phase_sh_calc_0/state
-add wave -position end  -color yellow sim:/phase_shift_calculation_tb/phase_sh_calc_0/step_number
-add wave -position end  -radix hexadecimal -color yellow sim:/phase_shift_calculation_tb/phase_sh_calc_0/phase_increase
-add wave -position end  -radix hexadecimal -color yellow sim:/phase_shift_calculation_tb/phase_sh_calc_0/future_phase
+add wave -position end -color yellow sim:/phase_shift_calculation_tb/phase_sh_calc_0/state
+add wave -position end -color yellow sim:/phase_shift_calculation_tb/phase_sh_calc_0/step_number
+add wave -position end -radix hexadecimal -color yellow sim:/phase_shift_calculation_tb/phase_sh_calc_0/phase_increase
+add wave -position end -radix hexadecimal -color yellow sim:/phase_shift_calculation_tb/phase_sh_calc_0/future_phase
 
 add wave -position end -radix hexadecimal  sim:/phase_shift_calculation_tb/phase_sh_calc_0/ready
 add wave -position end -radix hexadecimal  sim:/phase_shift_calculation_tb/phase_sh_calc_0/phase_shift

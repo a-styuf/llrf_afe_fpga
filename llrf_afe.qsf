@@ -66,8 +66,8 @@ set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name TIMING_ANALYZER_MULTICORNER_ANALYSIS ON
 set_global_assignment -name NUM_PARALLEL_PROCESSORS 4
 set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
-set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH phase_shift_calculation_tb -section_id eda_simulation
-set_global_assignment -name EDA_NATIVELINK_SIMULATION_SETUP_SCRIPT wave_dds_phase_shift_calculation.do -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH phase_adj_tb -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_SETUP_SCRIPT wave_dds_phase_adj.do -section_id eda_simulation
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST ON -section_id eda_simulation
 set_global_assignment -name EDA_TEST_BENCH_NAME dds_slave_core_tb -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id dds_slave_core_tb
@@ -430,14 +430,9 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to int_dds[1].data_1[0]
 set_global_assignment -name EDA_TEST_BENCH_NAME phase_adj_tb -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id phase_adj_tb
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME phase_adj_tb -section_id phase_adj_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE dds_slave_core.sv -section_id dds_slave_core_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE dds_slave.sv -section_id dds_slave_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE b_to_f.sv -section_id b_to_f_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE phase_adj.sv -section_id phase_adj_tb
 set_global_assignment -name EDA_TEST_BENCH_NAME phase_shift_calculation_tb -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id phase_shift_calculation_tb
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME phase_shift_calculation_tb -section_id phase_shift_calculation_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE phase_shift_calculation.sv -section_id phase_shift_calculation_tb
 set_global_assignment -name SYSTEMVERILOG_FILE phase_shift_calculation.sv
 set_global_assignment -name SYSTEMVERILOG_FILE phase_adj.sv
 set_global_assignment -name SYSTEMVERILOG_FILE b_to_f.sv
@@ -450,4 +445,9 @@ set_global_assignment -name QIP_FILE sqrt_int_64.qip
 set_global_assignment -name QIP_FILE divide_32.qip
 set_global_assignment -name QIP_FILE mult_64.qip
 set_global_assignment -name QIP_FILE sys_pll.qip
+set_global_assignment -name EDA_TEST_BENCH_FILE dds_slave_core.sv -section_id dds_slave_core_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE dds_slave.sv -section_id dds_slave_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE b_to_f.sv -section_id b_to_f_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE phase_adj.sv -section_id phase_adj_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE phase_shift_calculation.sv -section_id phase_shift_calculation_tb
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
