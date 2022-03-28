@@ -6,22 +6,25 @@
 //! { signal: 
 //!    [
 //!         ['Input',
-//!             { name: "clk",                  wave: 'p......', period: 2},
-//!             { name: "reset",                wave: '0.1.0.........' },
-//!             { name: "start",                wave: '0.....1.0.....' },
-//!             { name: "freq[31:0]",           wave: '=.............', data: "0х0147AEB8" },
-//!             { name: "current_phase[31:0]",  wave: '=.............', data: "0х0147AEB8" },
-//!             { name: "desired_phase[31:0]",  wave: '=.............', data: "0х0147AEB8" },
-//!             { name: "work_time[31:0]",      wave: '=.............', data: "0х0147AEB8" },
+//!             { name: "clk",                  wave: 'p.........', period: 2},
+//!             { name: "reset",                wave: '0.1.0....|.....|....' },
+//!             { name: "start",                wave: '0.....1.0|.....|....' },
+//!             { name: "freq[31:0]",           wave: 'x.....=..|.....|....', data: "0х0147_AEB8(1MHz)" },
+//!             { name: "current_phase[31:0]",  wave: 'x.....=..|.....|....', data: "0х1998_E667(36°)" },
+//!             { name: "desired_phase[31:0]",  wave: 'x.....=..|.....|....', data: "0x0000_0000(0°)" },
+//!             { name: "delay_time[31:0]",     wave: 'x.....=..|.....|....', data: "0x0000_0002(10ns)" },
+//!             { name: "work_time[31:0]",      wave: 'x.....=..|.....|....', data: "0x0000_07D0(10us)" },
 //!         ],
 //!         ['Output',
-//!             { name: 'phase[31:0]',          wave: 'x.=.=.=.=.=.=.', data: ["0x0000..", "0x0147..", "0x028F..", "0x03D7..", "0x051E..", "0x0666.."]},
-//!             { name: 'dac_signal[15:0]',     wave: 'x.....=.=.=.=.', data: ["0x0", "0x3ED", "0x7D9", "0xBC3"]},
-//!             {                               node: '..A.....B.....' },
+//!             { name: 'freq_add[31:0]',       wave: 'x.=......|=.=.=|=.=.', data: ["0x0000", "0x0000", "0x0F19", "0x01E33", "0x0F1A", "0x0000"]},
+//!             { name: 'phase_shift[31:0]',    wave: 'x.=......|=....|....', data: ["0x0000", "0xE6671D59(324°)"]},
+//!             { name: 'active',               wave: 'x.0.....1|.....|..0.'},
+//!             { name: 'ready',                wave: 'x.0......|.....|..1.'},
+//!             {                               node: '......A...B......C..' },
 //!         ]
 //!   ],
-//!   foot: {tock:-2},
-//!   edge: ['A<->B Delay: 2 clk cycles'],
+//!   foot: {tock:-6},
+//!   edge: ['A<->B 10 + delay_time', 'B<->C work_time + 5'],
 //!   config: { hscale: 1},
 //! }
 //!
@@ -35,12 +38,13 @@ module phase_adj(
     input logic reset,                      //! сброс всех переменных в значение по умолчанию
     input logic start,                      //! запуск работы модуля
     input logic[31:0] freq,                 //! рабочая частота сигнала для подстройки фазы
-    input logic[31:0] current_phase,        //! необходимая фаза к окончанию работы модуля
+    input logic[31:0] current_phase,        //! фаза сигнала на момент подачи сигнала старт
     input logic[31:0] desired_phase,        //! необходимая фаза к окончанию работы модуля
     input logic[31:0] delay_time,           //! время ожидания до начала подстройки фазы
-    input logic[31:0] work_time,            //! время работы модуля
+    input logic[31:0] work_time,            //! время подстройки частоты
     //
-    output logic[31:0] freq_add,            //! добавок к частоте
+    output logic signed [31:0] freq_add,    //! добавок к частоте
+    output logic signed [31:0] phase_shift, //! добавок к фазе (информационный, на основе этого параметра считается freq_add)
     output logic active,                    //! состояние работы модуля: 0 - модуль не запущен, 1 - модуль в активном состоянии
     output logic ready                      //! 1 - сигнал окончания работы
 );
@@ -56,9 +60,11 @@ reg[31:0] d_t = 32'h00;
 reg[31:0] w_t = 32'h00;
 
 reg[63:0] normalizator = 64'h00; //! w_t*w_t - нормировачное значение для формулы подсчета фазы phase_step = j * (delta_phase/w_t*w_t)
+reg signed [71:0] neg_normalizator = 72'h00; //! w_t*w_t - нормировачное значение для формулы подсчета фазы phase_step = j * (delta_phase/w_t*w_t)
 reg[31:0] conveer_step= 32'h00, j = 32'h00;  //! номер шага в рабочем режиме
 reg[31:0] phase_step = 32'h00;  //!  базовый шаг поф азе
-reg[63:0] remain_accumulator = 64'h00;  //! накопитель остатков при делении
+reg signed [71:0] remain_accumulator = 72'h00;  //! накопитель остатков при делении
+reg signed [31:0] remain_add = 32'h00;  //! добавок к частоте от накопления остатка
 logic conveer_flag = 0, conveer_ready = 0;
 
 //variables for phase_shift_calculation-module
@@ -68,17 +74,17 @@ logic [31:0] phsh_current_phase = 32'hFEFE_FEFE;
 logic [31:0] phsh_desired_phase = 32'hFEFE_FEFE;
 logic [31:0] phsh_time_from_start = 32'hFEFE_FEFE;
 //
-logic [31:0] phsh_phase_shift;
+logic signed[31:0] phsh_phase_shift;
 logic phsh_ready;
 //
-logic [31:0] phase_shift;
+logic signed[31:0] phase_shift_int;
 
 //variables for IP-blocks
 //64-bits devider
-reg[63:0] numerator = 64'h00;             //! числитель
-reg[63:0] denominator = 64'h00;           //! знаменатель
-reg[63:0] quotient = 64'h00;              //! частно
-reg[63:0] remain = 64'h00;                //! остаток
+reg signed [63:0] numerator = 64'h00;             //! числитель
+reg signed [63:0] denominator = 64'h00;           //! знаменатель
+reg signed [63:0] quotient = 64'h00;              //! частно
+reg signed [63:0] remain = 64'h00;                //! остаток
 reg[7:0] devider_pipeline = 8'h03;       //! pipeline модуля деления
 
 //! переменные для общего использования умножителя
@@ -103,7 +109,7 @@ phase_shift_calculation  phase_shift_calculation_0(
 
 //Quartus IP-blocks
 //! 64-bits divider with 1-clk pipeline
-divide_32 divide_32_0 (
+divide_32_signed divide_signed_32_0 (
 	.aclr(1'h0),
 	.clken(1'h1),
 	.clock(clk),
@@ -137,6 +143,7 @@ begin
         active = 0;
         step_number = 0;
         normalizator = 0;
+        neg_normalizator = 0;
         //
         phsh_start <= 0;
         //
@@ -157,6 +164,8 @@ begin
             //
             active <= 1'h1;
             step_number = 1;
+            //
+            phase_shift <= 32'h0;
         end
         else if(active == 1) begin
             if (step_number == 1) begin // предподготовка переменных
@@ -164,7 +173,7 @@ begin
                 phsh_freq <= f;
                 phsh_current_phase <= cur_ph;
                 phsh_desired_phase <= des_ph;
-                phsh_time_from_start <= d_t + w_t;
+                phsh_time_from_start <= w_t;
                 phsh_start <= 1;
                 //
                 step_number <= step_number + 8'h1;
@@ -172,9 +181,10 @@ begin
             else if (step_number == 2) begin // цикл подсчета доабвка к фазе
                 phsh_start <= 0;
                 if(phsh_ready == 1'h1) begin
-                    phase_shift <= phsh_phase_shift;
+                    phase_shift_int <= phsh_phase_shift;
                     //
                     normalizator <= w_t*w_t;
+                    neg_normalizator <= -(w_t*w_t);
                     //
                     step_number <= step_number + 8'h1;
                 end
@@ -188,6 +198,7 @@ begin
             else if (step_number == 4) begin // финиширование
                 step_number <= 0;
                 active <= 0;
+                phase_shift <= phase_shift_int;
                 ready <= 1;
             end
         end
@@ -199,7 +210,7 @@ always @(posedge clk, posedge reset)
 begin
     if (reset == 1) begin
         conveer_state <= 0;
-        remain_accumulator = 64'h00;
+        remain_accumulator = 72'h00;
         conveer_flag <= 1'h0;
         conveer_ready <= 1'h0;
         conveer_state <= 1'h0;
@@ -207,11 +218,13 @@ begin
         j <= 0;
         freq_add <= 32'h0;
     end
+    else if (start == 1'h1) begin
+        conveer_ready <= 1'h0;
+    end
     else begin
-        if((conveer_flag == 0) && (step_number == 3)) begin
+        if((conveer_flag == 0) && (step_number == 3) && (conveer_ready == 1'h0)) begin
             conveer_flag <= 1'h1;
             conveer_state <= 1'h1;
-            conveer_ready <= 1'h0;
             freq_add <= 32'h0;
             j <= 0;
         end
@@ -240,7 +253,7 @@ begin
             end
             else if (conveer_state == 2) begin // режим до получения первого ответа от делителя с пайплайном
                 // входные данные
-                numerator <= {j, 2'h0}*phase_shift;
+                numerator <= {j, 2'h0}*phase_shift_int;
                 denominator <= normalizator;
                 //
                 //
@@ -250,21 +263,44 @@ begin
             end
             else if (conveer_state == 3) begin // базовый режим
                 // входные данные
-                numerator <= {j, 2'h0}*phase_shift;
+                numerator <= {j, 2'h0}*phase_shift_int;
                 denominator <= normalizator;
+                //учет остатка: исходим из того, что remain никогда не больше 2^16
+                if (remain_accumulator >= {8'h00, normalizator}) begin
+                    remain_accumulator <= remain_accumulator + remain - normalizator;
+                    remain_add <= 1;
+                end
+                else if (remain_accumulator <= neg_normalizator) begin
+                    remain_accumulator <= remain_accumulator + remain + normalizator;
+                    remain_add <= -1;
+                end
+                else begin
+                    remain_accumulator <= remain_accumulator + remain;
+                    remain_add <= 0;
+                end
                 // выходные данные
-                remain_accumulator <= remain_accumulator + remain;
-                freq_add <= quotient[31:0];
+                freq_add <= quotient[31:0] + remain_add;
                 //
                 if (conveer_step >= w_t + d_t) begin
                         conveer_state <= 4;
                 end
             end
             else if (conveer_state == 4) begin // режим ожидания оставшихся одсчетов модулей с pipeline
-                //
+                //учет остатка: исходим из того, что remain никогда не больше 2^16
+                if (remain_accumulator >= {8'h00, normalizator}) begin
+                    remain_accumulator <= remain_accumulator + remain - normalizator;
+                    remain_add <= 1;
+                end
+                else if (remain_accumulator <= neg_normalizator) begin
+                    remain_accumulator <= remain_accumulator + remain + normalizator;
+                    remain_add <= -1;
+                end
+                else begin
+                    remain_accumulator <= remain_accumulator + remain;
+                    remain_add <= 0;
+                end
                 // выходные данные
-                remain_accumulator = remain_accumulator + remain;
-                freq_add = quotient[31:0];
+                freq_add <= quotient[31:0] + remain_add;
                 //
                 if (conveer_step >= w_t + d_t + devider_pipeline) begin
                         conveer_state <= 5;
@@ -287,15 +323,20 @@ endmodule
 `define CLK                     (200_000_000)
 `define TICK                    (1_000_000_000/200_000_000)
 `define FREQ                    (1_000_000)
-`define DELAY_TIME_TICK         (5)
-`define WORK_TIME_TICK          (100)
+`define DELAY_TIME_TICK         (2)
+`define WORK_TIME_TICK          (2_000)
 //
-`define FREQ_INT                32'h0147_AE14   // 1 MHz
-`define CURRENT_PHASE_INT       32'h4000_0000    // 90°
-`define DSIRED_PHASE_INT        32'h0000_0000    // 0°
+`define FREQ_INT                32'h0147_AE14       // 1.0 MHz
+`define CURRENT_PHASE_INT       32'hFC71_C71C       // 0.0°
+`define DSIRED_PHASE_INT        32'hF8E3_8E38       // 0.05°
 
 module phase_adj_tb();
-
+real start_phase_deg = 0;
+real future_phase_deg = 0;
+real desired_phase_deg = 0;
+real phase_addition_deg = 0;
+real phase_error_deg = 0;
+//
 reg clk;
 reg reset;
 reg start;
@@ -304,10 +345,15 @@ reg [31:0] current_phase;
 reg [31:0] desired_phase;
 reg [31:0] delay_time;
 reg [31:0] work_time;
+reg [63:0] temp_reg;
 //
-reg [31:0] freq_add;
+reg signed [31:0] freq_add;
 reg active;
 reg ready;
+//
+reg signed [63:0] freq_add_integral = 64'h0000_0000;
+//
+integer i = 0, j = 0, des_ph=0, curr_ph=0;
 
 phase_adj phase_adj_0(
     //
@@ -328,22 +374,24 @@ phase_adj phase_adj_0(
 // имитация сигналов
 initial begin
     clk = 0;
-    reset = 0;
+    reset = 1;
     start = 0;
     freq = `FREQ_INT;
-    current_phase <= `CURRENT_PHASE_INT;
-    desired_phase <= `DSIRED_PHASE_INT;
-    delay_time <= `DELAY_TIME_TICK;
-    work_time <= `WORK_TIME_TICK;
-    $display("Start");
+    //
+    delay_time = `DELAY_TIME_TICK;
+    work_time = `WORK_TIME_TICK;
+    //
+    current_phase = `CURRENT_PHASE_INT;
+    start_phase_deg = ($itor(current_phase[31:16])*360.0)/($itor(2**16));
+    desired_phase = `DSIRED_PHASE_INT;
+    desired_phase_deg = ($itor(desired_phase[31:16])*360.0)/($itor(2**16));
+    //
+    $display("Start\n____________");
     #(1*`TICK);
-    reset = 1;
+    reset <= 1;
+    
     #(1*`TICK);
-    reset = 0;
-    #(1*`TICK);
-    start = 1;
-    #(1*`TICK);
-    start = 0;
+    reset <= 0;
 end
 
 // тактовая частота
@@ -355,8 +403,47 @@ end
 // запуск и проверка результатов
 always begin
     #(1*`TICK);
-    if (ready == 1) begin
+    if (reset == 1'h0) begin
         #(1*`TICK);
+        for (i=0; i<10; i++) begin
+            des_ph = (16'hFFFF * i)/10;
+            desired_phase = des_ph*(16'hFFFF);
+            desired_phase_deg = ($itor(desired_phase[31:16])*360.0)/($itor(2**16));
+            //
+            for (j=0; j<10; j++) begin
+                curr_ph = (16'hFFFF * j)/10;
+                current_phase = curr_ph*(16'hFFFF);
+                start_phase_deg = ($itor(current_phase[31:16])*360.0)/($itor(2**16));
+                //
+                start <= 1;
+                #(1*`TICK);
+                freq_add_integral <= 0;
+                //
+                while ((active == 1) || (start == 1)) begin
+                    start <= 0;
+                    #(1*`TICK);
+                    //
+                    if ((active == 1) || (ready == 1))  begin
+                        //
+                        temp_reg = (current_phase + (freq*work_time));
+                        future_phase_deg = ($itor(temp_reg[31:16]) % (2**16)) * (360.0/(2**16));
+                        //
+                        freq_add_integral = freq_add_integral + freq_add;
+                        phase_addition_deg = $itor(freq_add_integral[31:16])*360.0/(2**16) % 360;
+                        //
+                        if (ready == 1) begin
+                            #(1*`TICK);
+                            $display("Report (deg): \tstart: %.3f \tdesir: %.3f \treslt: %.3f \terror: %.3f", start_phase_deg, desired_phase_deg, $itor(future_phase_deg + phase_addition_deg) % 360, future_phase_deg + phase_addition_deg - desired_phase_deg);
+                            #(1*`TICK);
+                            reset <= 1'h1;
+                            #(1*`TICK);
+                            reset <= 1'h0;
+                            #(1*`TICK);
+                        end;
+                    end
+                end
+            end
+        end
         $display("Finish");
         $stop;
     end

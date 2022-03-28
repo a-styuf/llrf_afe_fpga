@@ -12,57 +12,67 @@
 # 
 # vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_sin_mem.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:37:14 on Mar 11,2022
+# Start time: 16:50:10 on Mar 28,2022
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_sin_mem.v 
 # -- Compiling module dds_sin_mem
 # 
 # Top level modules:
 # 	dds_sin_mem
-# End time: 21:37:14 on Mar 11,2022, Elapsed time: 0:00:00
+# End time: 16:50:10 on Mar 28,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/sqrt_int_64.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:37:14 on Mar 11,2022
+# Start time: 16:50:10 on Mar 28,2022
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/sqrt_int_64.v 
 # -- Compiling module sqrt_int_64
 # 
 # Top level modules:
 # 	sqrt_int_64
-# End time: 21:37:14 on Mar 11,2022, Elapsed time: 0:00:00
+# End time: 16:50:10 on Mar 28,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/divide_32.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:37:14 on Mar 11,2022
+# Start time: 16:50:10 on Mar 28,2022
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/divide_32.v 
 # -- Compiling module divide_32
 # 
 # Top level modules:
 # 	divide_32
-# End time: 21:37:14 on Mar 11,2022, Elapsed time: 0:00:00
+# End time: 16:50:11 on Mar 28,2022, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/mult_64.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:37:14 on Mar 11,2022
+# Start time: 16:50:11 on Mar 28,2022
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/mult_64.v 
 # -- Compiling module mult_64
 # 
 # Top level modules:
 # 	mult_64
-# End time: 21:37:14 on Mar 11,2022, Elapsed time: 0:00:00
+# End time: 16:50:11 on Mar 28,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/sys_pll.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:37:14 on Mar 11,2022
+# Start time: 16:50:11 on Mar 28,2022
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/sys_pll.v 
 # -- Compiling module sys_pll
 # 
 # Top level modules:
 # 	sys_pll
-# End time: 21:37:15 on Mar 11,2022, Elapsed time: 0:00:01
+# End time: 16:50:11 on Mar 28,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/divide_32_signed.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 16:50:11 on Mar 28,2022
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/divide_32_signed.v 
+# -- Compiling module divide_32_signed
+# 
+# Top level modules:
+# 	divide_32_signed
+# End time: 16:50:11 on Mar 28,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/db {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/db/sys_pll_altpll.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:37:15 on Mar 11,2022
+# Start time: 16:50:11 on Mar 28,2022
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/db" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/db/sys_pll_altpll.v 
 # -- Compiling module sys_pll_altpll_dyn_phase_le
 # -- Compiling module sys_pll_altpll_dyn_phase_le1
@@ -75,76 +85,76 @@
 # 
 # Top level modules:
 # 	sys_pll_altpll
-# End time: 21:37:15 on Mar 11,2022, Elapsed time: 0:00:00
+# End time: 16:50:11 on Mar 28,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_shift_calculation.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:37:15 on Mar 11,2022
+# Start time: 16:50:11 on Mar 28,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_shift_calculation.sv 
 # -- Compiling module phase_shift_calculation
 # -- Compiling module phase_shift_calculation_tb
 # 
 # Top level modules:
 # 	phase_shift_calculation_tb
-# End time: 21:37:15 on Mar 11,2022, Elapsed time: 0:00:00
+# End time: 16:50:11 on Mar 28,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/b_to_f.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:37:15 on Mar 11,2022
+# Start time: 16:50:11 on Mar 28,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/b_to_f.sv 
 # -- Compiling module b_to_f
 # -- Compiling module b_to_f_tb
 # 
 # Top level modules:
 # 	b_to_f_tb
-# End time: 21:37:15 on Mar 11,2022, Elapsed time: 0:00:00
+# End time: 16:50:11 on Mar 28,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_slave_core.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:37:15 on Mar 11,2022
+# Start time: 16:50:11 on Mar 28,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_slave_core.sv 
 # -- Compiling module dds_slave_core
 # -- Compiling module dds_slave_core_tb
 # 
 # Top level modules:
 # 	dds_slave_core_tb
-# End time: 21:37:15 on Mar 11,2022, Elapsed time: 0:00:00
+# End time: 16:50:11 on Mar 28,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_slave.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:37:15 on Mar 11,2022
+# Start time: 16:50:11 on Mar 28,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/dds_slave.sv 
 # -- Compiling module dds_slave
 # -- Compiling module dds_slave_tb
 # 
 # Top level modules:
 # 	dds_slave_tb
-# End time: 21:37:15 on Mar 11,2022, Elapsed time: 0:00:00
+# End time: 16:50:11 on Mar 28,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe_package.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:37:15 on Mar 11,2022
+# Start time: 16:50:11 on Mar 28,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe_package.sv 
 # -- Compiling package llrf_afe_package
 # 
 # Top level modules:
 # 	--none--
-# End time: 21:37:15 on Mar 11,2022, Elapsed time: 0:00:00
+# End time: 16:50:12 on Mar 28,2022, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_adj.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:37:15 on Mar 11,2022
+# Start time: 16:50:12 on Mar 28,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_adj.sv 
 # -- Compiling module phase_adj
 # -- Compiling module phase_adj_tb
 # 
 # Top level modules:
 # 	phase_adj_tb
-# End time: 21:37:15 on Mar 11,2022, Elapsed time: 0:00:00
+# End time: 16:50:12 on Mar 28,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:37:15 on Mar 11,2022
+# Start time: 16:50:12 on Mar 28,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe.sv 
 # ** Warning: D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe.sv(42): (vlog-13314) Defaulting port 'reserve_lvds' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
 # ** Warning: D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/llrf_afe.sv(43): (vlog-13314) Defaulting port 'reserve_3v3' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
@@ -158,33 +168,36 @@
 # 
 # Top level modules:
 # 	llrf_afe
-# End time: 21:37:15 on Mar 11,2022, Elapsed time: 0:00:00
+# End time: 16:50:12 on Mar 28,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 6
 # 
 # vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_adj.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:37:15 on Mar 11,2022
+# Start time: 16:50:12 on Mar 28,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe" D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_adj.sv 
 # -- Compiling module phase_adj
 # -- Compiling module phase_adj_tb
 # 
 # Top level modules:
 # 	phase_adj_tb
-# End time: 21:37:15 on Mar 11,2022, Elapsed time: 0:00:00
+# End time: 16:50:12 on Mar 28,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  phase_adj_tb
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs=""+acc"" phase_adj_tb 
-# Start time: 21:37:15 on Mar 11,2022
+# Start time: 16:50:12 on Mar 28,2022
 # Loading sv_std.std
 # Loading work.phase_adj_tb
 # Loading work.phase_adj
 # Loading work.phase_shift_calculation
-# Loading work.divide_32
+# Loading work.divide_32_signed
 # Loading lpm_ver.lpm_divide
 # Loading lpm_ver.LPM_HINT_EVALUATION
 # Loading work.mult_64
 # Loading lpm_ver.lpm_mult
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'phase_adj_0'.  Expected 12, found 11.
+#    Time: 0 ps  Iteration: 0  Instance: /phase_adj_tb/phase_adj_0 File: D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_adj.sv Line: 358
+# ** Warning: (vsim-3722) D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_adj.sv(358): [TFMPC] - Missing connection for port 'phase_shift'.
 # 
 # do D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/wave_dds_phase_adj.do
 # onerror {resume}
@@ -193,9 +206,9 @@
 # add wave -position end -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/clk
 # ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
 #           File in use by: Алексей Стюф  Hostname: DESKTOP-8QEVRQE  ProcessID: 16976
-#           Attempting to use alternate WLF file "./wlft1mzgrc".
+#           Attempting to use alternate WLF file "./wlft2em9jh".
 # ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlft1mzgrc
+#           Using alternate file: ./wlft2em9jh
 # add wave -position end -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/reset
 # add wave -position end -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/start
 # add wave -position end -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/freq
@@ -204,27 +217,49 @@
 # add wave -position end -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/delay_time
 # add wave -position end -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/work_time
 # 
+# add wave -position end -color yellow -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/phsh_freq
+# add wave -position end -color yellow -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/phsh_time_from_start
+# add wave -position end -color yellow -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/phsh_desired_phase
 # add wave -position end -color yellow -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/phsh_start
+# add wave -position end -color yellow -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/phase_shift_calculation_0/state
+# add wave -position end -color yellow -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/phase_shift_calculation_0/step_number
+# add wave -position end -color yellow -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/phase_shift_calculation_0/curr_ph_shadow
+# add wave -position end -color yellow -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/phase_shift_calculation_0/phase_increase
+# add wave -position end -color yellow -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/phase_shift_calculation_0/future_phase
+# add wave -position end -color yellow -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/phsh_phase_shift
 # add wave -position end -color yellow -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/phsh_ready
-# add wave -position end -color yellow -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/phase_shift
-# add wave -position end -color yellow -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/step_number
 # 
 # add wave -position end -color white -radix decimal  sim:/phase_adj_tb/phase_adj_0/j
-# add wave -position end -color white -radix decimal -format Analog-Step -height 50 /phase_adj_tb/phase_adj_0/j
-# add wave -position end -color white -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/conveer_step
+# add wave -position end -color white -radix decimal -format Analog-Step -max 5000.0 -min 0.0 -height 50 /phase_adj_tb/phase_adj_0/j
+# add wave -position end -color white -radix decimal  sim:/phase_adj_tb/phase_adj_0/conveer_step
 # add wave -position end -color white -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/conveer_flag
 # add wave -position end -color white -radix decimal  sim:/phase_adj_tb/phase_adj_0/conveer_state
 # add wave -position end -color white -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/conveer_ready
-# add wave -position end -color white -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/remain_accumulator
 # 
-# add wave -position end -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/active
-# add wave -position end -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/ready
-# add wave -position end -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/freq_add
-# add wave -position end -radix hexadecimal -format Analog-Step -height 100 /phase_adj_tb/phase_adj_0/freq_add
+# add wave -position end -color red -radix decimal  sim:/phase_adj_tb/phase_adj_0/numerator
+# add wave -position end -color red -radix decimal  sim:/phase_adj_tb/phase_adj_0/denominator
+# add wave -position end -color red -radix decimal  sim:/phase_adj_tb/phase_adj_0/quotient
+# add wave -position end -color red -radix decimal  sim:/phase_adj_tb/phase_adj_0/remain
+# 
+# add wave -position end -color yellow -radix decimal  sim:/phase_adj_tb/phase_adj_0/normalizator
+# add wave -position end -color yellow -radix decimal  sim:/phase_adj_tb/phase_adj_0/neg_normalizator
+# add wave -position end -color yellow -radix decimal  sim:/phase_adj_tb/phase_adj_0/remain_accumulator
+# add wave -position end -color yellow -radix decimal  sim:/phase_adj_tb/phase_adj_0/remain_add
+# 
+# add wave -position end -color white -radix decimal -format Analog-Step -max 4388516256.0 -min 0.0 -height 50 /phase_adj_tb/phase_adj_0/remain_accumulator
+# 
+# 
+# add wave -position end -color white -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/active
+# add wave -position end -color white -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/ready
+# add wave -position end -color white -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/phase_shift
+# add wave -position end -color white -radix hexadecimal  sim:/phase_adj_tb/phase_adj_0/freq_add
+# add wave -position end -color white -radix decimal -format Analog-Step -height 100 -max 816044.0 -min 0 /phase_adj_tb/phase_adj_0/freq_add
+# 
+# add wave -position end -color red -radix decimal -format Analog-Step -max 4068516256.0 -min 0.0 -height 50 /phase_adj_tb/freq_add_integral
 # 
 # 
 # TreeUpdate [SetDefaultTree]
-# WaveRestoreCursors {{Cursor 1} {0 ps} 0} {{Cursor 2} {1000000 ps} 0}
+# WaveRestoreCursors {{Cursor 1} {0 ps} 0} {{Cursor 2} {1 us} 0}
 # quietly wave cursor active 2
 # configure wave -namecolwidth 429
 # configure wave -valuecolwidth 64
@@ -246,14 +281,112 @@
 # update
 # restart -f
 # ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'phase_adj_0'.  Expected 12, found 11.
+#    Time: 0 ps  Iteration: 0  Instance: /phase_adj_tb/phase_adj_0 File: D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_adj.sv Line: 358
+# ** Warning: (vsim-3722) D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_adj.sv(358): [TFMPC] - Missing connection for port 'phase_shift'.
 # run 1 us
 # Start
-# Finish
-# ** Note: $stop    : D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_adj.sv(361)
-#    Time: 610 ns  Iteration: 0  Instance: /phase_adj_tb
-# Break in Module phase_adj_tb at D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_adj.sv line 361
-# wave zoom full
-# 0 ps
-# 640500 ps
-# End time: 21:39:11 on Mar 11,2022, Elapsed time: 0:01:56
-# Errors: 0, Warnings: 0
+# ____________
+# wave zoom range 100ns 150ns
+# 100 ns
+# 150 ns
+run 1 ms
+# Report (deg): 	start: 0.000 	desir: 0.000 	reslt: 359.995 	error: 359.995
+# Report (deg): 	start: 35.991 	desir: 0.000 	reslt: 359.995 	error: 359.995
+# Report (deg): 	start: 71.993 	desir: 0.000 	reslt: 359.995 	error: 359.995
+# Report (deg): 	start: 107.990 	desir: 0.000 	reslt: 359.995 	error: 359.995
+# Report (deg): 	start: 143.992 	desir: 0.000 	reslt: 359.995 	error: 359.995
+# Report (deg): 	start: 179.989 	desir: 0.000 	reslt: 359.995 	error: 359.995
+# Report (deg): 	start: 215.991 	desir: 0.000 	reslt: 359.995 	error: 359.995
+# Report (deg): 	start: 251.988 	desir: 0.000 	reslt: 359.995 	error: 359.995
+# Report (deg): 	start: 287.990 	desir: 0.000 	reslt: 359.995 	error: 359.995
+# Report (deg): 	start: 323.987 	desir: 0.000 	reslt: 359.995 	error: 359.995
+# Report (deg): 	start: 0.000 	desir: 35.991 	reslt: 35.986 	error: 359.995
+# Report (deg): 	start: 35.991 	desir: 35.991 	reslt: 35.991 	error: 0.000
+# Report (deg): 	start: 71.993 	desir: 35.991 	reslt: 35.991 	error: 360.000
+# Report (deg): 	start: 107.990 	desir: 35.991 	reslt: 35.991 	error: 360.000
+# Report (deg): 	start: 143.992 	desir: 35.991 	reslt: 35.991 	error: 360.000
+# Report (deg): 	start: 179.989 	desir: 35.991 	reslt: 35.991 	error: 360.000
+# Report (deg): 	start: 215.991 	desir: 35.991 	reslt: 35.991 	error: 360.000
+# Report (deg): 	start: 251.988 	desir: 35.991 	reslt: 35.991 	error: 360.000
+# Report (deg): 	start: 287.990 	desir: 35.991 	reslt: 35.991 	error: 360.000
+# Report (deg): 	start: 323.987 	desir: 35.991 	reslt: 35.991 	error: 360.000
+# Report (deg): 	start: 0.000 	desir: 71.993 	reslt: 71.988 	error: 359.995
+# Report (deg): 	start: 35.991 	desir: 71.993 	reslt: 71.988 	error: -0.005
+# Report (deg): 	start: 71.993 	desir: 71.993 	reslt: 71.993 	error: 0.000
+# Report (deg): 	start: 107.990 	desir: 71.993 	reslt: 71.993 	error: 360.000
+# Report (deg): 	start: 143.992 	desir: 71.993 	reslt: 71.993 	error: 360.000
+# Report (deg): 	start: 179.989 	desir: 71.993 	reslt: 71.993 	error: 360.000
+# Report (deg): 	start: 215.991 	desir: 71.993 	reslt: 71.993 	error: 360.000
+# Report (deg): 	start: 251.988 	desir: 71.993 	reslt: 71.993 	error: 360.000
+# Report (deg): 	start: 287.990 	desir: 71.993 	reslt: 71.993 	error: 360.000
+# Report (deg): 	start: 323.987 	desir: 71.993 	reslt: 71.993 	error: 360.000
+# Report (deg): 	start: 0.000 	desir: 107.990 	reslt: 107.985 	error: 359.995
+# Report (deg): 	start: 35.991 	desir: 107.990 	reslt: 107.985 	error: -0.005
+# Report (deg): 	start: 71.993 	desir: 107.990 	reslt: 107.985 	error: -0.005
+# Report (deg): 	start: 107.990 	desir: 107.990 	reslt: 107.990 	error: 0.000
+# Report (deg): 	start: 143.992 	desir: 107.990 	reslt: 107.990 	error: 360.000
+# Report (deg): 	start: 179.989 	desir: 107.990 	reslt: 107.990 	error: 360.000
+# Report (deg): 	start: 215.991 	desir: 107.990 	reslt: 107.990 	error: 360.000
+# Report (deg): 	start: 251.988 	desir: 107.990 	reslt: 107.990 	error: 360.000
+# Report (deg): 	start: 287.990 	desir: 107.990 	reslt: 107.990 	error: 360.000
+# Report (deg): 	start: 323.987 	desir: 107.990 	reslt: 107.990 	error: 360.000
+# Report (deg): 	start: 0.000 	desir: 143.992 	reslt: 143.987 	error: 359.995
+# Report (deg): 	start: 35.991 	desir: 143.992 	reslt: 143.987 	error: -0.005
+# Report (deg): 	start: 71.993 	desir: 143.992 	reslt: 143.987 	error: -0.005
+# Report (deg): 	start: 107.990 	desir: 143.992 	reslt: 143.987 	error: -0.005
+# Report (deg): 	start: 143.992 	desir: 143.992 	reslt: 143.992 	error: 0.000
+# Report (deg): 	start: 179.989 	desir: 143.992 	reslt: 143.992 	error: 360.000
+# Report (deg): 	start: 215.991 	desir: 143.992 	reslt: 143.992 	error: 360.000
+# Report (deg): 	start: 251.988 	desir: 143.992 	reslt: 143.992 	error: 360.000
+# Report (deg): 	start: 287.990 	desir: 143.992 	reslt: 143.992 	error: 360.000
+# Report (deg): 	start: 323.987 	desir: 143.992 	reslt: 143.992 	error: 360.000
+# Report (deg): 	start: 0.000 	desir: 179.989 	reslt: 179.984 	error: 359.995
+# Report (deg): 	start: 35.991 	desir: 179.989 	reslt: 179.984 	error: -0.005
+# Report (deg): 	start: 71.993 	desir: 179.989 	reslt: 179.984 	error: -0.005
+# Report (deg): 	start: 107.990 	desir: 179.989 	reslt: 179.984 	error: -0.005
+# Report (deg): 	start: 143.992 	desir: 179.989 	reslt: 179.984 	error: -0.005
+# Report (deg): 	start: 179.989 	desir: 179.989 	reslt: 179.989 	error: 0.000
+# Report (deg): 	start: 215.991 	desir: 179.989 	reslt: 179.989 	error: 360.000
+# Report (deg): 	start: 251.988 	desir: 179.989 	reslt: 179.989 	error: 360.000
+# Report (deg): 	start: 287.990 	desir: 179.989 	reslt: 179.989 	error: 360.000
+# Report (deg): 	start: 323.987 	desir: 179.989 	reslt: 179.989 	error: 360.000
+# Report (deg): 	start: 0.000 	desir: 215.991 	reslt: 215.986 	error: 359.995
+# Report (deg): 	start: 35.991 	desir: 215.991 	reslt: 215.986 	error: -0.005
+# Report (deg): 	start: 71.993 	desir: 215.991 	reslt: 215.986 	error: -0.005
+# Report (deg): 	start: 107.990 	desir: 215.991 	reslt: 215.986 	error: -0.005
+# Report (deg): 	start: 143.992 	desir: 215.991 	reslt: 215.986 	error: -0.005
+# Report (deg): 	start: 179.989 	desir: 215.991 	reslt: 215.986 	error: -0.005
+# Report (deg): 	start: 215.991 	desir: 215.991 	reslt: 215.991 	error: 0.000
+# Report (deg): 	start: 251.988 	desir: 215.991 	reslt: 215.991 	error: 360.000
+# Report (deg): 	start: 287.990 	desir: 215.991 	reslt: 215.991 	error: 360.000
+# Report (deg): 	start: 323.987 	desir: 215.991 	reslt: 215.991 	error: 360.000
+# Report (deg): 	start: 0.000 	desir: 251.988 	reslt: 251.982 	error: 359.995
+# Report (deg): 	start: 35.991 	desir: 251.988 	reslt: 251.982 	error: -0.005
+# Report (deg): 	start: 71.993 	desir: 251.988 	reslt: 251.982 	error: -0.005
+# Report (deg): 	start: 107.990 	desir: 251.988 	reslt: 251.982 	error: -0.005
+# Report (deg): 	start: 143.992 	desir: 251.988 	reslt: 251.982 	error: -0.005
+# Report (deg): 	start: 179.989 	desir: 251.988 	reslt: 251.982 	error: -0.005
+# Report (deg): 	start: 215.991 	desir: 251.988 	reslt: 251.982 	error: -0.005
+# Report (deg): 	start: 251.988 	desir: 251.988 	reslt: 251.988 	error: 0.000
+# Report (deg): 	start: 287.990 	desir: 251.988 	reslt: 251.988 	error: 360.000
+# Report (deg): 	start: 323.987 	desir: 251.988 	reslt: 251.988 	error: 360.000
+# Report (deg): 	start: 0.000 	desir: 287.990 	reslt: 287.985 	error: 359.995
+# Report (deg): 	start: 35.991 	desir: 287.990 	reslt: 287.985 	error: -0.005
+# Report (deg): 	start: 71.993 	desir: 287.990 	reslt: 287.985 	error: -0.005
+# Report (deg): 	start: 107.990 	desir: 287.990 	reslt: 287.985 	error: -0.005
+# Report (deg): 	start: 143.992 	desir: 287.990 	reslt: 287.985 	error: -0.005
+# Report (deg): 	start: 179.989 	desir: 287.990 	reslt: 287.985 	error: -0.005
+# Report (deg): 	start: 215.991 	desir: 287.990 	reslt: 287.985 	error: -0.005
+# Report (deg): 	start: 251.988 	desir: 287.990 	reslt: 287.985 	error: -0.005
+# Report (deg): 	start: 287.990 	desir: 287.990 	reslt: 287.990 	error: 0.000
+# Report (deg): 	start: 323.987 	desir: 287.990 	reslt: 287.990 	error: 360.000
+# Report (deg): 	start: 0.000 	desir: 323.987 	reslt: 323.981 	error: 359.995
+# Report (deg): 	start: 35.991 	desir: 323.987 	reslt: 323.981 	error: -0.005
+# Report (deg): 	start: 71.993 	desir: 323.987 	reslt: 323.981 	error: -0.005
+# Report (deg): 	start: 107.990 	desir: 323.987 	reslt: 323.981 	error: -0.005
+# Report (deg): 	start: 143.992 	desir: 323.987 	reslt: 323.981 	error: -0.005
+# Report (deg): 	start: 179.989 	desir: 323.987 	reslt: 323.981 	error: -0.005
+# Report (deg): 	start: 215.991 	desir: 323.987 	reslt: 323.981 	error: -0.005
+# Report (deg): 	start: 251.988 	desir: 323.987 	reslt: 323.981 	error: -0.005
+# Report (deg): 	start: 287.990 	desir: 323.987 	reslt: 323.981 	error: -0.005

@@ -10,6 +10,7 @@ vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_a
 vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/divide_32.v}
 vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/mult_64.v}
 vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/sys_pll.v}
+vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/divide_32_signed.v}
 vlog -vlog01compat -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/db {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/db/sys_pll_altpll.v}
 vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/phase_shift_calculation.sv}
 vlog -sv -work work +incdir+D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe {D:/YandexDisk/Work/Quartus/Cycone_4/llrf_afe/b_to_f.sv}
