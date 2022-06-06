@@ -23,6 +23,7 @@ quietly wave cursor active 2
 configure wave -namecolwidth 429
 configure wave -valuecolwidth 64
 configure wave -justifyvalue left
+configure wave -justifyvalue left
 configure wave -signalnamewidth 0
 configure wave -snapdistance 10
 configure wave -datasetprefix 0

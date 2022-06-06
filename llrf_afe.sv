@@ -1,5 +1,7 @@
 //llrf_afe
 
+`define DEBUG
+
 import llrf_afe_package::*;
 
 module llrf_afe(
@@ -16,7 +18,7 @@ module llrf_afe(
     // DDS PLL
     output logic int_dds_pll_ref_sel, int_dds_pll_sclk, int_dds_pll_sdi, int_dds_pll_cs, int_dds_pll_reset,
     input logic int_dds_pll_sdo,
-    output logic int_status_0, int_status_1,
+    input logic int_status_0, int_status_1,
     // MFM
     output logic int_mfm_b_ref, int_mfm_b_p, int_mfm_b_m, 
     output logic int_mfm_a0, int_mfm_a1,
@@ -39,26 +41,39 @@ module llrf_afe(
     output logic out_clk_100MHz,
     input logic sys_clk, in_clk_100MHz,
     //
-    input logic reserve_lvds[4],
-    input logic reserve_3v3[8],
-    input logic reserve_2v5[8],
-	output logic led[4]
-	 //
+    input logic[3:0] reserve_lvds,
+    output logic[7:0] reserve_3v3,
+    input logic[7:0] reserve_2v5,
+	output logic[3:0] led
+	//
 );
 
 //*** _____________Variables____________________________________ ***//
 
+//
+localparam REF_A = 0, REF_B = 1, DEF_REF = REF_B;
+
 //variables
 int i;
-//logic
+int debug_state = 1;
+int debug_cnter = 0;
+// dds logic
 logic[31:0] dds_freq[3:0];
 logic[15:0] dds_data[3:0];
 logic[31:0] dds_current_phase[3:0];
 logic[31:0] dds_freq_add[3:0];
+logic dds_reset = 1'h0;
+logic phadj_rest = 1'h0;
+// jc logic
+logic jc_clk, jc_reset, jc_start = 1'h0;
+logic jc_active, jc_ready; 
 //clock
-logic clk_200MHz;
-//reset
-logic reset;
+logic internal_clk_200MHz;
+logic internal_clk_100MHz;
+logic internal_dds_clock;
+logic sys_pll_reset = 1'h0;
+//sys_reset
+logic sys_reset, dbg_reset = 1'h0, startup_reset = 1'h1;
 
 //tmp
 reg[31:0] b_field = 32'hFF;              //! значение магнитного поля: максимальное значение 128 T, квант ~29.8 нТ
@@ -67,31 +82,59 @@ reg[31:0] b_coeff = 32'h02;              //! b - коэффициент форм
 reg[31:0] c_coeff = 32'h03;              //! c - коэффициент формулы
 reg[7:0] k_coeff = 8'h01;                //! Номер рабочей гармоники ВЧ
 reg start = 1'h1;                        //! запуск подсчета
+reg b2f_reset = 1'h0;                        //! запуск подсчета
 
 //
 reg[31:0] freq;                 				//! реузьлтат подсчета частоты: Freq[Hz]*(2^32)/(F_clk)
 reg ready;                      				//! 
 
-//*** _____________Generation____________________________________ ***//
+// led
+logic [3:0][7:0] led_mode   = {8'h0, 8'h0, 8'h0, 8'h1};
+logic [3:0] led_start       = {1'h0, 1'h0, 1'h0, 1'h1};
+logic [3:0] led_stop        = {1'h0, 1'h0, 1'h0, 1'h0};
+logic led_reset;
+
+// external interface
+avmm_if #(.AW(12), .DW(32)) avmm_if_0();
+
+//init
+logic init_reset = 1'h0;
+logic llrf_init = 1'h0, llrf_init_active = 1'h0;
+int llrf_init_step = 0, llrf_init_step_max = 8;
+
+//*** _____________Generation_____________ ***//
+
+// Register Interface
+reg_interface #(.AW(12), .DW(32)) reg_interface_0 
+(
+    .reset(sys_reset),                          //! асинхронный сброс всех переменных в значение по умолчанию
+    .clk(clk),                              //! тактовый сигнал
+    .av_clk(spi_sclk),                      //! тактовый сигнал шины авалон
+    // external interface
+    .avmm_if_port(avmm_if_0.slave),                
+    // interface to internal logic
+    .dds0_freq(dds_freq[0])                //! добавок к частоте
+);
+
 // 4 DDS
 genvar j;
 generate
     for (j=0; j<4; j=j+1) begin: dds_gen
 			//создание модулей DDS
         dds_slave dds_inst(
-            .clk (int_dds_clk_in),
-            .reset (reset),
+            .clk (internal_dds_clock),
+            .reset (dds_reset),
             .synch (1'h1),
             .freq (dds_freq[j]),
             //
             .dac_signal(dds_data[j]),
             .phase(dds_current_phase[j])
         );
-		  //создание модулей пдстройки фазы
+		//создание модулей пдстройки фазы
         phase_adj phase_adj_inst(
             //
-            .clk(int_dds_clk_in),               //! тактовый сигнал
-            .reset(reset),                      //! сброс всех переменных в значение по умолчанию
+            .clk(internal_dds_clock),               //! тактовый сигнал
+            .reset(phadj_rest),                      //! сброс всех переменных в значение по умолчанию
             .start(start),                      //! запуск работы модуля
             .freq(freq),                        //! рабочая частота сигнала для подстройки фазы
             .current_phase(dds_current_phase[j]),      //! необходимая фаза к окончанию работы модуля
@@ -107,17 +150,62 @@ generate
 endgenerate
 
 b_to_f b_to_f_0(
-    .b_field(b_field),              //! значение магнитного поля: максимальное значение 128 T, квант ~29.8 нТ
-    .a_coeff(a_coeff),              //! a - коэффициент формулы
-    .b_coeff(b_coeff),              //! b - коэффициент формулы
-    .c_coeff(c_coeff),              //! c - коэффициент формулы
-    .k_coeff(k_coeff),               //! Номер рабочей гармоники ВЧ
-    .reset(reset),                      //! сброс в значение по умолчанию
-    .clk(clk_200MHz),                        //! тактовый сигнал
-    .start(start),                      //! запуск подсчета
+    .b_field(b_field),                      //! значение магнитного поля: максимальное значение 128 T, квант ~29.8 нТ
+    .a_coeff(a_coeff),                      //! a - коэффициент формулы
+    .b_coeff(b_coeff),                      //! b - коэффициент формулы
+    .c_coeff(c_coeff),                      //! c - коэффициент формулы
+    .k_coeff(k_coeff),                      //! Номер рабочей гармоники ВЧ
+    .reset(b2f_reset),                          //! сброс в значение по умолчанию
+    .clk(internal_clk_200MHz),              //! тактовый сигнал
+    .start(start),                          //! запуск подсчета
     //
-    .freq(freq),                //! реузьлтат подсчета частоты: Freq[Hz]*(2^32)/(F_clk)
-    .ready(ready)                      //! сигнал готовностси значения частоты
+    .freq(),                            //! реузьлтат подсчета частоты: Freq[Hz]*(2^32)/(F_clk)
+    .ready(ready)                           //! сигнал готовностси значения частоты
+);
+
+led_processor led_processor_0(
+    .clk(sys_clk),
+	.reset(led_reset),
+    .mode(led_mode),
+    .start(led_start),
+    .stop(led_stop),
+    //
+    .led_out(led)
+);
+
+
+// pll - c0 is a based clk, c1 is a 200 MHz clock for DDS-logiс
+sys_pll	sys_pll_inst (
+	.areset (1'h0),
+	.inclk0 (sys_clk),
+    //
+	.phasecounterselect (1'b0),
+	.phasestep (1'b0),
+	.phaseupdown (1'b0),
+	.phasedone ( ),
+    //
+	.scanclk ( scanclk_sig ),
+	.c0 ( internal_clk_100MHz ),
+	.c1 ( internal_clk_200MHz ),
+	.locked ( locked_sig )
+	);
+
+jitter_cleaner_ctrl #(.REF_A_B_CHOISE(DEF_REF)) jc_ctrl_0 (  //для отладки используем REF_B
+    //
+    .clk                    (jc_clk),           //! тактовый сигнал
+    .reset                  (jc_reset),         //! сброс всех переменных в значение по умолчанию
+    .start                  (jc_start),         //! запуск работы модуля
+    .active                 (jc_active),        //! состояние работы модуля: 0 - модуль не запущен, 1 - модуль в активном состоянии
+    .ready                  (jc_ready),         //! 1 - сигнал окончания работы
+    // spi to AD9524
+    .int_dds_pll_reset      (int_dds_pll_reset),
+    .int_dds_pll_sclk       (int_dds_pll_sclk),
+    .int_dds_pll_sdi        (int_dds_pll_sdi),
+    .int_dds_pll_sdo        (int_dds_pll_sdo),
+    .int_dds_pll_cs         (int_dds_pll_cs),
+    .int_dds_pll_ref_sel    (int_dds_pll_ref_sel),
+    .int_status_0           (int_status_0),
+    .int_status_1           (int_status_1)
 );
 
 //*** ____________Description____________________________________ ***//
@@ -129,20 +217,62 @@ initial begin
 			int_dds[i].data_0 <= 14'h0000;
 			int_dds[i].data_1 <= 14'h0000;
         end
+    freq <= 1;
+end
+
+always_comb begin : CLK_choosing
+    `ifdef DEBUG
+        internal_dds_clock = internal_clk_200MHz;
+    `else
+        internal_dds_clock = int_dds_clk_in;
+    `endif
+    //
+    out_clk_100MHz = internal_clk_100MHz;
+    //
+    jc_clk = sys_clk;
+    jc_reset = startup_reset;
+    led_reset = startup_reset;
+    b2f_reset = startup_reset;
+    dds_reset = startup_reset;
+    phadj_rest = startup_reset;
+    sys_pll_reset = 1'h0;
+    sys_reset = startup_reset;
+    //
+    init_reset = dbg_reset;
+    //
+    reserve_3v3[0] = int_dds_pll_cs;
+    reserve_3v3[2] = int_dds_pll_sclk;
+    reserve_3v3[4] = int_dds_pll_sdi;
+    reserve_3v3[6] = int_dds_pll_sdo;
+end
+
+// startup reset
+always @(posedge sys_clk)
+begin
+    if (startup_reset == 1'h1) begin
+        startup_reset <= 1'h0;
+    end
 end
 
 // 4 DDS control
-always @(posedge int_dds_clk_in, posedge reset)
+always @(posedge internal_dds_clock, posedge sys_reset)
 begin
-    if (reset == 1) begin
+    if (sys_reset == 1) begin
         for (i = 0; i < 2; i=i+1) begin
-            int_dds[i].data_0 <= 14'h0000;
-            int_dds[i].data_1 <= 14'h0000;
+            int_dds[i].data_0 <= 14'h0001;
+            int_dds[i].data_1 <= 14'h0001;
             int_dds[i].slp <= 1'h0;
             int_dds[i].rst <= 1'h0;
             // dds_freq[i] <= 16'HAAAA;
-            dds_freq[2*i+0] <= freq;
-            dds_freq[2*i+1] <= freq;
+				if (i==0) begin
+					//dds_freq[2*i+0] <= freq;
+					dds_freq[2*i+1] <= freq;
+				end
+				else begin
+					dds_freq[2*i+0] <= freq;
+					dds_freq[2*i+1] <= freq;
+				end;
+            
         end
     end
     else begin
@@ -150,24 +280,53 @@ begin
             int_dds[i].data_0 <= dds_data[2*i+0][15:2];
             int_dds[i].data_1 <= dds_data[2*i+1][15:2];
         end
-
     end
 end
 
-// pll - c0 is a based clk, c1 is a 200 MHz clock for DDS-logiс
-sys_pll	sys_pll_inst (
-	.areset (1'b0),
-	.inclk0 (sys_clk ),
+//! модуль инициализации блока
+always @(posedge sys_clk, posedge init_reset) begin
+    if (init_reset == 1) begin
+        llrf_init <= 1'h1;
+        llrf_init_step <= 0;
+    end
+    else begin
+        if (llrf_init == 1'h1) begin
+            if (llrf_init_step == 0) begin
+                if((jc_active == 0) & (jc_start == 0) & (llrf_init_active == 1'h0)) begin
+                    jc_start <= 1;
+                    llrf_init_active <= 1'h1;
+                end
+                else if (jc_start == 1) jc_start <= 0;
+                else if (jc_ready == 1) begin
+                    llrf_init_step <= llrf_init_step + 1;
+                    llrf_init_active <= 1'h0;
+                end
+            end
+            else if (llrf_init_step >= llrf_init_step_max) begin
+                llrf_init <= 1'h0;
+                llrf_init_step <= 0;
+            end
+            else begin  // пробегаем неиспользованные шаги инициализации
+                llrf_init_step <= llrf_init_step + 1;
+            end
+        end
+    end
+end
+
+//! dbg-модуль генерации
+always @(posedge sys_clk) begin
+    debug_cnter <= debug_cnter + 1;
     //
-	.phasecounterselect (1'b0),
-	.phasestep (1'b0),
-	.phaseupdown (1'b0),
-	.phasedone ( ),
+    dbg_reset <= &debug_cnter[28:0];
     //
-	.scanclk ( scanclk_sig ),
-	.c0 ( out_clk_100MHz ),
-	.c1 ( clk_200MHz ),
-	.locked ( locked_sig )
-	);
+    if (dbg_reset == 1) begin
+        led_start[2] <= 1'h1;
+    end
+    else if (led[2] == 1'h1) begin 
+        led_start[2] <= 1'h0;
+    end
+    //
+    led_start[3] <= jc_start;
+end
 
 endmodule
