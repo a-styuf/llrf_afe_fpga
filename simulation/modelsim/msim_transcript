@@ -1735,3 +1735,5 @@ do llrf_afe_run_msim_rtl_verilog.do
 # wave zoom range 0ns 0.5us
 # 0 ps
 # 500 ns
+# End time: 18:59:45 on Jun 07,2022, Elapsed time: 121:50:26
+# Errors: 0, Warnings: 2

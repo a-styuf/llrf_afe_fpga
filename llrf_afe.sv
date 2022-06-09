@@ -64,6 +64,7 @@ logic[31:0] dds_current_phase[3:0];
 logic[31:0] dds_freq_add[3:0];
 logic dds_reset = 1'h0;
 logic phadj_rest = 1'h0;
+logic dds_sync_internal = 1'h0, dds_sync_dbg = 1'h0;
 // jc logic
 logic jc_clk, jc_reset, jc_start = 1'h0;
 logic jc_active, jc_ready; 
@@ -124,7 +125,7 @@ generate
         dds_slave dds_inst(
             .clk (internal_dds_clock),
             .reset (dds_reset),
-            .synch (1'h1),
+            .synch (dds_sync_internal),
             .freq (dds_freq[j]),
             //
             .dac_signal(dds_data[j]),
@@ -173,7 +174,6 @@ led_processor led_processor_0(
     .led_out(led)
 );
 
-
 // pll - c0 is a based clk, c1 is a 200 MHz clock for DDS-logiс
 sys_pll	sys_pll_inst (
 	.areset (1'h0),
@@ -221,12 +221,9 @@ initial begin
 end
 
 always_comb begin : CLK_choosing
-    `ifdef DEBUG
-        internal_dds_clock = internal_clk_200MHz;
-    `else
-        internal_dds_clock = int_dds_clk_in;
-    `endif
     //
+    internal_dds_clock = int_dds_clk_in;
+    
     out_clk_100MHz = internal_clk_100MHz;
     //
     jc_clk = sys_clk;
@@ -235,15 +232,16 @@ always_comb begin : CLK_choosing
     b2f_reset = startup_reset;
     dds_reset = startup_reset;
     phadj_rest = startup_reset;
-    sys_pll_reset = 1'h0;
+    init_reset = startup_reset;
     sys_reset = startup_reset;
-    //
-    init_reset = dbg_reset;
+    sys_pll_reset = 1'h0;
     //
     reserve_3v3[0] = int_dds_pll_cs;
     reserve_3v3[2] = int_dds_pll_sclk;
     reserve_3v3[4] = int_dds_pll_sdi;
     reserve_3v3[6] = int_dds_pll_sdo;
+    //
+    dds_sync_internal = dds_sync | dds_sync_dbg;
 end
 
 // startup reset
@@ -255,9 +253,9 @@ begin
 end
 
 // 4 DDS control
-always @(posedge internal_dds_clock, posedge sys_reset)
+always @(posedge internal_dds_clock, posedge init_reset)
 begin
-    if (sys_reset == 1) begin
+    if (init_reset == 1) begin
         for (i = 0; i < 2; i=i+1) begin
             int_dds[i].data_0 <= 14'h0001;
             int_dds[i].data_1 <= 14'h0001;
@@ -317,7 +315,8 @@ end
 always @(posedge sys_clk) begin
     debug_cnter <= debug_cnter + 1;
     //
-    dbg_reset <= &debug_cnter[28:0];
+    // dbg_reset <= &debug_cnter[26:0];
+    dds_sync_dbg <= &debug_cnter[26:0];
     //
     if (dbg_reset == 1) begin
         led_start[2] <= 1'h1;
@@ -326,7 +325,7 @@ always @(posedge sys_clk) begin
         led_start[2] <= 1'h0;
     end
     //
-    led_start[3] <= jc_start;
+    led_start[3] <= dds_sync_internal;
 end
 
 endmodule
