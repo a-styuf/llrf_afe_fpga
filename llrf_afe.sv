@@ -65,6 +65,7 @@ logic[31:0] dds_freq_add[3:0];
 logic dds_reset = 1'h0;
 logic phadj_rest = 1'h0;
 logic dds_sync_internal = 1'h0, dds_sync_dbg = 1'h0;
+logic[31:0] dds_dbg_cnter;
 // jc logic
 logic jc_clk, jc_reset, jc_start = 1'h0;
 logic jc_active, jc_ready; 
@@ -114,7 +115,7 @@ reg_interface #(.AW(12), .DW(32)) reg_interface_0
     // external interface
     .avmm_if_port(avmm_if_0.slave),                
     // interface to internal logic
-    .dds0_freq(dds_freq[0])                //! добавок к частоте
+    .dds0_freq()                //! добавок к частоте
 );
 
 // 4 DDS
@@ -217,7 +218,7 @@ initial begin
 			int_dds[i].data_0 <= 14'h0000;
 			int_dds[i].data_1 <= 14'h0000;
         end
-    freq <= 1;
+    freq <= 32'h0158ED23;  // 1 MHz with clock=190 MHz
 end
 
 always_comb begin : CLK_choosing
@@ -263,7 +264,7 @@ begin
             int_dds[i].rst <= 1'h0;
             // dds_freq[i] <= 16'HAAAA;
 				if (i==0) begin
-					//dds_freq[2*i+0] <= freq;
+					dds_freq[2*i+0] <= freq;
 					dds_freq[2*i+1] <= freq;
 				end
 				else begin
@@ -319,13 +320,20 @@ always @(posedge sys_clk) begin
     dds_sync_dbg <= &debug_cnter[26:0];
     //
     if (dbg_reset == 1) begin
-        led_start[2] <= 1'h1;
+        led_start[1] <= 1'h1;
     end
-    else if (led[2] == 1'h1) begin 
-        led_start[2] <= 1'h0;
+    else if (led[1] == 1'h1) begin 
+        led_start[1] <= 1'h0;
     end
     //
-    led_start[3] <= dds_sync_internal;
+    led_start[2] <= dds_sync_internal;
+end
+
+//! dbg-модуль генерации
+always @(posedge int_dds_clk_in) begin
+    dds_dbg_cnter <= dds_dbg_cnter + 1;
+    //
+    led_start[3] <= &dds_dbg_cnter[26:1];
 end
 
 endmodule
