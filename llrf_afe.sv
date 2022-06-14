@@ -75,7 +75,10 @@ logic internal_clk_100MHz;
 logic internal_dds_clock;
 logic sys_pll_reset = 1'h0;
 //sys_reset
-logic sys_reset, dbg_reset = 1'h0, startup_reset = 1'h1;
+logic sys_reset, dbg_reset = 1'h0;
+//startup reset
+logic startup_reset = 1'h1;
+logic [31:0] startup_counter = 1'h0;
 
 //tmp
 reg[31:0] b_field = 32'hFF;              //! значение магнитного поля: максимальное значение 128 T, квант ~29.8 нТ
@@ -213,12 +216,13 @@ jitter_cleaner_ctrl #(.REF_A_B_CHOISE(DEF_REF)) jc_ctrl_0 (  //для отлад
 
 initial begin
     for (i = 0; i < 2; i=i+1) begin
-            int_dds[i].slp <= 1'h0;
-            int_dds[i].rst <= 1'h0;
+            int_dds[i].slp <= 1'h0; //
+            int_dds[i].rst <= 1'h1;
 			int_dds[i].data_0 <= 14'h0000;
 			int_dds[i].data_1 <= 14'h0000;
         end
-    freq <= 32'h0158ED23;  // 1 MHz with clock=190 MHz
+    // freq <= 32'h0158ED23;  // 1 MHz with clock=190 MHz
+    freq <= 32'h0147AE14;  // 1 MHz with clock=200 MHz
 end
 
 always_comb begin : CLK_choosing
@@ -243,25 +247,34 @@ always_comb begin : CLK_choosing
     reserve_3v3[6] = int_dds_pll_sdo;
     //
     dds_sync_internal = dds_sync | dds_sync_dbg;
-end
+end : CLK_choosing
 
 // startup reset
-always @(posedge sys_clk)
+always @(posedge dbg_reset, posedge sys_clk)
 begin
-    if (startup_reset == 1'h1) begin
-        startup_reset <= 1'h0;
+    if (dbg_reset == 1) begin
+        //startup_reset <= 1'h1;
+        //startup_counter <= 32'h0;
+    end
+    else begin
+        if ((startup_reset == 1'h1) & (~(&startup_counter[9:0]))) begin
+            startup_counter <= startup_counter + 1;
+        end
+        else begin
+            startup_reset <= 1'h0;
+        end
     end
 end
 
 // 4 DDS control
 always @(posedge internal_dds_clock, posedge init_reset)
-begin
+begin : DDS_control
     if (init_reset == 1) begin
         for (i = 0; i < 2; i=i+1) begin
             int_dds[i].data_0 <= 14'h0001;
             int_dds[i].data_1 <= 14'h0001;
+            int_dds[i].rst <= 1'h1;
             int_dds[i].slp <= 1'h0;
-            int_dds[i].rst <= 1'h0;
             // dds_freq[i] <= 16'HAAAA;
 				if (i==0) begin
 					dds_freq[2*i+0] <= freq;
@@ -276,11 +289,13 @@ begin
     end
     else begin
         for (i = 0; i < 2; i=i+1) begin
+            int_dds[i].rst <= 1'h0;
+            int_dds[i].slp <= 1'h1;
             int_dds[i].data_0 <= dds_data[2*i+0][15:2];
             int_dds[i].data_1 <= dds_data[2*i+1][15:2];
         end
     end
-end
+end : DDS_control
 
 //! модуль инициализации блока
 always @(posedge sys_clk, posedge init_reset) begin
@@ -316,8 +331,8 @@ end
 always @(posedge sys_clk) begin
     debug_cnter <= debug_cnter + 1;
     //
-    // dbg_reset <= &debug_cnter[26:0];
-    dds_sync_dbg <= &debug_cnter[26:0];
+    dbg_reset <= &debug_cnter[28:0];
+    dds_sync_dbg <= &debug_cnter[4:0];
     //
     if (dbg_reset == 1) begin
         led_start[1] <= 1'h1;
