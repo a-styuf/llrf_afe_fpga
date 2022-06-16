@@ -16,7 +16,7 @@
 // PROGRAM "Quartus Prime"
 // VERSION "Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition"
 
-// DATE "06/16/2022 11:01:59"
+// DATE "06/16/2022 16:09:45"
 
 // 
 // Device: Altera EP4CE55F23C8 Package FBGA484
@@ -121,46 +121,46 @@ input 	\reserve_lvds[2](n) ;
 input 	\reserve_lvds[3](n) ;
 input 	\int_dds_clk_in(n) ;
 input 	\dds_sync(n) ;
-input 	[3:0] int_dds_fb;
-input 	dds_sync;
-input 	int_dds_clk_in;
-output 	[7:0] int_rio_out;
-input 	[7:0] int_rio_in;
-output 	int_dds_pll_ref_sel;
-output 	int_dds_pll_sclk;
-output 	int_dds_pll_sdi;
-output 	int_dds_pll_cs;
-output 	int_dds_pll_reset;
-input 	int_dds_pll_sdo;
-input 	int_status_0;
-input 	int_status_1;
-output 	int_mfm_b_ref;
-output 	int_mfm_b_p;
-output 	int_mfm_b_m;
-output 	int_mfm_a0;
-output 	int_mfm_a1;
-output 	int_mfm_sdo;
-output 	int_mfm_sck;
-output 	int_mfm_busy;
-output 	int_mfm_cnv;
-output 	[7:0] ext_rio_in;
-input 	[7:0] ext_rio_out;
-input 	i2c_sda;
-input 	i2c_scl;
-input 	i2c_alert;
-input 	fpga_rx;
-output 	fpga_tx;
-input 	[3:0] spi_mosi;
-output 	[3:0] spi_miso;
-input 	spi_sclk;
-input 	spi_cs;
-output 	out_clk_100MHz;
-input 	sys_clk;
-input 	in_clk_100MHz;
-input 	[3:0] reserve_lvds;
-output 	[7:0] reserve_3v3;
-input 	[7:0] reserve_2v5;
-output 	[3:0] led;
+input 	logic [3:0] int_dds_fb ;
+input 	logic dds_sync ;
+input 	logic int_dds_clk_in ;
+output 	logic [7:0] int_rio_out ;
+input 	logic [7:0] int_rio_in ;
+output 	logic int_dds_pll_ref_sel ;
+output 	logic int_dds_pll_sclk ;
+output 	logic int_dds_pll_sdi ;
+output 	logic int_dds_pll_cs ;
+output 	logic int_dds_pll_reset ;
+input 	logic int_dds_pll_sdo ;
+input 	logic int_status_0 ;
+input 	logic int_status_1 ;
+output 	logic int_mfm_b_ref ;
+output 	logic int_mfm_b_p ;
+output 	logic int_mfm_b_m ;
+output 	logic int_mfm_a0 ;
+output 	logic int_mfm_a1 ;
+output 	logic int_mfm_sdo ;
+output 	logic int_mfm_sck ;
+output 	logic int_mfm_busy ;
+output 	logic int_mfm_cnv ;
+output 	logic [7:0] ext_rio_in ;
+input 	logic [7:0] ext_rio_out ;
+input 	logic i2c_sda ;
+input 	logic i2c_scl ;
+input 	logic i2c_alert ;
+input 	logic fpga_rx ;
+output 	logic fpga_tx ;
+input 	logic [3:0] spi_mosi ;
+output 	logic [3:0] spi_miso ;
+input 	logic spi_sclk ;
+input 	logic spi_cs ;
+output 	logic out_clk_100MHz ;
+input 	logic sys_clk ;
+input 	logic in_clk_100MHz ;
+input 	logic [3:0] reserve_lvds ;
+output 	logic [7:0] reserve_3v3 ;
+input 	logic [7:0] reserve_2v5 ;
+output 	logic [3:0] led ;
 
 // Design Ports Information
 // int_dds[0].slp	=>  Location: PIN_W8,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 8mA
