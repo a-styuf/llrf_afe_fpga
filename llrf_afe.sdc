@@ -50,26 +50,39 @@ set_clock_groups -exclusive     -group  {sys_clk \
                                         } \
                                 -group {spi_sclk \
                                         }
+# multipath
+set_multicycle_path -from {get_clocks {int_dds_clk_in}} -to {get_ports {int_dds[*].data_0[*]}} -setup 2
+set_multicycle_path -from {get_clocks {int_dds_clk_in}} -to {get_ports {int_dds[*].data_1[*]}} -setup 2
+# latency
+# set_clock_latency -source -0.461 [get_clocks ext_dds_clk_in_v]
 # setup delay
-set_output_delay -clock [get_clocks ext_dds_clk_in_v] -max [expr        $JC_FPGA_CLK_delay_max + \
+set_output_delay -clock [get_clocks int_dds_clk_in] -max [expr          $JC_FPGA_CLK_delay_max + \
                                                                         $DDS_CLOCK_tSU + \
                                                                         $FPGA_DDS_DATA_delay_max - \
                                                                         $JC_DDS_CLK_delay_min]\
-                                                                        [get_ports int_dds[*].data[*]]
-set_output_delay -clock [get_clocks ext_dds_clk_in_v] -min [expr        $JC_FPGA_CLK_delay_min - \
+                                                                        [get_ports {int_dds[*].data_0[*]}]
+set_output_delay -clock [get_clocks int_dds_clk_in] -min [expr          $JC_FPGA_CLK_delay_min - \
                                                                         $DDS_CLOCK_tH + \
                                                                         $FPGA_DDS_DATA_delay_min - \
                                                                         $JC_DDS_CLK_delay_max]\
-                                                                        [get_ports int_dds[*].data[*]]
+                                                                        [get_ports {int_dds[*].data_0[*]}]
+
+set_output_delay -clock [get_clocks int_dds_clk_in] -max [expr        $JC_FPGA_CLK_delay_max + \
+                                                                        $DDS_CLOCK_tSU + \
+                                                                        $FPGA_DDS_DATA_delay_max - \
+                                                                        $JC_DDS_CLK_delay_min]\
+                                                                        [get_ports {int_dds[*].data_1[*]}]
+set_output_delay -clock [get_clocks int_dds_clk_in] -min [expr        $JC_FPGA_CLK_delay_min - \
+                                                                        $DDS_CLOCK_tH + \
+                                                                        $FPGA_DDS_DATA_delay_min - \
+                                                                        $JC_DDS_CLK_delay_max]\
+                                                                        [get_ports {int_dds[*].data_1[*]}]
 
 set_input_delay  -clock in_clk_100MHz -max 1.2 [get_ports ext_rio_out[*]]
 set_input_delay  -clock in_clk_100MHz -min -0.6 [get_ports ext_rio_out[*]]
 
 set_input_delay  -clock in_clk_100MHz -max 1.2 [get_ports int_rio_in[*]]
 set_input_delay  -clock in_clk_100MHz -min -0.6 [get_ports int_rio_in[*]]
-
-set_input_delay  -clock in_clk_100MHz -max 1.2 [get_ports int_dds[*]]
-set_input_delay  -clock in_clk_100MHz -min -0.6 [get_ports int_dds[*]]
 
 # set_output_delay -clock [get_clocks in_clk_100MHz] -max [expr $CYC5_CLOCK_tSU] [get_ports ext_rio_in[*]]
 # set_output_delay -clock [get_clocks in_clk_100MHz] -min [expr $CYC5_CLOCK_tH] [get_ports ext_rio_in[*]]

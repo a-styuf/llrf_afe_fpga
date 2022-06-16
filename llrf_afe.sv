@@ -90,7 +90,7 @@ reg start = 1'h1;                        //! запуск подсчета
 reg b2f_reset = 1'h0;                        //! запуск подсчета
 
 //
-reg[31:0] freq;                 				//! реузьлтат подсчета частоты: Freq[Hz]*(2^32)/(F_clk)
+reg[31:0] freq, freq_min, freq_max;     //! реузьлтат подсчета частоты: Freq[Hz]*(2^32)/(F_clk)
 reg ready;                      				//! 
 
 // led
@@ -141,7 +141,7 @@ generate
             .clk(internal_dds_clock),               //! тактовый сигнал
             .reset(phadj_rest),                      //! сброс всех переменных в значение по умолчанию
             .start(start),                      //! запуск работы модуля
-            .freq(freq),                        //! рабочая частота сигнала для подстройки фазы
+            .freq(dds_freq[j]),                        //! рабочая частота сигнала для подстройки фазы
             .current_phase(dds_current_phase[j]),      //! необходимая фаза к окончанию работы модуля
             .desired_phase(32'h00),					 //! необходимая фаза к окончанию работы модуля
             .delay_time(32'h0A),            //! время ожидания до начала подстройки фазы
@@ -221,8 +221,9 @@ initial begin
 			int_dds[i].data_0 <= 14'h0000;
 			int_dds[i].data_1 <= 14'h0000;
         end
-    // freq <= 32'h0158ED23;  // 1 MHz with clock=190 MHz
-    freq <= 32'h0147AE14;  // 1 MHz with clock=200 MHz
+    freq <= 32'h0158ED23;  // 1 MHz with clock=190 MHz
+    freq_min <= 32'h0020C49B;  // 100 кHz with clock=200 MHz
+    freq_max <= 32'h26666666;  // 30 MHz with clock=200 MHz
 end
 
 always_comb begin : CLK_choosing
@@ -275,16 +276,9 @@ begin : DDS_control
             int_dds[i].data_1 <= 14'h0001;
             int_dds[i].rst <= 1'h1;
             int_dds[i].slp <= 1'h0;
-            // dds_freq[i] <= 16'HAAAA;
-				if (i==0) begin
-					dds_freq[2*i+0] <= freq;
-					dds_freq[2*i+1] <= freq;
-				end
-				else begin
-					dds_freq[2*i+0] <= freq;
-					dds_freq[2*i+1] <= freq;
-				end;
-            
+            //
+            dds_freq[2*i+0] <= freq_min;
+            dds_freq[2*i+1] <= freq_min;
         end
     end
     else begin
@@ -293,6 +287,9 @@ begin : DDS_control
             int_dds[i].slp <= 1'h1;
             int_dds[i].data_0 <= dds_data[2*i+0][15:2];
             int_dds[i].data_1 <= dds_data[2*i+1][15:2];
+            //
+            dds_freq[2*i+0] <= freq;
+            dds_freq[2*i+1] <= freq;
         end
     end
 end : DDS_control
@@ -332,7 +329,7 @@ always @(posedge sys_clk) begin
     debug_cnter <= debug_cnter + 1;
     //
     dbg_reset <= &debug_cnter[28:0];
-    dds_sync_dbg <= &debug_cnter[4:0];
+    dds_sync_dbg <= &debug_cnter[15:0];
     //
     if (dbg_reset == 1) begin
         led_start[1] <= 1'h1;
@@ -349,6 +346,15 @@ always @(posedge int_dds_clk_in) begin
     dds_dbg_cnter <= dds_dbg_cnter + 1;
     //
     led_start[3] <= &dds_dbg_cnter[26:1];
+    //
+    if(&dds_dbg_cnter[7:0]) begin
+        if (freq <= freq_max) begin
+            freq <= freq + 1;
+        end
+        else begin
+            freq <= freq_min;
+        end
+    end
 end
 
 endmodule
