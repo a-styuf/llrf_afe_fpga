@@ -127,29 +127,19 @@ generate
     for (j=0; j<4; j=j+1) begin: dds_gen
 			//создание модулей DDS
         dds_slave dds_inst(
-            .clk (internal_dds_clock),
-            .reset (dds_reset),
-            .synch (dds_sync_internal),
-            .freq (dds_freq[j]),
+            .clk(internal_dds_clock),                              //! тактовый сигнал
+            .reset(dds_reset),                          //! сброс в значение по умолчанию
+            .synch(dds_sync_internal),                          //! сигнал для актуализации частоты
+            .freq(dds_freq[j]),                         //! задаваемая частота: Freq[Hz]*(2^32)/(F_clk)
             //
-            .dac_signal(dds_data[j]),
-            .phase(dds_current_phase[j])
-        );
-		//создание модулей пдстройки фазы
-        phase_adj phase_adj_inst(
+            .ph_adj_start(start),            //! запуск работы модуля
+            .desired_phase(32'h00),       //! необходимая фаза к окончанию работы модуля
+            .delay_time(32'h0A),             //! время ожидания до начала подстройки фазы
+            .work_time(32'd1000_0000),               //! время подстройки частоты
+            .ph_adj_ready(),            //! 1 - сигнал окончания работы
             //
-            .clk(internal_dds_clock),               //! тактовый сигнал
-            .reset(phadj_rest),                      //! сброс всех переменных в значение по умолчанию
-            .start(start),                      //! запуск работы модуля
-            .freq(dds_freq[j]),                        //! рабочая частота сигнала для подстройки фазы
-            .current_phase(dds_current_phase[j]),      //! необходимая фаза к окончанию работы модуля
-            .desired_phase(32'h00),					 //! необходимая фаза к окончанию работы модуля
-            .delay_time(32'h0A),            //! время ожидания до начала подстройки фазы
-            .work_time(32'd1000_0000),              //! время работы модуля
-            //
-            .freq_add(dds_freq_add[j]),                //! добавок к частоте
-            .active(),                    //! состояние работы модуля: 0 - модуль не запущен, 1 - модуль в активном состоянии
-            .ready()                       //! 1 - сигнал окончания работы
+            .dac_signal(dds_data[j]),             //! выход данных ЦАП
+            .phase(dds_current_phase[j])                        //! выход фазы сигнала DDS: 2^32 - 360°C
         );
     end
 endgenerate
@@ -342,14 +332,14 @@ always @(posedge sys_clk) begin
 end
 
 //! dbg-модуль генерации
-always @(posedge int_dds_clk_in) begin
+always @(posedge in_clk_100MHz) begin
     dds_dbg_cnter <= dds_dbg_cnter + 1;
     //
-    led_start[3] <= &dds_dbg_cnter[26:1];
+    led_start[3] <= &dds_dbg_cnter[25:1];
     //
-    if(&dds_dbg_cnter[7:0]) begin
+    if(&dds_dbg_cnter[11:0]) begin
         if (freq <= freq_max) begin
-            freq <= freq + 1;
+            freq <= freq + {16'h0, freq[31:16]};
         end
         else begin
             freq <= freq_min;

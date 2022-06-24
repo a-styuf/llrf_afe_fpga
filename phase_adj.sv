@@ -85,7 +85,7 @@ reg signed [63:0] numerator = 64'h00;             //! числитель
 reg signed [63:0] denominator = 64'h00;           //! знаменатель
 reg signed [63:0] quotient = 64'h00;              //! частно
 reg signed [63:0] remain = 64'h00;                //! остаток
-reg[7:0] devider_pipeline = 8'h03;       //! pipeline модуля деления
+reg[7:0] devider_pipeline = 8'h04;       //! pipeline модуля деления
 
 //! переменные для общего использования умножителя
 reg[1:0][63:0] mult_a;
@@ -166,6 +166,8 @@ begin
             step_number = 1;
             //
             phase_shift <= 32'h0;
+            //
+            ready <= 0;
         end
         else if(active == 1) begin
             if (step_number == 1) begin // предподготовка переменных
@@ -209,7 +211,6 @@ end
 always @(posedge clk, posedge reset)
 begin
     if (reset == 1) begin
-        conveer_state <= 0;
         remain_accumulator = 72'h00;
         conveer_flag <= 1'h0;
         conveer_ready <= 1'h0;
@@ -219,12 +220,25 @@ begin
         freq_add <= 32'h0;
     end
     else if (start == 1'h1) begin
+        conveer_step <= 0;
         conveer_ready <= 1'h0;
+        freq_add <= 32'h0;
+        conveer_flag <= 1'h0;
+        conveer_state <= 1'h0;
+        remain_accumulator = 72'h00;
+
     end
     else begin
         if((conveer_flag == 0) && (step_number == 3) && (conveer_ready == 1'h0)) begin
             conveer_flag <= 1'h1;
-            conveer_state <= 1'h1;
+            //
+            if (w_t != 0) begin 
+                conveer_state <= 1'h1;
+            end
+            else begin
+                conveer_state <= 1'h5;
+            end
+            //
             freq_add <= 32'h0;
             j <= 0;
         end
@@ -250,6 +264,7 @@ begin
                 if (conveer_step >= d_t) begin
                     conveer_state <= 2;
                 end
+                freq_add <= 32'h0;
             end
             else if (conveer_state == 2) begin // режим до получения первого ответа от делителя с пайплайном
                 // входные данные
@@ -260,6 +275,7 @@ begin
                 if (conveer_step >= d_t + devider_pipeline) begin
                     conveer_state <= 3;
                 end
+                freq_add <= 32'h0;
             end
             else if (conveer_state == 3) begin // базовый режим
                 // входные данные
@@ -304,13 +320,13 @@ begin
                 //
                 if (conveer_step >= w_t + d_t + devider_pipeline) begin
                         conveer_state <= 5;
-                        conveer_ready <= 1;
-                        conveer_flag <= 0;
+                    end
                 end
-            end
-            else if (conveer_state == 5) begin // финиширование
-                freq_add = 32'h0;
-                conveer_state <= 0;
+                else if (conveer_state == 5) begin // финиширование
+                    freq_add <= 32'h0;
+                    conveer_state <= 0;
+                    conveer_ready <= 1;
+                    conveer_flag <= 0;
             end
         end
     end

@@ -27,10 +27,17 @@
 
 // Module
 module dds_slave(
+    //
     input logic clk,                        //! тактовый сигнал
     input logic reset,                      //! сброс в значение по умолчанию
     input logic synch,                      //! сигнал для актуализации частоты
     input logic[31:0] freq,                 //! задаваемая частота: Freq[Hz]*(2^32)/(F_clk)
+    //
+    input logic ph_adj_start,               //! запуск работы модуля
+    input logic[31:0] desired_phase,        //! необходимая фаза к окончанию работы модуля
+    input logic[31:0] delay_time,           //! время ожидания до начала подстройки фазы
+    input logic[31:0] work_time,            //! время подстройки частоты
+    output logic ph_adj_ready,              //! 1 - сигнал окончания работы
     //
     output logic[15:0] dac_signal,         //! выход данных ЦАП
     output logic[31:0] phase               //! выход фазы сигнала DDS: 2^32 - 360°C
@@ -38,14 +45,37 @@ module dds_slave(
 
 //variables
 reg[31:0] freq_val = 32'h00000000; //! внутренняя переменная частоты, защелкивающий частоту
+//
+logic[31:0] dds_current_phase;
+logic signed [31:0] dds_freq_add;
+logic dds_reset = 1'h0;
+logic phadj_rest = 1'h0;
+logic phadj_active = 1'h0;
 
 dds_slave_core dds_core(
     .freq(freq_val),
+    .freq_add(dds_freq_add),
     .reset(reset),
     .clk(clk),
     //
     .dac_signal(dac_signal),
     .phase(phase)
+);
+
+phase_adj phase_adj_inst(
+    //
+    .clk(clk),                                  //! тактовый сигнал
+    .reset(reset),                              //! сброс всех переменных в значение по умолчанию
+    .start(ph_adj_start),                       //! запуск работы модуля
+    .freq(freq_val),                            //! рабочая частота сигнала для подстройки фазы
+    .current_phase(phase),                      //! необходимая фаза к окончанию работы модуля
+    .desired_phase(desired_phase),				//! необходимая фаза к окончанию работы модуля
+    .delay_time(delay_time),                    //! время ожидания до начала подстройки фазы
+    .work_time(work_time),                      //! время работы модуля
+    //
+    .freq_add(dds_freq_add),                    //! добавок к частоте
+    .active(phadj_active),                      //! состояние работы модуля: 0 - модуль не запущен, 1 - модуль в активном состоянии
+    .ready(ph_adj_ready)                        //! 1 - сигнал окончания работы
 );
 
 //
@@ -66,35 +96,69 @@ endmodule
 
 ///***_______testbench_______***///
 
-module dds_slave_tb();
+`define CLK                     (200_000_000)
+`define TICK                    (1_000_000_000/200_000_000)
 
+module dds_slave_tb();
+//
+localparam us_clk_val = (`CLK) / 1000000;
+localparam us_clk_tick = us_clk_val/`TICK;
+localparam ms_clk_val = (`CLK) / 1000;
+localparam ms_clk_tick = ms_clk_val/`TICK;
+localparam s_clk_val = (`CLK) / 1;
+localparam s_clk_tick = s_clk_val/`TICK;
+localparam freq_kHz_val = 32'h53E2;
+localparam freq_MHz_val = 32'h147AE14;
+localparam phase_deg_val = (32'hFFFF_FFFF * 1) / 360;
+localparam delay_tyme_ms = 0;
+localparam work_time_ms = 0;
+//
 integer i = 0;
 reg clk;
 reg synch, reset;
-reg [31:0] freq;
-reg [31:0] freq_increment = 32'h0147AEB8;  //1MHz;
-reg [31:0] phase;
-reg [15:0] dac_signal;
+reg [1:0][31:0] freq;
+reg [1:0][15:0] dac_signal;
+reg [1:0][31:0] phase;
+//
+logic ph_adj_start = 1'h0;
+logic ph_adj_ready = 1'h0;
+logic [1:0][31:0] desired_phase;
+logic [1:0][31:0] delay_time;
+logic [1:0][31:0] work_time;
 
-dds_slave dds_0(
-    .freq(freq),                 
-    .reset(reset),               
-    .clk(clk),                   
-    .synch(synch),               
-    //
-    .dac_signal(dac_signal),
-    .phase(phase)
-);
+genvar j;
+generate
+    for (j=0; j<2; j=j+1) begin: dds_gen
+        dds_slave dds_inst(
+            .clk(clk),                              //! тактовый сигнал
+            .reset(reset),                          //! сброс в значение по умолчанию
+            .synch(synch),                          //! сигнал для актуализации частоты
+            .freq(freq[j]),                         //! задаваемая частота: Freq[Hz]*(2^32)/(F_clk)
+            //
+            .ph_adj_start(ph_adj_start),            //! запуск работы модуля
+            .desired_phase(desired_phase[j]),       //! необходимая фаза к окончанию работы модуля
+            .delay_time(delay_time[j]),             //! время ожидания до начала подстройки фазы
+            .work_time(work_time[j]),               //! время подстройки частоты
+            .ph_adj_ready(ph_adj_ready),            //! 1 - сигнал окончания работы
+            //
+            .dac_signal(dac_signal[j]),             //! выход данных ЦАП
+            .phase(phase[j])                        //! выход фазы сигнала DDS: 2^32 - 360°C
+        );
+    end
+endgenerate
+
+
 
 // имитация сигналов
 initial begin
     clk = 0;
     synch = 0;
-    freq = 32'h0147AEB8;  //1MHz
+    freq[0] = freq_MHz_val;
+    freq[1] = freq_MHz_val;
     reset = 0;
-    #5;
+    #`TICK;
     reset = 1;
-    #5;
+    #`TICK;
     reset = 0;
 end
 
@@ -106,14 +170,50 @@ end
 
 // тактовая частота
 always begin
-    #15;
-    i=i+1;
-    freq = (i%50)*freq_increment;
-
-    synch = 1;
-    #5; 
+    #(1 * `TICK);
     synch = 0;
-    #190;
+    #(5 * `TICK);
+    synch = 1;
+end
+
+// тактовая частота
+always begin
+    $display("Start\n____________");
+    #(25 * `TICK);
+    desired_phase[0] = 90*phase_deg_val;
+    desired_phase[1] = 270*phase_deg_val;
+    delay_time[0] = us_clk_val;
+    delay_time[1] = us_clk_val;
+    work_time[0] = 10*us_clk_val;
+    work_time[1] = 10*us_clk_val;
+    #(1*`TICK);
+    ph_adj_start = 1'h1;
+    #(1*`TICK);
+    ph_adj_start = 1'h0;
+    #(1*`TICK);
+    //
+    while (ph_adj_ready == 32'h0) begin
+        #(1*`TICK);
+    end
+    //
+    #(25 * `TICK);
+    desired_phase[0] = 0*phase_deg_val;
+    desired_phase[1] = 0*phase_deg_val;
+    delay_time[0] = us_clk_val;
+    delay_time[1] = us_clk_val;
+    work_time[0] = 10*us_clk_val;
+    work_time[1] = 10*us_clk_val;
+    ph_adj_start = 1'h1;
+    #(1*`TICK);
+    ph_adj_start = 1'h0;
+    #(1*`TICK);
+    //
+    //
+    while (ph_adj_ready == 32'h0) begin
+        #(1*`TICK);
+    end
+    $display("____________\nFinish");
+    $stop;
 end
 
 endmodule

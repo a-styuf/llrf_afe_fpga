@@ -54,7 +54,7 @@ set_clock_groups -exclusive     -group  {sys_clk \
                                         }
 # multipath
 set_multicycle_path -from [get_clocks {int_dds_clk_in}] -to [get_clocks {ext_dds_clk_in_v}] -setup 2
-set_multicycle_path -from [get_clocks {int_dds_clk_in}] -to [get_clocks {ext_dds_clk_in_v}] -hold 1
+
 # latency
 set_clock_latency -source $JX_DDS_CHANNELS_phase_ns [get_clocks ext_dds_clk_in_v]
 # setup delay

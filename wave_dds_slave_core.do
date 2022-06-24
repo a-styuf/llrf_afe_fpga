@@ -3,6 +3,11 @@ quietly WaveActivateNextPane {} 0
 
 add wave -position end -radix hexadecimal  sim:/dds_slave_core_tb/dds_0/reset
 add wave -position end -radix hexadecimal  sim:/dds_slave_core_tb/dds_0/freq
+
+add wave -position end  -radix hexadecimal  -color white sim:/dds_slave_core_tb/dds_0/las_data_a
+add wave -position end  -radix hexadecimal  -color white sim:/dds_slave_core_tb/dds_0/las_data_a
+add wave -position end  -radix hexadecimal  -color white sim:/dds_slave_core_tb/dds_0/las_data_a
+
 add wave -position end -radix hexadecimal  sim:/dds_slave_core_tb/dds_0/phase
 add wave -position end -radix hexadecimal  sim:/dds_slave_core_tb/dds_0/phase_accum
 add wave -position end -radix hexadecimal  sim:/dds_slave_core_tb/dds_0/sin_addr

@@ -27,6 +27,7 @@
 // Module
 module dds_slave_core(
     input logic[31:0] freq,                 //! задаваемая частота: Freq[Hz]*(2^32)/(F_clk)
+    input logic signed [31:0] freq_add,             //! задаваемая частота: Freq[Hz]*(2^32)/(F_clk)
     input logic reset,                      //! перезапуск модуля DDS
     input logic clk,                        //! тактовый сигнал модуля DDS
     //
@@ -37,6 +38,26 @@ module dds_slave_core(
 //variables
 logic[31:0] phase_accum = 32'h000;                    //! аккумулятор фазы для DDS
 logic[9:0] sin_addr = 10'h000;                        //! адрес выборки значения из памяти периода гармонического сигнала
+// lpm_add_sub (las) signals
+logic [31:0] las_data_a = 32'h0;
+logic [31:0] las_data_b = 32'h0;
+logic [31:0] las_result = 32'h0;
+//
+logic [31:0] dac_signal_mem;
+logic [31:0] freq_work;
+
+// ip-modules
+lpm_add_sub_32	lpm_add_sub_32_main (
+    .dataa ( las_data_a ),
+    .datab ( las_data_b ),
+    .result ( las_result )
+    );
+
+lpm_add_sub_32	lpm_add_sub_32_add (
+    .dataa ( freq ),
+    .datab ( freq_add ),
+    .result ( freq_work )
+    );
 
 //
 always @(posedge clk, posedge reset)
@@ -44,10 +65,17 @@ begin
     if (reset == 1) begin
         phase_accum <= 32'H00000000;
         sin_addr <= 10'H000;
+        las_data_a <= 0;
+        las_data_b <= 0;
+        dac_signal <= 0;
     end
     else begin
-        phase_accum <= phase_accum + freq;
+        //phase_accum <= phase_accum + freq;
+        las_data_a <= las_result;
+        las_data_b <= freq_work;
+        phase_accum <= las_result;
         sin_addr <= phase_accum[31:22];
+        dac_signal <= dac_signal_mem;
     end
 end
 
@@ -57,7 +85,7 @@ assign phase = phase_accum;
 dds_sin_mem	dds_sin_mem_inst (
 	.address ( sin_addr ),
 	.clock  ( clk ),
-	.q ( dac_signal )
+	.q ( dac_signal_mem )
 	);
 endmodule
 
