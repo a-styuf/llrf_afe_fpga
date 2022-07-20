@@ -1,6 +1,8 @@
 //llrf_afe
 
 `define DEBUG
+`define DDS_CLOCK_190M
+//`define DDS_CLOCK_200M
 
 import llrf_afe_package::*;
 
@@ -52,6 +54,16 @@ module llrf_afe(
 
 //
 localparam REF_A = 0, REF_B = 1, DEF_REF = REF_B;
+`ifdef DDS_CLOCK_200M
+    localparam FREQ_10kHz_VAL   = 32'h00003730;
+    localparam FREQ_100kHz_VAL  = 32'h00227E1D;
+    localparam FREQ_1MHz_VAL    = 32'h0158ED23;
+`elsif DDS_CLOCK_190M
+    localparam FREQ_10kHz_VAL   = 32'h000346DC;
+    localparam FREQ_100kHz_VAL  = 32'h0020C49B;
+    localparam FREQ_1MHz_VAL    = 32'h0147AE14;
+`endif
+localparam PHASE_DEG_VAL = (32'hFFFF_FFFF * 1) / 360;
 
 //variables
 int i;
@@ -89,9 +101,14 @@ reg[7:0] k_coeff = 8'h01;                //! Номер рабочей гарм�
 reg start = 1'h1;                        //! запуск подсчета
 reg b2f_reset = 1'h0;                        //! запуск подсчета
 
+// phase adjust variables
+logic ph_adj_start[3:0], ph_adj_ready[3:0];
+logic [31:0] ph_adj_desired_phase[3:0];
+logic [31:0] ph_adj_delay_time[3:0], ph_adj_work_time[3:0];
+
 //
-reg[31:0] freq, freq_min, freq_max;     //! реузьлтат подсчета частоты: Freq[Hz]*(2^32)/(F_clk)
-reg ready;                      				//! 
+reg[31:0] freq[3:0], freq_min[3:0], freq_max[3:0];     //! реузьлтат подсчета частоты: Freq[Hz]*(2^32)/(F_clk)
+reg ready;                      				        //! 
 
 // led
 logic [3:0][7:0] led_mode   = {8'h0, 8'h0, 8'h0, 8'h1};
@@ -132,11 +149,11 @@ generate
             .synch(dds_sync_internal),                          //! сигнал для актуализации частоты
             .freq(dds_freq[j]),                         //! задаваемая частота: Freq[Hz]*(2^32)/(F_clk)
             //
-            .ph_adj_start(start),            //! запуск работы модуля
-            .desired_phase(32'h00),       //! необходимая фаза к окончанию работы модуля
-            .delay_time(32'h0A),             //! время ожидания до начала подстройки фазы
-            .work_time(32'd1000_0000),               //! время подстройки частоты
-            .ph_adj_ready(),            //! 1 - сигнал окончания работы
+            .ph_adj_start(ph_adj_start[j]),            //! запуск работы модуля
+            .desired_phase(ph_adj_desired_phase[j]),       //! необходимая фаза к окончанию работы модуля
+            .delay_time(ph_adj_delay_time[j]),             //! время ожидания до начала подстройки фазы
+            .work_time(ph_adj_work_time[j]),               //! время подстройки частоты
+            .ph_adj_ready(ph_adj_ready[j]),            //! 1 - сигнал окончания работы
             //
             .dac_signal(dds_data[j]),             //! выход данных ЦАП
             .phase(dds_current_phase[j])                        //! выход фазы сигнала DDS: 2^32 - 360°C
@@ -206,14 +223,32 @@ jitter_cleaner_ctrl #(.REF_A_B_CHOISE(DEF_REF)) jc_ctrl_0 (  //для отлад
 
 initial begin
     for (i = 0; i < 2; i=i+1) begin
-            int_dds[i].slp <= 1'h0; //
-            int_dds[i].rst <= 1'h1;
-			int_dds[i].data_0 <= 14'h0000;
-			int_dds[i].data_1 <= 14'h0000;
+        int_dds[i].slp <= 1'h0; //
+        int_dds[i].rst <= 1'h1;
+        int_dds[i].data_0 <= 14'h0000;
+        int_dds[i].data_1 <= 14'h0000;
+    end
+    //
+    for (i = 0; i < 4; i=i+1) begin
+        if (i == 0) begin
+            freq[i] <= FREQ_1MHz_VAL;
         end
-    freq <= 32'h0158ED23;  // 1 MHz with clock=190 MHz
-    freq_min <= 32'h0020C49B;  // 100 кHz with clock=200 MHz
-    freq_max <= 32'h26666666;  // 30 MHz with clock=200 MHz
+        else if (i == 1) begin
+            freq[i] <= FREQ_1MHz_VAL;
+        end
+        else begin
+            freq[i] <= FREQ_1MHz_VAL;
+        end
+        freq_min[i] <= FREQ_100kHz_VAL;
+        freq_max[i] <= 50*FREQ_1MHz_VAL;
+    end
+    //
+    for (i = 0; i < 4; i=i+1) begin
+        ph_adj_start[i] = 1'h0; 
+        ph_adj_desired_phase[i] = 32'h0;
+        ph_adj_delay_time[i] = 32'h0;
+        ph_adj_work_time[i] = 32'h0;
+    end
 end
 
 always_comb begin : CLK_choosing
@@ -267,8 +302,8 @@ begin : DDS_control
             int_dds[i].rst <= 1'h1;
             int_dds[i].slp <= 1'h0;
             //
-            dds_freq[2*i+0] <= freq_min;
-            dds_freq[2*i+1] <= freq_min;
+            dds_freq[2*i+0] <= freq_min[2*i+0];
+            dds_freq[2*i+1] <= freq_min[2*i+1];
         end
     end
     else begin
@@ -278,8 +313,8 @@ begin : DDS_control
             int_dds[i].data_0 <= dds_data[2*i+0][15:2];
             int_dds[i].data_1 <= dds_data[2*i+1][15:2];
             //
-            dds_freq[2*i+0] <= freq;
-            dds_freq[2*i+1] <= freq;
+            dds_freq[2*i+0] <= freq[2*i+0];
+            dds_freq[2*i+1] <= freq[2*i+1];
         end
     end
 end : DDS_control
@@ -314,7 +349,7 @@ always @(posedge sys_clk, posedge init_reset) begin
     end
 end
 
-//! dbg-модуль генерации
+//! dbg-модуль генерации синхронный с sys_clk
 always @(posedge sys_clk) begin
     debug_cnter <= debug_cnter + 1;
     //
@@ -328,23 +363,41 @@ always @(posedge sys_clk) begin
         led_start[1] <= 1'h0;
     end
     //
-    led_start[2] <= dds_sync_internal;
 end
 
-//! dbg-модуль генерации
+//! dbg-модуль генерации синхронный с 100 МГц от jitter_cleaner
 always @(posedge in_clk_100MHz) begin
     dds_dbg_cnter <= dds_dbg_cnter + 1;
     //
-    led_start[3] <= &dds_dbg_cnter[25:1];
-    //
+    // dds control
     if(&dds_dbg_cnter[11:0]) begin
-        if (freq <= freq_max) begin
-            freq <= freq + {16'h0, freq[31:16]};
-        end
-        else begin
-            freq <= freq_min;
+        for (i = 2; i < 3; i=i+1) begin
+            if (freq[i] <= freq_max[i]) begin
+                freq[i] <= freq[i] + {16'h0, freq[i][31:16]};
+            end
+            else begin
+                freq[i] <= freq_min[i];
+            end
         end
     end
+    // phase adjust
+    if((&dds_dbg_cnter[27:1]) && (dds_dbg_cnter[0] == 0)) begin
+        if (ph_adj_desired_phase[1] == 32'h0) begin
+            ph_adj_desired_phase[0] <= 32'h0000_0000;
+            ph_adj_desired_phase[1] <= 32'h7FFF_FFFF;
+        end
+        else begin
+            ph_adj_desired_phase[0] <= 0;
+            ph_adj_desired_phase[1] <= 0;
+        end
+        ph_adj_work_time[0] <= 32'h0FFF_FFFF;
+        ph_adj_work_time[1] <= 32'h0FFF_FFFF;
+    end
+    //
+    ph_adj_start[0] <= (&dds_dbg_cnter[27:0]);
+    ph_adj_start[1] <= (&dds_dbg_cnter[27:0]);
+    led_start[2] <= ph_adj_ready[1];
+    led_start[3] <= (&dds_dbg_cnter[27:0]);
 end
 
 endmodule

@@ -96,8 +96,8 @@ endmodule
 
 ///***_______testbench_______***///
 
-`define CLK                     (200_000_000)
-`define TICK                    (1_000_000_000/200_000_000)
+`define CLK                     (190_000_000)
+`define TICK                    (1_000_000_000/190_000_000)
 
 module dds_slave_tb();
 //
@@ -119,6 +119,8 @@ reg synch, reset;
 reg [1:0][31:0] freq;
 reg [1:0][15:0] dac_signal;
 reg [1:0][31:0] phase;
+//
+logic [31:0] phase_diff;
 //
 logic ph_adj_start = 1'h0;
 logic ph_adj_ready = 1'h0;
@@ -155,6 +157,9 @@ initial begin
     synch = 0;
     freq[0] = freq_MHz_val;
     freq[1] = freq_MHz_val;
+    desired_phase[0] = 32'h0;
+    desired_phase[1] = 32'h0;
+    phase_diff = 32'h0;
     reset = 0;
     #`TICK;
     reset = 1;
@@ -179,39 +184,26 @@ end
 // тактовая частота
 always begin
     $display("Start\n____________");
-    #(25 * `TICK);
-    desired_phase[0] = 90*phase_deg_val;
-    desired_phase[1] = 270*phase_deg_val;
-    delay_time[0] = us_clk_val;
-    delay_time[1] = us_clk_val;
-    work_time[0] = 10*us_clk_val;
-    work_time[1] = 10*us_clk_val;
-    #(1*`TICK);
-    ph_adj_start = 1'h1;
-    #(1*`TICK);
-    ph_adj_start = 1'h0;
-    #(1*`TICK);
-    //
-    while (ph_adj_ready == 32'h0) begin
+    while(1) begin
+        #(25 * `TICK);
+        desired_phase[0] <= desired_phase[0] + 7*phase_deg_val;
+        desired_phase[1] <= 0*phase_deg_val;
+        delay_time[0] <= us_clk_val;
+        delay_time[1] <= us_clk_val;
+        work_time[0] <= 2*us_clk_val;
+        work_time[1] <= 2*us_clk_val;
         #(1*`TICK);
+        ph_adj_start <= 1'h1;
+        #(1*`TICK);
+        ph_adj_start <= 1'h0;
+        #(1*`TICK);
+        //
+        while (ph_adj_ready == 32'h0) begin
+            phase_diff <= phase[1] - phase[0];
+            #(111*`TICK);
+        end
     end
     //
-    #(25 * `TICK);
-    desired_phase[0] = 0*phase_deg_val;
-    desired_phase[1] = 0*phase_deg_val;
-    delay_time[0] = us_clk_val;
-    delay_time[1] = us_clk_val;
-    work_time[0] = 10*us_clk_val;
-    work_time[1] = 10*us_clk_val;
-    ph_adj_start = 1'h1;
-    #(1*`TICK);
-    ph_adj_start = 1'h0;
-    #(1*`TICK);
-    //
-    //
-    while (ph_adj_ready == 32'h0) begin
-        #(1*`TICK);
-    end
     $display("____________\nFinish");
     $stop;
 end

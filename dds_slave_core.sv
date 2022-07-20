@@ -40,7 +40,7 @@ logic[31:0] phase_accum = 32'h000;                    //! аккумулятор
 logic[9:0] sin_addr = 10'h000;                        //! адрес выборки значения из памяти периода гармонического сигнала
 // lpm_add_sub (las) signals
 logic [31:0] las_data_a = 32'h0;
-logic [31:0] las_data_b = 32'h0;
+logic [31:0] las_data_b;
 logic [31:0] las_result = 32'h0;
 //
 logic [31:0] dac_signal_mem;
@@ -59,6 +59,10 @@ lpm_add_sub_32	lpm_add_sub_32_add (
     .result ( freq_work )
     );
 
+always_comb begin
+    las_data_b = freq_work;
+end
+
 //
 always @(posedge clk, posedge reset)
 begin
@@ -66,13 +70,13 @@ begin
         phase_accum <= 32'H00000000;
         sin_addr <= 10'H000;
         las_data_a <= 0;
-        las_data_b <= 0;
+        //las_data_b <= 0;
         dac_signal <= 0;
     end
     else begin
         //phase_accum <= phase_accum + freq;
         las_data_a <= las_result;
-        las_data_b <= freq_work;
+        //las_data_b <= freq_work;
         phase_accum <= las_result;
         sin_addr <= phase_accum[31:22];
         dac_signal <= dac_signal_mem;

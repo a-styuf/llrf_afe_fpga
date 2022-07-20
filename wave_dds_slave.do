@@ -27,15 +27,18 @@ add wave -noupdate -color cyan -format Analog-Step -height 74 -max 32767.0 -min 
 add wave -noupdate -color cyan -format Analog-Step -height 74 -max 32767.0 -min -32767.0 {/dds_slave_tb/phase[1]}
 add wave -noupdate -color cyan -format Analog-Step -height 74 -max 4294967296 -min 0 {/dds_slave_tb/dac_signal[0]}
 add wave -noupdate -color cyan -format Analog-Step -height 74 -max 4294967296 -min 0 {/dds_slave_tb/dac_signal[1]}
+add wave -noupdate -color cyan -format Analog-Step -height 74 -max 4294967296 -min 0 {/dds_slave_tb/phase_diff}
+add wave -noupdate -color cyan -format Analog-Step -height 74 -max 4294967296 -min 0 {/dds_slave_tb/dds_gen[0]/dds_inst/phase_adj_inst/freq_add}
+add wave -noupdate -color cyan -format Analog-Step -height 74 -max 4294967296 -min 0 {/dds_slave_tb/dds_gen[1]/dds_inst/phase_adj_inst/freq_add}
 
-add wave -position end -color cyan -divider "Devider"
+add wave -position end  -divider "Devider"
 add wave -position end  {/dds_slave_tb/dds_gen[0]/dds_inst/phase_adj_inst/denominator}
 add wave -position end  {/dds_slave_tb/dds_gen[0]/dds_inst/phase_adj_inst/numerator}
 add wave -position end  {/dds_slave_tb/dds_gen[0]/dds_inst/phase_adj_inst/quotient}
 add wave -position end  {/dds_slave_tb/dds_gen[0]/dds_inst/phase_adj_inst/remain}
 add wave -position end  {/dds_slave_tb/dds_gen[0]/dds_inst/phase_adj_inst/conveer_state}
-add wave -position end  {/dds_slave_tb/dds_gen[0]/dds_inst/phase_adj_inst/w_t}
-add wave -position end  {/dds_slave_tb/dds_gen[0]/dds_inst/phase_adj_inst/d_t}
+add wave -position end  -radix hexadecimal {/dds_slave_tb/dds_gen[0]/dds_inst/phase_adj_inst/w_t}
+add wave -position end  -radix hexadecimal {/dds_slave_tb/dds_gen[0]/dds_inst/phase_adj_inst/d_t}
 
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {0 ps} 0} {{Cursor 2} {1000 ns} 0}

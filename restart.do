@@ -1,4 +1,4 @@
 update
 restart -f
-run 25us
-wave zoom range 0ns 25us
+run 1000us
+wave zoom range 0ns 1000us
