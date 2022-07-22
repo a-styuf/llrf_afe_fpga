@@ -38,7 +38,7 @@ module phase_shift_calculation (
     input logic[31:0] desired_phase,        //! желаемая фаза к окончанию фремени time_from_start
     input logic[31:0] time_from_start,      //! время в тактах clk через которое устанавливается desired_phase
     //
-    output logic signed [31:0] phase_shift,  //! результирующая свдижка фазы (знаковый)
+    output logic[31:0] phase_shift,         //! результирующая свдижка фазы (знаковый)
     output logic ready                      //! 1 - сигнал окончания работы (сбрасываеься в 0 сигралами reset и start)
 );
 

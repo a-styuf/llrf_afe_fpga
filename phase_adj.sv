@@ -43,8 +43,8 @@ module phase_adj(
     input logic[31:0] delay_time,           //! время ожидания до начала подстройки фазы
     input logic[31:0] work_time,            //! время подстройки частоты
     //
-    output logic signed [31:0] freq_add,    //! добавок к частоте
-    output logic signed [31:0] phase_shift, //! добавок к фазе (информационный, на основе этого параметра считается freq_add)
+    output logic [31:0] freq_add,    //! добавок к частоте
+    output logic [31:0] phase_shift, //! добавок к фазе (информационный, на основе этого параметра считается freq_add)
     output logic active,                    //! состояние работы модуля: 0 - модуль не запущен, 1 - модуль в активном состоянии
     output logic ready                      //! 1 - сигнал окончания работы
 );
@@ -74,10 +74,10 @@ logic [31:0] phsh_current_phase = 32'hFEFE_FEFE;
 logic [31:0] phsh_desired_phase = 32'hFEFE_FEFE;
 logic [31:0] phsh_time_from_start = 32'hFEFE_FEFE;
 //
-logic signed[31:0] phsh_phase_shift;
+logic [31:0] phsh_phase_shift;
 logic phsh_ready;
 //
-logic signed[31:0] phase_shift_int;
+logic [31:0] phase_shift_int;
 
 //variables for IP-blocks
 //64-bits devider
@@ -336,11 +336,11 @@ endmodule
 ///***_______testbench_______***///
 
 //! параметры для задания магнитного поля
-`define CLK                     (200_000_000)
-`define TICK                    (1_000_000_000/200_000_000)
+`define CLK                     (190_000_000)
+`define TICK                    (1_000_000_000/190_000_000)
 `define FREQ                    (1_000_000)
-`define DELAY_TIME_TICK         (2)
-`define WORK_TIME_TICK          (2_000)
+`define DELAY_TIME_TICK         (0)
+`define WORK_TIME_TICK          (2000)
 //
 `define FREQ_INT                32'h0147_AE14       // 1.0 MHz
 `define CURRENT_PHASE_INT       32'hFC71_C71C       // 0.0°
@@ -363,11 +363,11 @@ reg [31:0] delay_time;
 reg [31:0] work_time;
 reg [63:0] temp_reg;
 //
-reg signed [31:0] freq_add;
+reg [31:0] freq_add;
 reg active;
 reg ready;
 //
-reg signed [63:0] freq_add_integral = 64'h0000_0000;
+reg [63:0] freq_add_integral = 64'h0000_0000;
 //
 integer i = 0, j = 0, des_ph=0, curr_ph=0;
 
@@ -442,14 +442,14 @@ always begin
                     if ((active == 1) || (ready == 1))  begin
                         //
                         temp_reg = (current_phase + (freq*work_time));
-                        future_phase_deg = ($itor(temp_reg[31:16]) % (2**16)) * (360.0/(2**16));
+                        future_phase_deg = $itor((temp_reg[31:16]) % (2**16)) * (360.0/(2**16));
                         //
                         freq_add_integral = freq_add_integral + freq_add;
-                        phase_addition_deg = $itor(freq_add_integral[31:16])*360.0/(2**16) % 360;
+                        phase_addition_deg = $itor(freq_add_integral[31:16] % (2**16))*360.0/(2**16);
                         //
                         if (ready == 1) begin
                             #(1*`TICK);
-                            $display("Report (deg): \tstart: %.3f \tdesir: %.3f \treslt: %.3f \terror: %.3f", start_phase_deg, desired_phase_deg, $itor(future_phase_deg + phase_addition_deg) % 360, future_phase_deg + phase_addition_deg - desired_phase_deg);
+                            $display("Report (deg): \tstart: %.3f \tdesir: %.3f \treslt: %.3f \terror: %.3f", start_phase_deg, desired_phase_deg, (future_phase_deg + phase_addition_deg), future_phase_deg + phase_addition_deg - desired_phase_deg);
                             #(1*`TICK);
                             reset <= 1'h1;
                             #(1*`TICK);

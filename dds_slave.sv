@@ -186,12 +186,12 @@ always begin
     $display("Start\n____________");
     while(1) begin
         #(25 * `TICK);
-        desired_phase[0] <= desired_phase[0] + 7*phase_deg_val;
+        desired_phase[0] <= desired_phase[0] + 180*phase_deg_val;
         desired_phase[1] <= 0*phase_deg_val;
-        delay_time[0] <= us_clk_val;
-        delay_time[1] <= us_clk_val;
-        work_time[0] <= 2*us_clk_val;
-        work_time[1] <= 2*us_clk_val;
+        delay_time[0] <= 0;
+        delay_time[1] <= 0;
+        work_time[0] <= 2000;
+        work_time[1] <= 2000;
         #(1*`TICK);
         ph_adj_start <= 1'h1;
         #(1*`TICK);

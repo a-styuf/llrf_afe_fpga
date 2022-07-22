@@ -27,7 +27,7 @@
 // Module
 module dds_slave_core(
     input logic[31:0] freq,                 //! задаваемая частота: Freq[Hz]*(2^32)/(F_clk)
-    input logic signed [31:0] freq_add,             //! задаваемая частота: Freq[Hz]*(2^32)/(F_clk)
+    input logic[31:0] freq_add,             //! задаваемая частота: Freq[Hz]*(2^32)/(F_clk)
     input logic reset,                      //! перезапуск модуля DDS
     input logic clk,                        //! тактовый сигнал модуля DDS
     //

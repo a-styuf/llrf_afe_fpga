@@ -66,7 +66,7 @@ localparam REF_A = 0, REF_B = 1, DEF_REF = REF_B;
 localparam PHASE_DEG_VAL = (32'hFFFF_FFFF * 1) / 360;
 
 //variables
-int i;
+int i, dds_num;
 int debug_state = 1;
 int debug_cnter = 0;
 // dds logic
@@ -142,7 +142,7 @@ reg_interface #(.AW(12), .DW(32)) reg_interface_0
 genvar j;
 generate
     for (j=0; j<4; j=j+1) begin: dds_gen
-			//создание модулей DDS
+		//создание модулей DDS
         dds_slave dds_inst(
             .clk(internal_dds_clock),                              //! тактовый сигнал
             .reset(dds_reset),                          //! сброс в значение по умолчанию
@@ -222,32 +222,32 @@ jitter_cleaner_ctrl #(.REF_A_B_CHOISE(DEF_REF)) jc_ctrl_0 (  //для отлад
 //*** ____________Description____________________________________ ***//
 
 initial begin
-    for (i = 0; i < 2; i=i+1) begin
-        int_dds[i].slp <= 1'h0; //
-        int_dds[i].rst <= 1'h1;
-        int_dds[i].data_0 <= 14'h0000;
-        int_dds[i].data_1 <= 14'h0000;
+    for (int dds_num = 0; dds_num < 2; dds_num=dds_num+1) begin
+        int_dds[dds_num].slp <= 1'h0; //
+        int_dds[dds_num].rst <= 1'h1;
+        int_dds[dds_num].data_0 <= 14'h0000;
+        int_dds[dds_num].data_1 <= 14'h0000;
     end
     //
-    for (i = 0; i < 4; i=i+1) begin
-        if (i == 0) begin
-            freq[i] <= FREQ_1MHz_VAL;
+    for (int dds_num = 0; dds_num < 4; dds_num=dds_num+1) begin
+        if (dds_num == 0) begin
+            freq[dds_num] <= FREQ_1MHz_VAL;
         end
-        else if (i == 1) begin
-            freq[i] <= FREQ_1MHz_VAL;
+        else if (dds_num == 1) begin
+            freq[dds_num] <= FREQ_1MHz_VAL;
         end
         else begin
-            freq[i] <= FREQ_1MHz_VAL;
+            freq[dds_num] <= FREQ_1MHz_VAL;
         end
-        freq_min[i] <= FREQ_100kHz_VAL;
-        freq_max[i] <= 50*FREQ_1MHz_VAL;
+        freq_min[dds_num] <= FREQ_100kHz_VAL;
+        freq_max[dds_num] <= 50*FREQ_1MHz_VAL;
     end
     //
-    for (i = 0; i < 4; i=i+1) begin
-        ph_adj_start[i] = 1'h0; 
-        ph_adj_desired_phase[i] = 32'h0;
-        ph_adj_delay_time[i] = 32'h0;
-        ph_adj_work_time[i] = 32'h0;
+    for (int dds_num = 0; dds_num < 4; dds_num=dds_num+1) begin
+        ph_adj_start[dds_num] <= 1'h0; 
+        ph_adj_desired_phase[dds_num] <= 32'h0;
+        ph_adj_delay_time[dds_num] <= 32'h0;
+        ph_adj_work_time[dds_num] <= 32'h0;
     end
 end
 
@@ -296,25 +296,25 @@ end
 always @(posedge internal_dds_clock, posedge init_reset)
 begin : DDS_control
     if (init_reset == 1) begin
-        for (i = 0; i < 2; i=i+1) begin
-            int_dds[i].data_0 <= 14'h0001;
-            int_dds[i].data_1 <= 14'h0001;
-            int_dds[i].rst <= 1'h1;
-            int_dds[i].slp <= 1'h0;
+        for (int dds_num = 0; dds_num < 2; dds_num=dds_num+1) begin
+            int_dds[dds_num].data_0 <= 14'h0001;
+            int_dds[dds_num].data_1 <= 14'h0001;
+            int_dds[dds_num].rst <= 1'h1;
+            int_dds[dds_num].slp <= 1'h0;
             //
-            dds_freq[2*i+0] <= freq_min[2*i+0];
-            dds_freq[2*i+1] <= freq_min[2*i+1];
+            dds_freq[2*dds_num+0] <= freq_min[2*dds_num+0];
+            dds_freq[2*dds_num+1] <= freq_min[2*dds_num+1];
         end
     end
     else begin
-        for (i = 0; i < 2; i=i+1) begin
-            int_dds[i].rst <= 1'h0;
-            int_dds[i].slp <= 1'h1;
-            int_dds[i].data_0 <= dds_data[2*i+0][15:2];
-            int_dds[i].data_1 <= dds_data[2*i+1][15:2];
+        for (int dds_num = 0; dds_num < 2; dds_num=dds_num+1) begin
+            int_dds[dds_num].rst <= 1'h0;
+            int_dds[dds_num].slp <= 1'h1;
+            int_dds[dds_num].data_0 <= dds_data[2*dds_num+0][15:2];
+            int_dds[dds_num].data_1 <= dds_data[2*dds_num+1][15:2];
             //
-            dds_freq[2*i+0] <= freq[2*i+0];
-            dds_freq[2*i+1] <= freq[2*i+1];
+            dds_freq[2*dds_num+0] <= freq[2*dds_num+0];
+            dds_freq[2*dds_num+1] <= freq[2*dds_num+1];
         end
     end
 end : DDS_control
@@ -366,37 +366,45 @@ always @(posedge sys_clk) begin
 end
 
 //! dbg-модуль генерации синхронный с 100 МГц от jitter_cleaner
-always @(posedge in_clk_100MHz) begin
+always @(posedge internal_dds_clock) begin
     dds_dbg_cnter <= dds_dbg_cnter + 1;
     //
     // dds control
     if(&dds_dbg_cnter[11:0]) begin
-        for (i = 2; i < 3; i=i+1) begin
-            if (freq[i] <= freq_max[i]) begin
-                freq[i] <= freq[i] + {16'h0, freq[i][31:16]};
+        for (int dds_num = 2; dds_num < 3; dds_num=dds_num+1) begin
+            if (freq[dds_num] <= freq_max[dds_num]) begin
+                freq[dds_num] <= freq[dds_num] + {16'h0, freq[dds_num][31:16]};
             end
             else begin
-                freq[i] <= freq_min[i];
+                freq[dds_num] <= freq_min[dds_num];
             end
         end
     end
     // phase adjust
     if((&dds_dbg_cnter[27:1]) && (dds_dbg_cnter[0] == 0)) begin
-        if (ph_adj_desired_phase[1] == 32'h0) begin
-            ph_adj_desired_phase[0] <= 32'h0000_0000;
+        if (ph_adj_desired_phase[0] == 32'h0) begin
+            ph_adj_desired_phase[0] <= 32'h7FFF_FFFF;
             ph_adj_desired_phase[1] <= 32'h7FFF_FFFF;
+            ph_adj_desired_phase[2] <= 32'h7FFF_FFFF;
+            ph_adj_desired_phase[3] <= 32'h7FFF_FFFF;
         end
         else begin
             ph_adj_desired_phase[0] <= 0;
             ph_adj_desired_phase[1] <= 0;
+            ph_adj_desired_phase[2] <= 0;
+            ph_adj_desired_phase[3] <= 0;
         end
-        ph_adj_work_time[0] <= 32'h0FFF_FFFF;
-        ph_adj_work_time[1] <= 32'h0FFF_FFFF;
+        ph_adj_work_time[0] <= 2000;
+        ph_adj_work_time[1] <= 2000;
+        ph_adj_work_time[2] <= 2000;
+        ph_adj_work_time[3] <= 2000;
     end
     //
     ph_adj_start[0] <= (&dds_dbg_cnter[27:0]);
     ph_adj_start[1] <= (&dds_dbg_cnter[27:0]);
-    led_start[2] <= ph_adj_ready[1];
+    ph_adj_start[2] <= (&dds_dbg_cnter[27:0]);
+    ph_adj_start[3] <= (&dds_dbg_cnter[27:0]);
+    led_start[2] <= ph_adj_ready[0];
     led_start[3] <= (&dds_dbg_cnter[27:0]);
 end
 
